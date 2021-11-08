@@ -8,10 +8,10 @@
 		<version>2.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.spring.vijay</groupId>
-	<artifactId>ConsumeRESTApi</artifactId>
+	<groupId>com.vijay</groupId>
+	<artifactId>servewebcontent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>buildrestapi</name>
+	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -26,6 +26,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

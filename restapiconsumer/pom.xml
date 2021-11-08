@@ -11,7 +11,7 @@
 	<groupId>com.spring.vijay</groupId>
 	<artifactId>ConsumeRESTApi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>buildrestapi</name>
+	<name>ServingRESTContent</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>

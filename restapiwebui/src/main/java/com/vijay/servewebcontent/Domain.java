@@ -1,4 +1,4 @@
-package com.spring.vijay.restservice;
+package com.vijay.servewebcontent;
 
 public class Domain {
     private long id;
