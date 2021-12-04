@@ -1,0 +1,9 @@
+*
+!*.java
+!*.xml
+!*.properties
+!*.html
+!*.jsp
+!*.json
+!*.txt
+!/*

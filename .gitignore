@@ -1,0 +1,10 @@
+*
+!*.xml
+!*.java
+!*.html
+!*.jsp
+!*.properties
+!*.txt
+!*.json
+!*.sql
+!/*
