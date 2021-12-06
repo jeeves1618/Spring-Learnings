@@ -6,10 +6,17 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
-
+	
+	<!-- Define your dependency beans here -->
+	<bean id="feeService"
+		class="com.vijay.springdemo.CheapFeeService">
+	</bean>
+	
     <!-- Define your beans here -->
     <bean id="myCoach"
-    class="com.vijay.springdemo.BaseballCoach">
+    	class="com.vijay.springdemo.TrackCoach">
+    	<!-- Set up the constructor Injection here -->
+    	<constructor-arg ref="feeService"></constructor-arg>
     </bean>
     
 </beans>
