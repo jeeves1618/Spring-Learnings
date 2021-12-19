@@ -9,3 +9,4 @@ Annotations
 @Component will register the class and make the bean available for Spring Framework
 @Qualifier, when there are multiple implementation or child classes, use this annotation to specify which implementation should be used for bean creation
 @Autowired is used for injecting @Component classes. If you haven't annotated with @Component, that bean will not be visible for @Autowired
+@Value is used to assign a value to a variable and will work only within classes that are annotated with @Component. Example @Value("${source.of.advice}") String sourceOfAdvice;
