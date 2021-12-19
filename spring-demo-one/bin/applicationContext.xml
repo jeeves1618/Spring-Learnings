@@ -19,6 +19,12 @@
     	<constructor-arg ref="feeService"></constructor-arg>
     </bean>
     
+    <bean id="myCricketCoach"
+    	class="com.vijay.springdemo.CricketCoach">
+    	<!-- Set up the Setter Injection here -->
+    	<property name="feeService" ref="feeService"></property>
+    </bean>
+    
 </beans>
 
 
