@@ -22,6 +22,7 @@ public class TechFinancialAdvisor implements FinancialAdvisor{
     public TechFinancialAdvisor(FeeCalculator feeCalculator){
         this.feeCalculator = feeCalculator;
     }
+
     @Override
     public String getDailyStockAdvice(){
         System.out.println("This advice is from " + sourceOfAdvice + " and it is valid till " + validTillDate);

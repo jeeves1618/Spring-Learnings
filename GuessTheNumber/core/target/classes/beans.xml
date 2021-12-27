@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config></context:annotation-config>
+    <!--
+    For Autowired annotation we should either specify annotation-config contex as above or component-scan context as below.
+    For using @Component we need component-scan context
+    <context:component-scan base-package="udemy.learnspring"></context:component-scan>
+    -->
+    <bean id="numberGenerator" class="udemy.learnspring.NumberGeneratorImpl"></bean>
+
+    <bean id="game" class="udemy.learnspring.GameImpl">
+        <!-- Set up the constructor Injection here -->
+        <!-- One way passing an object
+        <constructor-arg> <ref bean="numberGenerator"/></constructor-arg>
+        -->
+        <!-- another way of passing an object to constructor -->
+        <constructor-arg ref="numberGenerator"></constructor-arg>
+    </bean>
+
+    <bean id="gameOne" class="udemy.learnspring.GameImplSetterDI">
+        <!-- Setting up setter Injection here -->
+        <!-- numberGeneratorParam should match the setter method. The setter method for this should be setNumberGeneratorParam -->
+        <!-- if it is anything else, then the setter injection will not work -->
+        <property name="numberGeneratorParam" ref="numberGenerator"/>
+    </bean>
+
+    <bean id="gameTwo" class="udemy.learnspring.GameImplAutoWired"></bean>
+    <!--
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"></bean>
+    -->
+</beans>

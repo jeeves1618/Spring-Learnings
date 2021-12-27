@@ -11,3 +11,14 @@ Annotations
 @Autowired is used for injecting @Component classes. If you haven't annotated with @Component, that bean will not be visible for @Autowired
 @Value is used to assign a value to a variable and will work only within classes that are annotated with @Component. Example @Value("${source.of.advice}") String sourceOfAdvice;
 @Scope annotation defines the scope of the bean. By default it is singleton. 
+@PostConstruct - Any method with this annotation gets invoked right after that constructor of that bean.
+@PreDestroy - A method annotated with @PreDestroy runs only once, just before Spring removes our bean from the application context.
+
+The above two annotations are equivalent to init-method  and destroy-method methods through XML configuration. 
+@Bean - The @Bean annotation tells Spring that we are creating a bean component manually. Here is a real-time use case of using @Bean: You can use @Bean to make an existing non spring (i.e it doesn't have @Component annotation) third-party class available to your Spring framework application context.
+
+Project Structure of WebApp is available here: https://maven.apache.org/plugins/maven-war-plugin/usage.html
+web.xml is the deployment descriptor for servlet based java web applications. 
+
+1. Section 12 ending has details on WAR file deployment 
+2. Refer video 122 for Controller level request mapping
