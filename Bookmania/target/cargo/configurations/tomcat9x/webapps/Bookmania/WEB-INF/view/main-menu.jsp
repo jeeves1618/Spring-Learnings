@@ -6,10 +6,12 @@
 </head>
 <body>
 <h2>
-Spring MVC Demo - Main Page
+Book Catalogue
 </h2>
-Please refer <a href="https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/mvc.html">this page</a> to know more about Spring MVC.
+A book is a gift you can open again and again - <i>Garrison Keillor</i>
 <hr>
-<a href="book/showForm">Please enter your details here</a>
+<a href="book/showForm">Search for the books here</a>
+<br><br>
+<a href="bookLover/showForm">Search for the book lovers here</a>
 </body>
 </html>

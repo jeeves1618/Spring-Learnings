@@ -12,4 +12,16 @@ public interface BookDetailInterface {
     public String getLastName();
 
     public void setLastName(String lastName);
+
+    public String getBookGenre();
+
+    public void setBookGenre(String bookGenre);
+
+    public String getTypeOfBinding();
+
+    public void setTypeOfBinding(String typeOfBinding);
+
+    public String[] getPurposesOfReading();
+
+    public void setPurposesOfReading(String[] purposesOfReading);
 }
