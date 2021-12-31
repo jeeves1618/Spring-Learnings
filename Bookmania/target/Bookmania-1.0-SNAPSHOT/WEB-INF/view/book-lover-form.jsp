@@ -18,10 +18,13 @@ A book is a gift you can open again and again - <i>Garrison Keillor</i>
 <i>Fill out the form. Asterisk (*) means required.</i>
 <br><br>
 <form:form action="processForm" modelAttribute="bookLover">
-    Name (*): <form:input path="bookLoverName"></form:input>
+    Name (*): <form:input path="bookLoverName"></form:input><br>
+    <form:errors path="bookLoverName" cssClass="error"></form:errors>
     <br><br>
     Email Address : <form:input path="bookLoverEmail"></form:input>
-    <form:errors path="bookLoverName" cssClass="error"></form:errors>
+    <br><br>
+    Age (*): <form:input path="bookLoverAge"></form:input><br>
+    <form:errors path="bookLoverAge" cssClass="error"></form:errors>
     <br><br>
     <input type="submit" value="Submit" />
 </form:form>

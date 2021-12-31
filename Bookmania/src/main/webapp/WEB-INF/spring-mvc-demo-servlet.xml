@@ -24,6 +24,19 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<!-- Load Custom Message from Property file -->
+	<bean id="messageSource"
+		  class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames" value="resources/messages"/>
+	</bean>
+
+	<!---
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="resources/messages" />
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+
+	-->
 </beans>
 
 

@@ -10,7 +10,7 @@
 Book Lover Confirmation
 </h2>
 <hr>
-    The reader, '${bookLover.bookLoverName}', with the email address ${bookLover.bookLoverEmail} is identified as the lover of the book you are reading. 
+    The reader, '${bookLover.bookLoverName}' aged ${bookLover.bookLoverAge}, with the email address ${bookLover.bookLoverEmail} is identified as the lover of the book you are reading. 
     <hr>
     <div align="right"><a href="http://localhost:8080/Bookmania/">Back to Main Menu</a></div>
 </body>

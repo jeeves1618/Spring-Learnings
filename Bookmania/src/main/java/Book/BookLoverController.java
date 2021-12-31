@@ -1,10 +1,13 @@
 package Book;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,6 +19,14 @@ import javax.validation.Valid;
 public class BookLoverController {
     private final String XML_APPLICATION_CONTEXT_FILE = "applicationContext.xml";
 
+    /*
+    InitBinder is added to trim leading and lagging white spaces
+     */
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder){
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
     @RequestMapping("/showForm")
     public String showBookForm(Model model){
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(XML_APPLICATION_CONTEXT_FILE);

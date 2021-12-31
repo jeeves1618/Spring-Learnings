@@ -20,5 +20,13 @@ The above two annotations are equivalent to init-method  and destroy-method meth
 Project Structure of WebApp is available here: https://maven.apache.org/plugins/maven-war-plugin/usage.html
 web.xml is the deployment descriptor for servlet based java web applications. 
 
+Hibernate is a framework to persist Java objects. Hibernate provides Object to Relational mapping or ORM. Hibernate is a wrapper around JDBC. 	
+
 1. Section 12 ending has details on WAR file deployment 
 2. Refer video 122 for Controller level request mapping
+
+To Do
+1. For each and <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
+2. org.springframework.context.support.ResourceBundleMessageSource - ResourceBundle [resources/messages] not found issue should be looked at. 
+3. Section 17 - Creating Custom Validation Rules 
+4. Find out how to pass literal values during constructor injection using component scan.

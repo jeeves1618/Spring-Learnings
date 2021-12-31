@@ -9,4 +9,8 @@ public interface BookLover {
     public String getBookLoverEmail();
 
     public void setBookLoverEmail(String bookLoverEmail);
+
+    public Integer getBookLoverAge();
+
+    public void setBookLoverAge(Integer bookLoverAge);
 }
