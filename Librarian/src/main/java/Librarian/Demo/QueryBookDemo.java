@@ -59,6 +59,7 @@ public class QueryBookDemo {
             displayBooks(bookList);
             session.getTransaction().commit();
             log.info("");
+            session.close();
         }
         finally {
             sessionFactory.close();

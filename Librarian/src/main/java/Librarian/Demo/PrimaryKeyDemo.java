@@ -48,6 +48,7 @@ public class PrimaryKeyDemo {
             session.save(book3);
             session.getTransaction().commit();
             log.info("Records added and Commited.");
+            session.close();
         }
         finally {
             sessionFactory.close();

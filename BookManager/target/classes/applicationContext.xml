@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- add entry to enable component scanning -->
+	<context:component-scan base-package="BookManager"></context:component-scan>
+
+    <context:property-placeholder location="classpath:BookProperties.properties"></context:property-placeholder>
+
+	<!-- Define the bean for Date Format -->
+	<bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="yyyy-MM-dd"></constructor-arg>
+		<constructor-arg value="true" />
+	</bean>
+	<bean id="bookEntity" class="Librarian.BookManager.Entity.Book" scope="prototype">
+		<constructor-arg index="0" value="Man's Search for Meaning"></constructor-arg>
+		<constructor-arg index="1" value="Psychology"></constructor-arg>
+		<constructor-arg index="2" value="Victor E"></constructor-arg>
+		<constructor-arg index="3" value="Frankl"></constructor-arg>
+		<constructor-arg index="4" value="Pocket Books USA"></constructor-arg>
+		<constructor-arg index="5">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2005-12-25"></constructor-arg>
+			</bean>
+		</constructor-arg>
+		<constructor-arg index="6" value="6.99"></constructor-arg>
+		<constructor-arg index="7" value="USD"></constructor-arg>
+		<constructor-arg index="8" value="dontknow@notapplicable.com"></constructor-arg>
+	</bean>
+</beans>
+
+
+
+
+

@@ -16,6 +16,11 @@ Annotations
 
 The above two annotations are equivalent to init-method  and destroy-method methods through XML configuration. 
 @Bean - The @Bean annotation tells Spring that we are creating a bean component manually. Here is a real-time use case of using @Bean: You can use @Bean to make an existing non spring (i.e it doesn't have @Component annotation) third-party class available to your Spring framework application context.
+@Transactional - Removes the need for boilerplate code like getTransaction() in Hibernate application.
+@Repository will have the class automatically registered as DAO.
+@RequestMapping will map the path to the method. If you want to add a HTTP method constraint to it, you have to write it like this -
+@RequestMapping(path="/processForm", method=requestMethod.GET). Instead, you can go for the @Getmapping annotations.
+@Getmapping is the combination of @RequestMapping and method=requestMethod.GET, so on and so forth for POST, PUT etc.
 
 Project Structure of WebApp is available here: https://maven.apache.org/plugins/maven-war-plugin/usage.html
 web.xml is the deployment descriptor for servlet based java web applications. 
