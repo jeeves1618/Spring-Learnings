@@ -11,6 +11,18 @@
 
     <context:property-placeholder location="classpath:BookProperties.properties"></context:property-placeholder>
 
+	<bean id="sessionFactory"
+		  class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource" />
+		<property name="packagesToScan" value="Librarian.BookManager.Entity" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
 	<!-- Define the bean for Date Format -->
 	<bean id="dateFormat" class="java.text.SimpleDateFormat">
 		<constructor-arg value="yyyy-MM-dd"></constructor-arg>

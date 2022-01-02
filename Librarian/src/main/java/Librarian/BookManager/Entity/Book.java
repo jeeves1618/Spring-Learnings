@@ -8,7 +8,6 @@ Hibernate implements all of the JPA annotations. The Hibernate team recommends t
  */
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name="book")
@@ -33,7 +32,7 @@ public class Book {
     @Column(name = "publisher_name")
     private String publisherName;
     @Column(name = "date_of_purchase")
-    private Date dateOfPurchase;
+    private String dateOfPurchase;
     @Column(name = "cost_of_acquisition")
     private double costOfPurchase;
     @Column(name = "currency_of_acquisition")
@@ -45,7 +44,7 @@ public class Book {
 
     }
 
-    public Book(String bookTitle, String bookGenre, String authorFirstName, String authorLastName, String publisherName, Date dateOfPurchase, double costOfPurchase, String currencyCode, String contactEmail) {
+    public Book(String bookTitle, String bookGenre, String authorFirstName, String authorLastName, String publisherName, String dateOfPurchase, double costOfPurchase, String currencyCode, String contactEmail) {
         this.bookTitle = bookTitle;
         this.bookGenre = bookGenre;
         this.authorFirstName = authorFirstName;
@@ -105,11 +104,11 @@ public class Book {
         this.publisherName = publisherName;
     }
 
-    public Date getDateOfPurchase() {
+    public String getDateOfPurchase() {
         return dateOfPurchase;
     }
 
-    public void setDateOfPurchase(Date dateOfPurchase) {
+    public void setDateOfPurchase(String dateOfPurchase) {
         this.dateOfPurchase = dateOfPurchase;
     }
 
