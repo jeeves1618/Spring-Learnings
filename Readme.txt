@@ -30,8 +30,4 @@ Hibernate is a framework to persist Java objects. Hibernate provides Object to R
 1. Section 12 ending has details on WAR file deployment 
 2. Refer video 122 for Controller level request mapping
 
-To Do
-1. For each and <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
-2. org.springframework.context.support.ResourceBundleMessageSource - ResourceBundle [resources/messages] not found issue should be looked at. 
-3. Section 17 - Creating Custom Validation Rules 
-4. Find out how to pass literal values during constructor injection using component scan.
+For more details on mapping between entities, https://medium.com/@rajibrath20/the-best-way-to-map-a-onetomany-relationship-with-jpa-and-hibernate-dbbf6dba00d3 and https://dzone.com/articles/hibernate-mapping
