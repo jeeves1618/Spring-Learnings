@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,6 +72,21 @@ href="${pageContext.request.contextPath}/WebResources/css/add-customer-style.css
                 <tr>
                     <td><label>Contact Details : </label></td>
                     <td><form:input path="contactEmail" /></td>
+                </tr>
+                
+                <tr>
+                    <td><label>Format : </label></td>
+                    <td><form:input path="bookDetail.typeOfBinding" /></td>
+                </tr>
+
+                <tr>
+                    <td><label>Shopping Channel : </label></td>
+                    <td><form:input path="bookDetail.shoppingChannel" /></td>
+                </tr>
+                
+                <tr>
+                    <td><label>ISBN : </label></td>
+                    <td><form:input path="bookDetail.isbNumber" /></td>
                 </tr>
                 
                 <tr>

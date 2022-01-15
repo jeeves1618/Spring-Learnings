@@ -1,6 +1,6 @@
 package Librarian.BookManager.Controller;
 
-import Librarian.BookManager.Entity.Book;
+import Librarian.BookManager.Entity.*;
 import Librarian.BookManager.Service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/book")
 public class BookController {
-    private static final String APPLICATION_CONTEXT_XML="spring-mvc-crud-demo-servlet.xml";
+    private static final String APPLICATION_CONTEXT_XML= "applicationContext.xml";
     /*
     Injecting the BookDAO.
     Autowiring will result in Spring scanning for a component that implements
@@ -23,6 +23,8 @@ public class BookController {
      */
     @Autowired
     private BookService bookService;
+    @Autowired
+    private BookSummary bookSummary;
 
     @GetMapping(path = "/list")
     public String listBooks(Model model){
@@ -31,9 +33,10 @@ public class BookController {
         1. Get the books from the DAO
         2. And add the books to the model to be diplayed in the view
          */
-        List<Book> bookList = bookService.getBooks();
+        List<BookExpanded> bookList = bookService.getBooks();
 
         model.addAttribute("books",bookList);
+        model.addAttribute("bookSummary",bookSummary);
 
         return "List-Books";
     }
@@ -44,10 +47,13 @@ public class BookController {
         log.info("Creating a new student object. ");
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(APPLICATION_CONTEXT_XML);
 
-        Book newBookToBeAdded = context.getBean("bookEntity", Book.class);
+        Book newBookToBeAdded = context.getBean("book", Book.class);
+        BookDetail newDetailsToBeAdded = context.getBean("bookDetail", BookDetail.class);
+        BookAuthor newAuthorToBeAdded = context.getBean("bookAuthor",BookAuthor.class);
 
         /*
-        We pass two parameters to the addAttribute method; name and value. Name will be used in the JSP/HTML/Angular/React as modelAttribute
+        We pass two parameters to the addAttribute method; name and value.
+        Name will be used in the JSP/HTML/Angular/React as modelAttribute
         The value (i.e the bean created) will bind the UI layer to the underlying data object.
          */
         model.addAttribute("book",newBookToBeAdded);
@@ -79,5 +85,15 @@ public class BookController {
 
         bookService.deleteBookById(theID);
         return "redirect:/book/list";
+    }
+
+    @GetMapping(path = "/search")
+    public String SearchBookByPartialName(@RequestParam("theSearchName") String bookPartialName, Model model){
+        log.info("Search Pattern: " + bookPartialName);
+        List<BookExpanded> bookList = bookService.getBooksByPartialName(bookPartialName);
+
+        model.addAttribute("books",bookList);
+
+        return "List-Books";
     }
 }

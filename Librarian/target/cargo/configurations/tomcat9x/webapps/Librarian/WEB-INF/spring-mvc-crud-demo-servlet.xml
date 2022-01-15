@@ -39,8 +39,8 @@
         <property name="minPoolSize" value="5" />
         <property name="maxPoolSize" value="20" />
         <property name="maxIdleTime" value="30000" />
-	</bean>  
-	
+	</bean>
+
     <!-- Step 2: Setup Hibernate session factory -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -52,7 +52,7 @@
 		      <prop key="hibernate.show_sql">true</prop>
 		   </props>
 		</property>
-   </bean>	  
+   </bean>
 
     <!-- Step 3: Setup Hibernate transaction manager -->
 	<bean id="myTransactionManager"
@@ -66,26 +66,6 @@
 	<!--- Configure the Resources folder for Spring -->
 	<mvc:resources mapping="/WebResources/**" location="/WebResources/"></mvc:resources>
 
-	<!-- Define the bean for Date Format -->
-	<bean id="dateFormat" class="java.text.SimpleDateFormat">
-		<constructor-arg value="yyyy-MM-dd"></constructor-arg>
-		<constructor-arg value="true" />
-	</bean>
-	<bean id="bookEntity" class="Librarian.BookManager.Entity.Book" scope="prototype">
-		<constructor-arg index="0" value="Man's Search for Meaning"></constructor-arg>
-		<constructor-arg index="1" value="Psychology"></constructor-arg>
-		<constructor-arg index="2" value="Victor E"></constructor-arg>
-		<constructor-arg index="3" value="Frankl"></constructor-arg>
-		<constructor-arg index="4" value="Pocket Books USA"></constructor-arg>
-		<constructor-arg index="5">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2005-12-25"></constructor-arg>
-			</bean>
-		</constructor-arg>
-		<constructor-arg index="6" value="6.99"></constructor-arg>
-		<constructor-arg index="7" value="USD"></constructor-arg>
-		<constructor-arg index="8" value="dontknow@notapplicable.com"></constructor-arg>
-	</bean>
 </beans>
 
 

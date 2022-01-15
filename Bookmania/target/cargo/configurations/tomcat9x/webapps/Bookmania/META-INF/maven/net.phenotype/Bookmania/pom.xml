@@ -140,6 +140,7 @@
                 <groupId>org.codehaus.cargo</groupId>
                 <artifactId>cargo-maven2-plugin</artifactId>
                 <version>1.6.7</version>
+                <!-- To understand more about cargo configuration: https://codehaus-cargo.github.io/cargo/Configuration+properties.html -->
                 <configuration>
                     <container>
                         <containerId>tomcat9x</containerId>

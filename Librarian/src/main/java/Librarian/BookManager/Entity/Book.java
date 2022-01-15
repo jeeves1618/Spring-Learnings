@@ -7,8 +7,13 @@ JPA (Java Persistence API) is a standard specification. Hibernate is an implemen
 Hibernate implements all of the JPA annotations. The Hibernate team recommends the use of JPA annotations as a best practice.
  */
 
-import javax.persistence.*;
+import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
 @Entity
 @Table(name="book")
 public class Book {
@@ -39,6 +44,15 @@ public class Book {
     private String currencyCode;
     @Column(name = "email")
     private String contactEmail;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id")
+    private BookDetail bookDetail;
+
+    @OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH}
+    )
+    @JoinColumn(name = "book_id")
+    private List<BookAuthor> bookAuthorList;
 
     public Book(){
 
@@ -136,22 +150,28 @@ public class Book {
         this.contactEmail = contactEmail;
     }
 
-    /*
-    This method is added only for displaying and debugging.
-     */
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id=" + id +
-                ", bookTitle='" + bookTitle + '\'' +
-                ", bookGenre='" + bookGenre + '\'' +
-                ", authorFirstName='" + authorFirstName + '\'' +
-                ", authorLastName='" + authorLastName + '\'' +
-                ", publisherName='" + publisherName + '\'' +
-                ", dateOfPurchase=" + dateOfPurchase +
-                ", costOfPurchase=" + costOfPurchase +
-                ", currencyCode='" + currencyCode + '\'' +
-                ", contactEmail='" + contactEmail + '\'' +
-                '}';
+    public BookDetail getBookDetail() {
+        return bookDetail;
+    }
+
+    public void setBookDetail(BookDetail bookDetail) {
+        this.bookDetail = bookDetail;
+    }
+
+    public List<BookAuthor> getBookAuthorList() {
+        return bookAuthorList;
+    }
+
+    public void setBookAuthorList(List<BookAuthor> bookAuthorList) {
+        this.bookAuthorList = bookAuthorList;
+    }
+
+    //Adding methods for Bi-directional Relationship
+    public void add(BookAuthor bookAuthor){
+        if (bookAuthorList == null){
+            bookAuthorList = new ArrayList<>();
+        }
+        bookAuthorList.add(bookAuthor);
+        bookAuthor.setBook(this);
     }
 }
