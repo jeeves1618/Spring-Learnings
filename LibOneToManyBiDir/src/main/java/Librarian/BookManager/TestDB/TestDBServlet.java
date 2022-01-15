@@ -22,7 +22,7 @@ public class TestDBServlet extends HttpServlet {
         //Set up Connection Variables
         String user="hbstudent";
         String password = "hbstudent";
-        String jdbcURL = "jdbc:mysql://localhost:3306/lib_one_to_one_only?useSSL=false&amp;serverTimezone=UTC";
+        String jdbcURL = "jdbc:mysql://localhost:3306/lib_one_to_many_bi?useSSL=false&amp;serverTimezone=UTC";
         String driver = "com.mysql.jdbc.Driver";
 
         //Get connection to database.

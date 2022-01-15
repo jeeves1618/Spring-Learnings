@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 @Slf4j
 public class TestJDBC {
     public static void main(String[] args) {
-        String jdbcURL = "jdbc:mysql://localhost:3306/lib_one_to_one_only?useSSL=false&serverTimezone=UTC";
+        String jdbcURL = "jdbc:mysql://localhost:3306/lib_one_to_many_bi?useSSL=false&serverTimezone=UTC";
         String user = "hbstudent";
         String password = "hbstudent";
         try{

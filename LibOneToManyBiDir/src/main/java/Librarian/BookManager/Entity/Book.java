@@ -47,7 +47,7 @@ public class Book {
     @JoinColumn(name = "book_detail_id")
     private BookDetail bookDetail;
 
-    @OneToMany(mappedBy = "book",
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book",
                 cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Authors> authorsList;
     public Book(){
