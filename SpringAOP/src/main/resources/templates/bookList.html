@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Librarian</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!--Reference to Style Sheet -->
     <link type="text/css"
           rel="stylesheet"
-          href="style.css" />
+          href="/style.css" />
 
 </head>
 <div th:if="${not #lists.isEmpty(books)}">
     <div id="header">
-    <h2 align="center">Books List</h2>
+    <h2 align="center">Library Management System</h2>
     </div>
     <table border=1 class="table table-striped">
         <col width="300">
@@ -31,13 +31,13 @@
             <th>Price</th>
         </tr>
         <tr th:each="book : ${books}">
-            <td th:text="${book.bookTitle}"></td>
-            <td th:text="${book.bookGenre}"></td>
-            <td th:text="${book.authorFirstName}"></td>
-            <td th:text="${book.authorLastName}"></td>
+            <td align="left" th:text="${book.bookTitle}"></td>
+            <td align="left" th:text="${book.bookGenre}"></td>
+            <td align="left" th:text="${book.authorFirstName}"></td>
+            <td align="left" th:text="${book.authorLastName}"></td>
             <td th:text="${book.publisherName}"></td>
             <td th:text="${book.dateOfPurchase}"></td>
-            <td th:text="${book.costOfPurchase}"></td>
+            <td align="right" th:text="${book.costOfPurchase}"></td>
         </tr>
     </table>
 </div>
