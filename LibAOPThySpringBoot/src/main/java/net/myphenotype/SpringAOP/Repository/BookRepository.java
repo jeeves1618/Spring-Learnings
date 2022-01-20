@@ -1,7 +1,10 @@
 package net.myphenotype.SpringAOP.Repository;
 
 import net.myphenotype.SpringAOP.Entity.Book;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BookRepository extends CrudRepository<Book, Integer>{
+import java.util.List;
+
+public interface BookRepository extends JpaRepository<Book, Integer> {
+    List<Book> findByBookTitleContaining(String bookTitle);
 }

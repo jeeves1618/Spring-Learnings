@@ -1,5 +1,4 @@
 package net.myphenotype.SpringAOP.Entity;
-
 /*
 Why am I using JPA annotations instead of Hibernate annotations here?
 
@@ -10,9 +9,12 @@ Hibernate implements all of the JPA annotations. The Hibernate team recommends t
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @Entity
+@Table(name="book")
 public class Book {
 
     /*
@@ -20,27 +22,42 @@ public class Book {
     https://dev.mysql.com/doc/connector-j/8.0/en/connector-j-reference-type-conversions.html
     */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+    @Column(name = "book_title")
     private String bookTitle;
+    @Column(name = "book_genre")
     private String bookGenre;
+    @Column(name = "author_first_name")
     private String authorFirstName;
+    @Column(name = "author_last_name")
     private String authorLastName;
+    @Column(name = "publisher_name")
     private String publisherName;
+    @Column(name = "date_of_purchase")
     private String dateOfPurchase;
+    @Column(name = "cost_of_acquisition")
     private double costOfPurchase;
+    @Column(name = "currency_of_acquisition")
     private String currencyCode;
-    private String contactEmail;
 
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "book_detail_id")
+    private BookDetail bookDetail;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    private List<Authors> authorsList;
     public Book(){
 
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -108,11 +125,43 @@ public class Book {
         this.currencyCode = currencyCode;
     }
 
-    public String getContactEmail() {
-        return contactEmail;
+    public BookDetail getBookDetail() {
+        return bookDetail;
     }
 
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
+    public void setBookDetail(BookDetail bookDetail) {
+        this.bookDetail = bookDetail;
+    }
+
+    public List<Authors> getAuthorsList() {
+        return authorsList;
+    }
+
+    public void setAuthorsList(List<Authors> authorsList) {
+        this.authorsList = authorsList;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", bookTitle='" + bookTitle + '\'' +
+                ", bookGenre='" + bookGenre + '\'' +
+                ", authorFirstName='" + authorFirstName + '\'' +
+                ", authorLastName='" + authorLastName + '\'' +
+                ", publisherName='" + publisherName + '\'' +
+                ", dateOfPurchase='" + dateOfPurchase + '\'' +
+                ", costOfPurchase=" + costOfPurchase +
+                ", currencyCode='" + currencyCode + '\'' +
+                '}';
+    }
+
+    public void addAuthor(Authors authors){
+        if(authorsList == null){
+            authorsList = new ArrayList<>();
+        }
+
+        authorsList.add(authors);
+        authors.setBook(this);
     }
 }
