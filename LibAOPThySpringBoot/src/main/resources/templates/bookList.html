@@ -78,7 +78,7 @@
 				<a th:href="@{/book/showFormForUpdating(bookID=${book.Id})}" 
 					class="btn btn-secondary btn-sm" ><b>Update</b></a>
 					
-				<a th:href="@{/book/showFormForUpdating(bookID=${book.Id})}" 
+				<a th:href="@{/book/delete(bookID=${book.Id})}" 
 					class="btn btn-secondary btn-sm" 
 					onclick="if (!(Confirm('Are you sure you want to delete this book?'))) return false"><b>Delete</b></a>
 			</td>
