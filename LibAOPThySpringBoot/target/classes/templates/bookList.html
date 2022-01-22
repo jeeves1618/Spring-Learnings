@@ -47,7 +47,7 @@
             </div>
         </div>
 		<br>
-    <table border=1; align="center" >
+    <table border=1; align="center" class="table table-bordered">
         <col width="480">
         <col width="240">
         <col width="300">
@@ -78,7 +78,7 @@
 				<a th:href="@{/book/showFormForUpdating(bookID=${book.Id})}" 
 					class="btn btn-secondary btn-sm" ><b>Update</b></a>
 					
-				<a th:href="@{/book/delete(bookID=${book.Id})}" 
+				<a th:href="@{/book/showFormForDeleting(bookID=${book.Id})}" 
 					class="btn btn-secondary btn-sm" 
 					onclick="if (!(Confirm('Are you sure you want to delete this book?'))) return false"><b>Delete</b></a>
 			</td>

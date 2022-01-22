@@ -13,20 +13,23 @@
 
 <title>Add Book</title>
 <!--Reference to Style Sheet -->
+<!--Reference to Style Sheet -->
 <link type="text/css"
-          rel="stylesheet"
-          href="/add-customer-style.css" />
+rel="stylesheet"
+href="/style.css" />
 </head>
 <body>
 <div class="container">
 
-<div id="wrapper">
-    <div id="header">
-        <h2 align="center">LIM - Library Inventory Manager</h2>
-        <br>
-        <div id="sub" align="center">A book is a gift you can open again and again - <i>Garrison Keillor</i></div>
+<a th:href="@{/book/list}" style="text-decoration: none"></a>
+    <div id="wrapper">
+        <div id="header">
+            <h2 align="center">LIM - Library Inventory Manager</h2>
+            <br>
+            <div id="sub" align="center">A book is a gift you can open again and again - <i>Garrison Keillor</i></div>
+        </div>
     </div>
-</div>
+</a>
 
 <div id="container">
     <h3>Add Book</h3>
@@ -37,61 +40,61 @@
         <!-- We need to associate this data with customer ID -->
         <input type="hidden" th:field="*{id}" />
         <table>
-			<col width="500">
+			<col width="800">
 			<col width="500">
             <tbody>
                 <tr>
-                    <td><label>Title : </label></td>
+                    <td align="left"><label>Title : </label></td>
                     <td><input type="text" th:field="*{bookTitle}" /></td>
                 </tr>
 
                 <tr>
-                    <td><label>Genre : </label></td>
+                    <td align="left"><label>Genre : </label></td>
                     <td><input type="text" th:field="*{bookGenre}" /></td>
                 </tr>
                 
                 <tr>
-                    <td><label>Author First Name : </label></td>
+                    <td align="left"><label>Author First Name : </label></td>
                     <td><input type="text" th:field="*{authorFirstName}" /></td>
                 </tr>
                 
                 <tr>
-                    <td><label>Author Last Name : </label></td>
+                    <td align="left"><label>Author Last Name : </label></td>
                     <td><input type="text" th:field="*{authorLastName}" /></td>
                 </tr>
 
                 <tr>
-                    <td><label>Publisher : </label></td>
+                    <td align="left"><label>Publisher : </label></td>
                     <td><input type="text" th:field="*{publisherName}" /></td>
                 </tr>
                 
                 <tr>
-                    <td><label>Date of Purchase : </label></td>
+                    <td align="left"><label>Date of Purchase : </label></td>
                     <td><input type="text" th:field="*{dateOfPurchase}" /></td>
                 </tr>
                 
                 <tr>
-                    <td><label>Book Price : </label></td>
+                    <td align="left"><label>Book Price : </label></td>
                     <td><input type="text" th:field="*{costOfPurchase}" /></td>
                 </tr>
 
                 <tr>
-                    <td><label>Denomination Currency : </label></td>
+                    <td align="left"><label>Denomination Currency : </label></td>
                     <td><input type="text" th:field="*{currencyCode}" /></td>
                 </tr>
                 
                 <tr>
-                    <td><label>Format : </label></td>
+                    <td align="left"><label>Format : </label></td>
                     <td><input type="text" th:field="*{bookDetail.typeOfBinding}" /></td>
                 </tr>
 
                 <tr>
-                    <td><label>Shopping Channel : </label></td>
+                    <td align="left"><label>Shopping Channel : </label></td>
                     <td><input type="text" th:field="*{bookDetail.shoppingChannel}" /></td>
                 </tr>
                  
                 <tr>
-                    <td><label>ISBN : </label></td>
+                    <td align="left"><label>ISBN : </label></td>
                     <td><input type="text" th:field="*{bookDetail.isbNumber}" /></td>
                 </tr>
                  

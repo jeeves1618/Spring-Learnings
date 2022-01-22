@@ -95,10 +95,23 @@ public class MainController {
         return "bookForm";
     }
 
+    @GetMapping(path = "/showFormForDeleting")
+    public String ShowFormForDelete(@RequestParam("bookID") int theID, Model model){
+        //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
+        Book bookToBeDeleted = bookService.getBookbyID(theID);
+
+        //Set the Customer as the Model Attribute to Prepopulate the Form
+        model.addAttribute("book",bookToBeDeleted);
+        log.info(bookToBeDeleted.toString());
+
+        //Send the data to the right form
+        return "deleteForm";
+    }
+
     @GetMapping(path = "/delete")
     public String DeleteBook(@RequestParam("bookID") int theID, Model model){
         //Delete the Book
-
+        log.info("The ID of book to be deleted : " + theID);
         bookService.deleteBookById(theID);
         return "redirect:/book/list";
     }
