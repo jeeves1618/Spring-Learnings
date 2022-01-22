@@ -7,9 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class PointCutExpressions {
-    @Pointcut("execution(* net.myphenotype.SpringAOP.Entity.*.get*())")
+    @Pointcut("execution(* net.myphenotype.SpringAOP.Controller.*.*())")
     public void beforeGetters(){}
 
-    @Pointcut("execution(* net.myphenotype.SpringAOP.*.*.set*(*))")
+    @Pointcut("execution(* net.myphenotype.SpringAOP.Controller.*.*(..))")
     public void beforeSetters(){}
+
+    @Pointcut("execution(* net.myphenotype.SpringAOP.DAO.*.*(..))")
+    public void getDatabaseAccessMetrics(){}
 }

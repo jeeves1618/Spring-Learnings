@@ -15,7 +15,7 @@ public class GetterAspect {
     @Before("net.myphenotype.SpringAOP.Aspect.PointCutExpressions.beforeGetters()")
     public void beforeGeeting(JoinPoint joinPoint){
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        log.info("Aspect: Invoking a getter! for the method " + methodSignature.getMethod() + " with return type " + methodSignature.getReturnType());
+        log.info("Aspect: Invoking the method " + methodSignature.getMethod() + " with return type " + methodSignature.getReturnType());
         Object[] objects = joinPoint.getArgs();
         for (Object tempObject:objects) {
             if (tempObject instanceof net.myphenotype.SpringAOP.Entity.BookExpanded){
