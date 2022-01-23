@@ -23,6 +23,11 @@ href="/style.css" />
     <a th:href="@{/book/list}" style="text-decoration: none"></a>
     <div id="wrapper">
         <div id="header">
+            <div id="sub" align="right">
+                <form th:action="@{/logout}" method="post" >
+                    <input type="submit" value="Sign Out" class = "add-button"/>
+                </form>
+            </div>
             <h2 align="center">LIM - Library Inventory Manager</h2>
             <br>
             <div id="sub" align="center">A book is a gift you can open again and again - <i>Garrison Keillor</i></div>
