@@ -95,6 +95,18 @@ public class MainController {
         return "bookForm";
     }
 
+    @GetMapping(path = "/showDetail")
+    public String ShowDetail(@RequestParam("bookID") int theID, Model model){
+        //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
+        Book bookToBeDisplayed = bookService.getBookbyID(theID);
+
+        //Set the Customer as the Model Attribute to Prepopulate the Form
+        model.addAttribute("book",bookToBeDisplayed);
+
+        //Send the data to the right form
+        return "bookDetail";
+    }
+
     @GetMapping(path = "/showFormForDeleting")
     public String ShowFormForDelete(@RequestParam("bookID") int theID, Model model){
         //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
