@@ -83,10 +83,10 @@
 			<td align="right" th:text="${book.costInLocalCurrencyFmtd}"></td>
 			<td> 
 				<a th:href="@{/book/showFormForUpdating(bookID=${book.Id})}" 
-					class="add-button" ><b>Update</b></a>
-					
+					class="btn btn-secondary btn-sm" ><b>Update</b></a>
+					 
 				<a th:href="@{/book/showFormForDeleting(bookID=${book.Id})}" 
-					class="add-button" 
+					class="btn btn-secondary btn-sm" 
 					onclick="if (!(Confirm('Are you sure you want to delete this book?'))) return false"><b>Delete</b></a>
 			</td>
         </tr>

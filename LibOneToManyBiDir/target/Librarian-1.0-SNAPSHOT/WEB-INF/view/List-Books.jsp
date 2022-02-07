@@ -93,7 +93,7 @@ href="${pageContext.request.contextPath}/WebResources/css/style.css" />
                         <a href="${updateLink}">Update</a>
                         |
                         <a href="${deleteLink}"
-                        onclick="if (!(confirm('Are you sure you want to delete the book, ${tempBook.bookTitle}?'))) return false">Delete</a
+                        onclick="if (!(confirm('Are you sure you want to delete the book, ${tempBook.bookTitle}?'))) return false">Delete</a>
                     </td>
                 </tr>
             </c:forEach>
