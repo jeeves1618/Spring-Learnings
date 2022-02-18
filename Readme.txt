@@ -31,3 +31,26 @@ Hibernate is a framework to persist Java objects. Hibernate provides Object to R
 2. Refer video 122 for Controller level request mapping
 
 For more details on mapping between entities, https://medium.com/@rajibrath20/the-best-way-to-map-a-onetomany-relationship-with-jpa-and-hibernate-dbbf6dba00d3 and https://dzone.com/articles/hibernate-mapping
+
+HTTP Methods
+GET    - Read a list of entities or entity
+PUT    - Update and existing entity
+POST   - Create a new entity
+DELETE - Delete an existing entity
+
+A HTTP request will have request line, header variables and message body (or payload)
+A HTTP response will have response line, header variables and message body (or payload)
+
+Response line will have status codes, Code ranges are given below.
+100 - 199 Informational
+200 - 299 Successful
+300 - 399 Re-direction
+400 - 499 Client Error
+500 - 599 Server Error
+
+The message format of the payload is described by the MIME type. MIME stands for Multipurpose Internet Mail Extension. MIME has the syntax of Type/SubType. Eg. text/html 
+application/json, application/xml. 
+
+https://www.jsontest.com/
+
+https://jsonplaceholder.typicode.com/
