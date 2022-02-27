@@ -47,8 +47,34 @@ public class Book {
     private BookDetail bookDetail;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "book",
-            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, orphanRemoval = true)
     private List<Authors> authorsList;
+
+    @Transient
+    private String authorsFirstName1;
+    @Transient
+    private String authorsLastName1;
+    @Transient
+    private String aboutAuthor1;
+    @Transient
+    private String authorsFirstName2;
+    @Transient
+    private String authorsLastName2;
+    @Transient
+    private String aboutAuthor2;
+    @Transient
+    private String authorsFirstName3;
+    @Transient
+    private String authorsLastName3;
+    @Transient
+    private String aboutAuthor3;
+    @Transient
+    private String authorsFirstName4;
+    @Transient
+    private String authorsLastName4;
+    @Transient
+    private String aboutAuthor4;
+
     public Book(){
 
     }
@@ -139,6 +165,102 @@ public class Book {
 
     public void setAuthorsList(List<Authors> authorsList) {
         this.authorsList = authorsList;
+    }
+
+    public String getAuthorsFirstName1() {
+        return authorsFirstName1;
+    }
+
+    public void setAuthorsFirstName1(String authorsFirstName1) {
+        this.authorsFirstName1 = authorsFirstName1;
+    }
+
+    public String getAuthorsLastName1() {
+        return authorsLastName1;
+    }
+
+    public void setAuthorsLastName1(String authorsLastName1) {
+        this.authorsLastName1 = authorsLastName1;
+    }
+
+    public String getAboutAuthor1() {
+        return aboutAuthor1;
+    }
+
+    public void setAboutAuthor1(String aboutAuthor1) {
+        this.aboutAuthor1 = aboutAuthor1;
+    }
+
+    public String getAuthorsFirstName2() {
+        return authorsFirstName2;
+    }
+
+    public void setAuthorsFirstName2(String authorsFirstName2) {
+        this.authorsFirstName2 = authorsFirstName2;
+    }
+
+    public String getAuthorsLastName2() {
+        return authorsLastName2;
+    }
+
+    public void setAuthorsLastName2(String authorsLastName2) {
+        this.authorsLastName2 = authorsLastName2;
+    }
+
+    public String getAboutAuthor2() {
+        return aboutAuthor2;
+    }
+
+    public void setAboutAuthor2(String aboutAuthor2) {
+        this.aboutAuthor2 = aboutAuthor2;
+    }
+
+    public String getAuthorsFirstName3() {
+        return authorsFirstName3;
+    }
+
+    public void setAuthorsFirstName3(String authorsFirstName3) {
+        this.authorsFirstName3 = authorsFirstName3;
+    }
+
+    public String getAuthorsLastName3() {
+        return authorsLastName3;
+    }
+
+    public void setAuthorsLastName3(String authorsLastName3) {
+        this.authorsLastName3 = authorsLastName3;
+    }
+
+    public String getAboutAuthor3() {
+        return aboutAuthor3;
+    }
+
+    public void setAboutAuthor3(String aboutAuthor3) {
+        this.aboutAuthor3 = aboutAuthor3;
+    }
+
+    public String getAuthorsFirstName4() {
+        return authorsFirstName4;
+    }
+
+    public void setAuthorsFirstName4(String authorsFirstName4) {
+        this.authorsFirstName4 = authorsFirstName4;
+    }
+
+    public String getAuthorsLastName4() {
+        return authorsLastName4;
+    }
+
+    public void setAuthorsLastName4(String authorsLastName4) {
+        this.authorsLastName4 = authorsLastName4;
+    }
+
+    public String getAboutAuthor4() {
+        return aboutAuthor4;
+    }
+
+    public void setAboutAuthor4(String aboutAuthor4) {
+        this.aboutAuthor4 = aboutAuthor4;
     }
 
     @Override

@@ -5,7 +5,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class AnnotationsDemoApp {
     public static void main(String[] args) {
         //Read Spring Config File
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContextConsIn.xml");
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContextOnlyXML.xml");
 
         //Get the bean from the Spring Context
         FinancialAdvisor techFinancialAdvisor = context.getBean("yourFinancialAdvisor", FinancialAdvisor.class);

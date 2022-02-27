@@ -7,7 +7,7 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- add entry to enable component scanning -->
-	<context:component-scan base-package="net.spring.demo.ConstructorInjection"></context:component-scan>
+	<context:component-scan base-package="net.spring.demo.OnlyXML"></context:component-scan>
 
     <context:property-placeholder location="classpath:source.properties"></context:property-placeholder>
 </beans>

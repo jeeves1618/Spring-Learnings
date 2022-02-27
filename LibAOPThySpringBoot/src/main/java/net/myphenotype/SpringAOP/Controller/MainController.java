@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -54,6 +55,9 @@ public class MainController {
         1. Get the books from the DAO
         2. And add the books to the model to be diplayed in the view
          */
+
+        List<Authors> authorsList = new ArrayList<>();
+
         Iterable<BookExpanded> bookList = bookService.listBooks();
 
         model.addAttribute("books",bookList);

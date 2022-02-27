@@ -54,15 +54,15 @@ href="/style.css" />
             </tr>
             
             <tr>
-                <td align="left"><label>Author First Name : </label></td>
-                <td align="left" th:text="${book.authorFirstName}" ></td>
+                <td align="left"><label>Authors : </label></td>
+                <td align="left">
+                    <div th:text="${book.authorsFirstName1} + ' ' + ${book.authorsLastName1}" ></div>
+                    <div th:text="${book.authorsFirstName2} + ' ' + ${book.authorsLastName2}" ></div>
+                    <div th:text="${book.authorsFirstName3} + ' ' + ${book.authorsLastName3}" ></div>
+                    <div th:text="${book.authorsFirstName4} + ' ' + ${book.authorsLastName4}" ></div>
+                </td>
             </tr>
             
-            <tr>
-                <td align="left"><label>Author Last Name : </label></td>
-                <td align="left" th:text="${book.authorLastName}" ></td>
-            </tr>
-
             <tr>
                 <td align="left"><label>Publisher : </label></td>
                 <td align="left" th:text="${book.publisherName}" ></td>

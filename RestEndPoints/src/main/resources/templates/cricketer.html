@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Here are the details of the cricketer returned by your Rest Service</h2>
+First Name  :<div th:text="${cricketer.firstName}"></div>
+Last Name   :<div th:text="${cricketer.lastName}"></div>
+Nationality :<div th:text="${cricketer.nationalTeam}"></div>
+Runs        :<div th:text="${cricketer.runsScored}"></div>
+Wickets     :<div th:text="${cricketer.wicketsTaken}"></div>
+</body>
+</html>

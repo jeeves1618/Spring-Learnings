@@ -33,7 +33,16 @@ public class BookExpanded {
     private String typeOfBinding;
     private String isbNumber;
 
-    private String authorsFirstName;
-    private String authorsLastName;
-    private String aboutAuthor;
+    private String authorsFirstName1;
+    private String authorsLastName1;
+    private String aboutAuthor1;
+    private String authorsFirstName2;
+    private String authorsLastName2;
+    private String aboutAuthor2;
+    private String authorsFirstName3;
+    private String authorsLastName3;
+    private String aboutAuthor3;
+    private String authorsFirstName4;
+    private String authorsLastName4;
+    private String aboutAuthor4;
 }
