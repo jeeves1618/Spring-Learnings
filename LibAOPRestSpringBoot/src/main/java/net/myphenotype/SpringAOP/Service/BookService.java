@@ -173,6 +173,36 @@ public class BookService {
         return book;
     }
 
+    public BookExpanded getBook(int theID) {
+        Book tempBook = bookDao.getBookbyID(theID);
+        if (tempBook == null){
+            bookExpanded = null;
+            return bookExpanded;
+        }
+        tempBook = appendAuthors(tempBook,theID);
+
+        bookSummary.setTotalCost(0.00);
+        bookSummary.setNumberOfBooks(0);
+        if(tempBook.getBookTitle().contains(":"))
+            bookExpanded.setBookTitle(tempBook.getBookTitle().substring(0,tempBook.getBookTitle().indexOf(":")));
+        else
+            bookExpanded.setBookTitle(tempBook.getBookTitle());
+        bookExpanded.setBookGenre((tempBook.getBookGenre()));
+        bookExpanded.setAuthorFirstName(tempBook.getAuthorFirstName());
+        bookExpanded.setAuthorLastName(tempBook.getAuthorLastName());
+        bookExpanded.setPublisherName(tempBook.getPublisherName());
+        bookExpanded.setDateOfPurchase(tempBook.getDateOfPurchase());
+        bookExpanded.setCostOfPurchase(tempBook.getCostOfPurchase());
+        bookExpanded.setCurrencyCode(tempBook.getCurrencyCode());
+        bookExpanded.setId(tempBook.getId());
+        bookExpanded.setCostInLocalCurrency(costInLocalCurrency(tempBook.getCostOfPurchase(), tempBook.getCurrencyCode()));
+        bookExpanded.setCostInLocalCurrencyFmtd(costInLocalCurrencyFmtd(bookExpanded.getCostInLocalCurrency()));
+        bookExpanded = appendAuthors(bookExpanded,tempBook.getId());
+        bookSummary.setTotalCost(bookSummary.getTotalCost()+bookExpanded.getCostInLocalCurrency());
+        bookSummary.setNumberOfBooks(bookSummary.getNumberOfBooks() + 1);
+        return bookExpanded;
+    }
+
     public void deleteBookById(int theID) {
         bookDao.deleteBookById(theID);
     }

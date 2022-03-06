@@ -2,6 +2,7 @@ package net.myphenotype.SpringAOP.Controller;
 
 import lombok.extern.slf4j.Slf4j;
 import net.myphenotype.SpringAOP.Entity.*;
+import net.myphenotype.SpringAOP.Exceptions.BookNotFound;
 import net.myphenotype.SpringAOP.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -46,9 +47,11 @@ public class RestEndPointController {
 
     @GetMapping("/books/{bookId}")
     public BookExpanded getBook(@PathVariable int bookId){
-        Book book = bookService.getBookbyID(bookId);
-        log.info(book.toString());
-        return null;
+        BookExpanded book = bookService.getBook(bookId);
+        if (book == null) {
+            throw new BookNotFound("The book with an ID " + bookId + " is not available in the library. Please contact the administrator.");
+        }
+        return book;
     }
 
     @GetMapping(path = "/showFormForAdding")

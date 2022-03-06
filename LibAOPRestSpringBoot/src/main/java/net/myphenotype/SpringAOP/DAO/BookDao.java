@@ -38,10 +38,16 @@ public class BookDao {
 
     public Book getBookbyID(int theID) {
         //Retrieve from DB using the primary key
-        Optional<Book> theBook = bookRepository.findById(theID);
-        Book book = theBook.get();
-        log.info("Getting books by ID");
-        return book;
+        try {
+            Optional<Book> theBook = bookRepository.findById(theID);
+            log.info("Getting books by ID");
+            Book book = theBook.get();
+            return book;
+        } catch(Exception e){
+            log.info(e.getMessage());
+            Book book = null;
+            return book;
+        }
     }
 
     public List<Authors> getAuthorsByBookId(int theID) {

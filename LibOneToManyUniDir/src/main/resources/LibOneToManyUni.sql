@@ -1,8 +1,8 @@
-drop schema if exists `lib_one_to_many_uni`;
+drop schema if exists `lib_one_to_many_bi`;
 
-create schema `lib_one_to_many_uni`;
+create schema `lib_one_to_many_bi`;
 
-use `lib_one_to_many_uni`;
+use `lib_one_to_many_bi`;
 
 set FOREIGN_KEY_CHECKS = 0;
 
