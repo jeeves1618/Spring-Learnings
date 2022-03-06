@@ -2,7 +2,7 @@ package net.myphenotype.SpringAOP.Controller;
 
 import lombok.extern.slf4j.Slf4j;
 import net.myphenotype.SpringAOP.Entity.*;
-import net.myphenotype.SpringAOP.Exceptions.BookNotFound;
+import net.myphenotype.SpringAOP.ExceptionHandler.BookNotFound;
 import net.myphenotype.SpringAOP.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
