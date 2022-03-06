@@ -18,7 +18,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/home").permitAll()
-                .anyRequest().authenticated()
+                /*
+                permitAll() has been given instead of authenticated() to test the REST endpoints.
+                Should figure out the rest endpoint for Spring Security
+                 */
+                .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login")
