@@ -49,8 +49,11 @@ public class RestEndPointController {
     public BookExpanded getBook(@PathVariable int bookId){
         BookExpanded book = bookService.getBook(bookId);
         if (book == null) {
+
             throw new BookNotFound("The book with an ID " + bookId + " is not available in the library. Please contact the administrator.");
+
         }
+        log.info("Throwing the Not Found");
         return book;
     }
 
@@ -68,10 +71,12 @@ public class RestEndPointController {
 
         return "bookForm";
     }
-    @PostMapping(path = "/addBook")
-    public String AddBookToList(@ModelAttribute("book") Book book){
-        bookService.saveBook(book);
-        return "redirect:/book/list";
+
+    @PostMapping(path = "/books")
+    public BookExpanded AddBookToList(@RequestBody BookExpanded bookExpanded){
+        log.info("Attempting to Add");
+        bookService.saveBook(bookExpanded);
+        return bookExpanded;
     }
 
     @GetMapping(path = "/showFormForUpdating")

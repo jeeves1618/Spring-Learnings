@@ -3,10 +3,7 @@ package net.myphenotype.SpringAOP.Service;
 
 import lombok.extern.slf4j.Slf4j;
 import net.myphenotype.SpringAOP.DAO.BookDao;
-import net.myphenotype.SpringAOP.Entity.Authors;
-import net.myphenotype.SpringAOP.Entity.Book;
-import net.myphenotype.SpringAOP.Entity.BookExpanded;
-import net.myphenotype.SpringAOP.Entity.BookSummary;
+import net.myphenotype.SpringAOP.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +22,9 @@ public class BookService {
     BookExpanded bookExpanded;
 
     @Autowired
+    BookDetail bookDetail;
+
+    @Autowired
     BookSummary bookSummary;
 
     @Autowired
@@ -32,6 +32,9 @@ public class BookService {
 
     @Autowired
     RupeeFormatter rf;
+
+    @Autowired
+    Book book;
 
     ResourceBundle properties  = ResourceBundle.getBundle("BookProperties");
     String currencyFormat = properties.getString("currencyFormat");
@@ -116,6 +119,81 @@ public class BookService {
 
     public void saveBook(Book book) {
         List<Authors> authorsList = new ArrayList<>();
+        int authorCounter = 1;
+        if(book.getAuthorsFirstName3().equals(null)) log.info("Null");
+        if(book.getAuthorsFirstName3().isEmpty()) log.info("Empty");
+        if(book.getAuthorsFirstName3().isBlank()) log.info("Blank");
+        if(book.getAuthorsFirstName3().length() == 0) log.info("Spaces?");
+        if(book.getAuthorsFirstName1().length() > 0 || book.getAuthorsLastName1().length() > 0)
+        {
+            log.info("setting Author" + authorCounter++ + " as " + book.getAuthorsFirstName1());
+            authors.setBook(book);
+            book.setAuthorFirstName(book.getAuthorsFirstName1());
+            book.setAuthorLastName(book.getAuthorsLastName1());
+            authors.setAuthorsFirstName(book.getAuthorFirstName());
+            authors.setAuthorsLastName(book.getAuthorLastName());
+            authorsList.add(authors);
+            authors = new Authors();
+        }
+
+        if(book.getAuthorsFirstName2().length() > 0 || book.getAuthorsLastName2().length() > 0)
+        {
+            log.info("setting Author" + authorCounter++ + " as " + book.getAuthorsFirstName2());
+            authors.setBook(book);
+            authors.setAuthorsFirstName(book.getAuthorsFirstName2());
+            authors.setAuthorsLastName(book.getAuthorsLastName2());
+            authorsList.add(authors);
+            authors = new Authors();
+        }
+
+        if(book.getAuthorsFirstName3().length() > 0 || book.getAuthorsLastName3().length() > 0)
+        {
+            log.info("setting Author" + authorCounter++ + " as " + book.getAuthorsFirstName3());
+            authors.setBook(book);
+            authors.setAuthorsFirstName(book.getAuthorsFirstName3());
+            authors.setAuthorsLastName(book.getAuthorsLastName3());
+            authorsList.add(authors);
+            authors = new Authors();
+        }
+
+        if(book.getAuthorsFirstName4().length() > 0 || book.getAuthorsLastName4().length() > 0)
+        {
+            log.info("setting Author" + authorCounter++ + " as " + book.getAuthorsFirstName4());
+            authors.setBook(book);
+            authors.setAuthorsFirstName(book.getAuthorsFirstName4());
+            authors.setAuthorsLastName(book.getAuthorsLastName4());
+            authorsList.add(authors);
+        }
+        if(book.getBookTitle().length() > 90)
+            book.setBookTitle(book.getBookTitle().substring(0,90));
+        book.setAuthorsList(authorsList);
+        bookDao.saveBook(book);
+    }
+
+    public void saveBook(BookExpanded bookExpanded) {
+        List<Authors> authorsList = new ArrayList<>();
+        book.setBookTitle(bookExpanded.getBookTitle());
+        book.setBookGenre(bookExpanded.getBookGenre());
+        book.setAuthorFirstName(bookExpanded.getAuthorsFirstName1());
+        book.setAuthorLastName(bookExpanded.getAuthorsLastName1());
+        book.setAuthorsFirstName1(bookExpanded.getAuthorsFirstName1());
+        book.setAuthorsLastName1(bookExpanded.getAuthorsLastName1());
+        book.setAuthorsFirstName2(bookExpanded.getAuthorsFirstName2());
+        book.setAuthorsLastName2(bookExpanded.getAuthorsLastName2());
+        book.setAuthorsFirstName3(bookExpanded.getAuthorsFirstName3());
+        book.setAuthorsLastName3(bookExpanded.getAuthorsLastName3());
+        book.setAuthorsFirstName4(bookExpanded.getAuthorsFirstName4());
+        book.setAuthorsLastName4(bookExpanded.getAuthorsLastName4());
+        book.setPublisherName(bookExpanded.getPublisherName());
+        book.setDateOfPurchase(bookExpanded.getDateOfPurchase());
+        book.setCostOfPurchase(bookExpanded.getCostOfPurchase());
+        book.setCurrencyCode(bookExpanded.getCurrencyCode());
+        bookDetail.setTypeOfBinding(bookExpanded.getTypeOfBinding());
+        bookDetail.setShoppingChannel(bookExpanded.getShoppingChannel());
+        bookDetail.setIsbNumber(bookExpanded.getIsbNumber());
+        bookDetail.setBook(book);
+        book.setBookDetail(bookDetail);
+
         int authorCounter = 1;
         if(book.getAuthorsFirstName3().equals(null)) log.info("Null");
         if(book.getAuthorsFirstName3().isEmpty()) log.info("Empty");
