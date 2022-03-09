@@ -49,9 +49,7 @@ public class RestEndPointController {
     public BookExpanded getBook(@PathVariable int bookId){
         BookExpanded book = bookService.getBook(bookId);
         if (book == null) {
-
             throw new BookNotFound("The book with an ID " + bookId + " is not available in the library. Please contact the administrator.");
-
         }
         return book;
     }
@@ -160,9 +158,9 @@ public class RestEndPointController {
         return "deleteForm";
     }
 
-    @DeleteMapping(path = "/delete/{bookID}")
+    @DeleteMapping(path = "/books/{bookID}")
     public String DeleteBook(@PathVariable("bookID") int theID){
-        //Delete the Book. Sample URL: http://localhost:8080/api/delete/57
+        //Delete the Book. Sample URL: http://localhost:8080/api/books/57
 
         BookExpanded book = bookService.getBook(theID);
         if (book == null) {
