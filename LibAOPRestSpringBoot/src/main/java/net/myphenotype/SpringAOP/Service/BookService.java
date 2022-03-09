@@ -172,6 +172,7 @@ public class BookService {
 
     public void saveBook(BookExpanded bookExpanded) {
         List<Authors> authorsList = new ArrayList<>();
+        book.setId(bookExpanded.getId());
         book.setBookTitle(bookExpanded.getBookTitle());
         book.setBookGenre(bookExpanded.getBookGenre());
         book.setAuthorFirstName(bookExpanded.getAuthorsFirstName1());

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Scope(value = "prototype")
 public class BookExpanded {
 
-    private int id;
+    private Integer id;
     private String bookTitle;
     private String bookGenre;
     private String authorFirstName;

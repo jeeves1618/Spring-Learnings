@@ -53,7 +53,6 @@ public class RestEndPointController {
             throw new BookNotFound("The book with an ID " + bookId + " is not available in the library. Please contact the administrator.");
 
         }
-        log.info("Throwing the Not Found");
         return book;
     }
 
@@ -74,11 +73,56 @@ public class RestEndPointController {
 
     @PostMapping(path = "/books")
     public BookExpanded AddBookToList(@RequestBody BookExpanded bookExpanded){
+        bookExpanded.setId(null);
         log.info("Attempting to Add");
         bookService.saveBook(bookExpanded);
         return bookExpanded;
     }
 
+    @PutMapping(path = "/books")
+    public BookExpanded UpdateBookToList(@RequestBody BookExpanded bookExpanded){
+        log.info("Attempting to Update");
+        BookExpanded book = bookService.getBook(bookExpanded.getId());
+        if (book == null) {
+
+            throw new BookNotFound("The book with an ID " + bookExpanded.getId() + " is not available in the library. Please contact the administrator.");
+
+        }
+        bookService.saveBook(bookExpanded);
+        return bookExpanded;
+    }
+    /*
+    Sample Jason Schema for Post and Put
+    {
+    "id": null,
+    "bookTitle": "Monetary Mischief",
+    "bookGenre": "Economics",
+    "authorFirstName": "Milton",
+    "authorLastName": "Friedman",
+    "publisherName": "Harcourt Brace",
+    "dateOfPurchase": "2006-12-16",
+    "costOfPurchase": 14.95,
+    "currencyCode": "USD",
+    "contactEmail": null,
+    "costInLocalCurrency": null,
+    "costInLocalCurrencyFmtd": null,
+    "shoppingChannel": "Infibeam.com",
+    "typeOfBinding": "Paperback",
+    "isbNumber":"978-0156619301",
+    "authorsFirstName1": "Milton",
+    "authorsLastName1": "Friedman",
+    "aboutAuthor1": null,
+    "authorsFirstName2": "Marsha",
+    "authorsLastName2": "Friedman",
+    "aboutAuthor2": null,
+    "authorsFirstName3": " ",
+    "authorsLastName3": " ",
+    "aboutAuthor3": null,
+    "authorsFirstName4": " ",
+    "authorsLastName4": " ",
+    "aboutAuthor4": null
+}
+     */
     @GetMapping(path = "/showFormForUpdating")
     public String ShowFormForUpdate(@RequestParam("bookID") int theID, Model model){
         //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
@@ -116,12 +160,19 @@ public class RestEndPointController {
         return "deleteForm";
     }
 
-    @GetMapping(path = "/delete")
-    public String DeleteBook(@RequestParam("bookID") int theID, Model model){
-        //Delete the Book
+    @DeleteMapping(path = "/delete/{bookID}")
+    public String DeleteBook(@PathVariable("bookID") int theID){
+        //Delete the Book. Sample URL: http://localhost:8080/api/delete/57
+
+        BookExpanded book = bookService.getBook(theID);
+        if (book == null) {
+
+            throw new BookNotFound("The book with an ID " + theID + " is not available in the library. Please contact the administrator.");
+
+        }
         log.info("The ID of book to be deleted : " + theID);
         bookService.deleteBookById(theID);
-        return "redirect:/book/list";
+        return "The book with " + theID + " is deleted";
     }
 
     @GetMapping(path = "/search")
@@ -134,4 +185,23 @@ public class RestEndPointController {
 
         return "bookList";
     }
+
+    /*
+    Difference between @RequestParam and @PathVariable
+
+    Look at the following request URL:
+
+    http://localhost:8080/tutorials/bookmark/100?site=dineshonjava&id=200
+
+    In the above URL request, the values for site and id can be accessed as below:
+
+    @RequestMapping(value = "/tutorials/bookmark/{siteId}")
+    public String bookmark(
+    @PathVariable(value="siteId") String siteId
+    @RequestParam(value="site", required=true) String site,
+    @RequestParam(value="id", required=false) String id){
+...
+}
+
+     */
 }
