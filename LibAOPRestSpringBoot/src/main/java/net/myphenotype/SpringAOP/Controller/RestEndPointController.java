@@ -84,21 +84,6 @@ public class RestEndPointController {
         return book;
     }
 
-    @GetMapping(path = "/showFormForAdding")
-    public String ShowFormForAdding(Model model){
-
-        log.info("Creating a new student object. ");
-
-        /*
-        We pass two parameters to the addAttribute method; name and value.
-        Name will be used in the JSP/HTML/Angular/React as modelAttribute
-        The value (i.e the bean created) will bind the UI layer to the underlying data object.
-         */
-        model.addAttribute("book",book);
-
-        return "bookForm";
-    }
-
     @PostMapping(path = "/books")
     public BookExpanded AddBookToList(@RequestBody BookExpanded bookExpanded){
         bookExpanded.setId(null);
@@ -151,17 +136,6 @@ public class RestEndPointController {
     "aboutAuthor4": null
 }
      */
-    @GetMapping(path = "/showFormForUpdating")
-    public String ShowFormForUpdate(@RequestParam("bookID") int theID, Model model){
-        //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
-        Book bookToBeUpdated = bookService.getBookbyID(theID);
-
-        //Set the Customer as the Model Attribute to Prepopulate the Form
-        model.addAttribute("book",bookToBeUpdated);
-
-        //Send the data to the right form
-        return "bookForm";
-    }
 
     @GetMapping(path = "/showDetail")
     public String ShowDetail(@RequestParam("bookID") int theID, Model model){
@@ -173,19 +147,6 @@ public class RestEndPointController {
 
         //Send the data to the right form
         return "bookDetail";
-    }
-
-    @GetMapping(path = "/showFormForDeleting")
-    public String ShowFormForDelete(@RequestParam("bookID") int theID, Model model){
-        //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
-        Book bookToBeDeleted = bookService.getBookbyID(theID);
-
-        //Set the Customer as the Model Attribute to Prepopulate the Form
-        model.addAttribute("book",bookToBeDeleted);
-        log.info(bookToBeDeleted.toString());
-
-        //Send the data to the right form
-        return "deleteForm";
     }
 
     @DeleteMapping(path = "/books/{bookID}")
@@ -203,15 +164,12 @@ public class RestEndPointController {
         return "The book with " + theID + " is deleted";
     }
 
-    @GetMapping(path = "/search")
-    public String SearchBookByPartialName(@ModelAttribute("bookSearch") BookSearch bookSearch, Model model){
-        log.info("Search Pattern: " + bookSearch.getSearchString());
-        List<BookExpanded> bookList = bookService.getBooksByPartialName(bookSearch.getSearchString());
+    @GetMapping(path = "/search/{searchString}")
+    public List<BookExpanded> SearchBookByPartialName(@PathVariable String searchString){
+        log.info("Search Pattern: " + searchString);
+        List<BookExpanded> bookList = bookService.getBooksByPartialName(searchString);
 
-        model.addAttribute("books",bookList);
-        model.addAttribute("bookSummary",bookSummary);
-
-        return "bookList";
+        return bookList;
     }
 
     /*
