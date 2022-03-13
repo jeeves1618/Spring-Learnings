@@ -151,19 +151,7 @@ public class RestEndPointController {
     "aboutAuthor4": null
 }
      */
-    @GetMapping(path = "/showFormForUpdating")
-    public String ShowFormForUpdate(@RequestParam("bookID") int theID, Model model){
-        //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
-        Book bookToBeUpdated = bookService.getBookbyID(theID);
-
-        //Set the Customer as the Model Attribute to Prepopulate the Form
-        model.addAttribute("book",bookToBeUpdated);
-
-        //Send the data to the right form
-        return "bookForm";
-    }
-
-    @GetMapping(path = "/showDetail")
+     @GetMapping(path = "/showDetail")
     public String ShowDetail(@RequestParam("bookID") int theID, Model model){
         //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
         Book bookToBeDisplayed = bookService.getBookbyID(theID);
@@ -173,19 +161,6 @@ public class RestEndPointController {
 
         //Send the data to the right form
         return "bookDetail";
-    }
-
-    @GetMapping(path = "/showFormForDeleting")
-    public String ShowFormForDelete(@RequestParam("bookID") int theID, Model model){
-        //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
-        Book bookToBeDeleted = bookService.getBookbyID(theID);
-
-        //Set the Customer as the Model Attribute to Prepopulate the Form
-        model.addAttribute("book",bookToBeDeleted);
-        log.info(bookToBeDeleted.toString());
-
-        //Send the data to the right form
-        return "deleteForm";
     }
 
     @DeleteMapping(path = "/books/{bookID}")
@@ -202,7 +177,7 @@ public class RestEndPointController {
         bookService.deleteBookById(theID);
         return "The book with " + theID + " is deleted";
     }
-
+    /*
     @GetMapping(path = "/search")
     public String SearchBookByPartialName(@ModelAttribute("bookSearch") BookSearch bookSearch, Model model){
         log.info("Search Pattern: " + bookSearch.getSearchString());
@@ -214,7 +189,7 @@ public class RestEndPointController {
         return "bookList";
     }
 
-    /*
+
     Difference between @RequestParam and @PathVariable
 
     Look at the following request URL:
