@@ -120,13 +120,12 @@ public class BookService {
     public void saveBook(Book book) {
         List<Authors> authorsList = new ArrayList<>();
         int authorCounter = 1;
-        if(book.getAuthorsFirstName3().equals(null)) log.info("Null");
+        if(book.getAuthorsFirstName3() == null) log.info("Null");
         if(book.getAuthorsFirstName3().isEmpty()) log.info("Empty");
         if(book.getAuthorsFirstName3().isBlank()) log.info("Blank");
         if(book.getAuthorsFirstName3().length() == 0) log.info("Spaces?");
         if(book.getAuthorsFirstName1().length() > 0 || book.getAuthorsLastName1().length() > 0)
         {
-            log.info("setting Author" + authorCounter++ + " as " + book.getAuthorsFirstName1());
             authors.setBook(book);
             book.setAuthorFirstName(book.getAuthorsFirstName1());
             book.setAuthorLastName(book.getAuthorsLastName1());
@@ -138,7 +137,6 @@ public class BookService {
 
         if(book.getAuthorsFirstName2().length() > 0 || book.getAuthorsLastName2().length() > 0)
         {
-            log.info("setting Author" + authorCounter++ + " as " + book.getAuthorsFirstName2());
             authors.setBook(book);
             authors.setAuthorsFirstName(book.getAuthorsFirstName2());
             authors.setAuthorsLastName(book.getAuthorsLastName2());
@@ -148,7 +146,6 @@ public class BookService {
 
         if(book.getAuthorsFirstName3().length() > 0 || book.getAuthorsLastName3().length() > 0)
         {
-            log.info("setting Author" + authorCounter++ + " as " + book.getAuthorsFirstName3());
             authors.setBook(book);
             authors.setAuthorsFirstName(book.getAuthorsFirstName3());
             authors.setAuthorsLastName(book.getAuthorsLastName3());
@@ -158,7 +155,6 @@ public class BookService {
 
         if(book.getAuthorsFirstName4().length() > 0 || book.getAuthorsLastName4().length() > 0)
         {
-            log.info("setting Author" + authorCounter++ + " as " + book.getAuthorsFirstName4());
             authors.setBook(book);
             authors.setAuthorsFirstName(book.getAuthorsFirstName4());
             authors.setAuthorsLastName(book.getAuthorsLastName4());
@@ -172,7 +168,9 @@ public class BookService {
 
     public void saveBook(BookExpanded bookExpanded) {
         List<Authors> authorsList = new ArrayList<>();
-        book.setId(bookExpanded.getId());
+        log.info("The ID is " + bookExpanded.getId());
+        if(bookExpanded.getId() != null)
+            book.setId(bookExpanded.getId());
         book.setBookTitle(bookExpanded.getBookTitle());
         book.setBookGenre(bookExpanded.getBookGenre());
         book.setAuthorFirstName(bookExpanded.getAuthorsFirstName1());
@@ -276,6 +274,9 @@ public class BookService {
         bookExpanded.setId(tempBook.getId());
         bookExpanded.setCostInLocalCurrency(costInLocalCurrency(tempBook.getCostOfPurchase(), tempBook.getCurrencyCode()));
         bookExpanded.setCostInLocalCurrencyFmtd(costInLocalCurrencyFmtd(bookExpanded.getCostInLocalCurrency()));
+        bookExpanded.setTypeOfBinding(tempBook.getBookDetail().getTypeOfBinding());
+        bookExpanded.setShoppingChannel(tempBook.getBookDetail().getShoppingChannel());
+        bookExpanded.setIsbNumber(tempBook.getBookDetail().getIsbNumber());
         bookExpanded = appendAuthors(bookExpanded,tempBook.getId());
         bookSummary.setTotalCost(bookSummary.getTotalCost()+bookExpanded.getCostInLocalCurrency());
         bookSummary.setNumberOfBooks(bookSummary.getNumberOfBooks() + 1);

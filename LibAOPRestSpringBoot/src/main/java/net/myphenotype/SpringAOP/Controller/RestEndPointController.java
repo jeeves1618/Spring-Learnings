@@ -45,6 +45,36 @@ public class RestEndPointController {
         return bookList;
     }
 
+    @GetMapping("/books/summary")
+    public BookSummary getBookSummary(Model model){
+        /*
+        This method should do the following.
+        1. Get the books from the DAO
+        2. And add the books to the model to be diplayed in the view
+         */
+
+        List<Authors> authorsList = new ArrayList<>();
+
+        Iterable<BookExpanded> bookList = bookService.listBooks();
+
+        return bookSummary;
+    }
+
+    @GetMapping("/books/search")
+    public BookSearch getBookSearch(Model model){
+        /*
+        This method should do the following.
+        1. Get the books from the DAO
+        2. And add the books to the model to be diplayed in the view
+         */
+
+        List<Authors> authorsList = new ArrayList<>();
+
+        Iterable<BookExpanded> bookList = bookService.listBooks();
+
+        return bookSearch;
+    }
+
     @GetMapping("/books/{bookId}")
     public BookExpanded getBook(@PathVariable int bookId){
         BookExpanded book = bookService.getBook(bookId);
