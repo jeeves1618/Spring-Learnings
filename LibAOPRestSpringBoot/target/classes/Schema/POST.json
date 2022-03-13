@@ -8,24 +8,17 @@
   "dateOfPurchase": "2006-12-16",
   "costOfPurchase": 14.95,
   "currencyCode": "USD",
-  "bookDetail" : {
-    "id":null,
-    "shoppingChannel": "Infibeam.com",
-    "typeOfBinding": "Paperback",
-    "isbNumber":"978-0156619301"
-  },
-  "authorsList" : [
-    {
-      "id":null,
-      "authorsFirstName": "Milton",
-      "authorsLastName":"Friedman"
-    }
-  ],
+  "contactEmail": null,
+  "costInLocalCurrency": null,
+  "costInLocalCurrencyFmtd": null,
+  "shoppingChannel": "Infibeam.com",
+  "typeOfBinding": "Paperback",
+  "isbNumber":"978-0156619301",
   "authorsFirstName1": "Milton",
   "authorsLastName1": "Friedman",
   "aboutAuthor1": null,
-  "authorsFirstName2": " ",
-  "authorsLastName2": " ",
+  "authorsFirstName2": "Marsha",
+  "authorsLastName2": "Friedman",
   "aboutAuthor2": null,
   "authorsFirstName3": " ",
   "authorsLastName3": " ",

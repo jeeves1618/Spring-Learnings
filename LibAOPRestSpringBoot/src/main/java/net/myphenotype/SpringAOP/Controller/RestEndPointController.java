@@ -84,21 +84,6 @@ public class RestEndPointController {
         return book;
     }
 
-    @GetMapping(path = "/showFormForAdding")
-    public String ShowFormForAdding(Model model){
-
-        log.info("Creating a new student object. ");
-
-        /*
-        We pass two parameters to the addAttribute method; name and value.
-        Name will be used in the JSP/HTML/Angular/React as modelAttribute
-        The value (i.e the bean created) will bind the UI layer to the underlying data object.
-         */
-        model.addAttribute("book",book);
-
-        return "bookForm";
-    }
-
     @PostMapping(path = "/books")
     public BookExpanded AddBookToList(@RequestBody BookExpanded bookExpanded){
         bookExpanded.setId(null);
@@ -151,7 +136,8 @@ public class RestEndPointController {
     "aboutAuthor4": null
 }
      */
-     @GetMapping(path = "/showDetail")
+
+    @GetMapping(path = "/showDetail")
     public String ShowDetail(@RequestParam("bookID") int theID, Model model){
         //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
         Book bookToBeDisplayed = bookService.getBookbyID(theID);
@@ -177,19 +163,16 @@ public class RestEndPointController {
         bookService.deleteBookById(theID);
         return "The book with " + theID + " is deleted";
     }
-    /*
-    @GetMapping(path = "/search")
-    public String SearchBookByPartialName(@ModelAttribute("bookSearch") BookSearch bookSearch, Model model){
-        log.info("Search Pattern: " + bookSearch.getSearchString());
-        List<BookExpanded> bookList = bookService.getBooksByPartialName(bookSearch.getSearchString());
 
-        model.addAttribute("books",bookList);
-        model.addAttribute("bookSummary",bookSummary);
+    @GetMapping(path = "/search/{searchString}")
+    public List<BookExpanded> SearchBookByPartialName(@PathVariable String searchString){
+        log.info("Search Pattern: " + searchString);
+        List<BookExpanded> bookList = bookService.getBooksByPartialName(searchString);
 
-        return "bookList";
+        return bookList;
     }
 
-
+    /*
     Difference between @RequestParam and @PathVariable
 
     Look at the following request URL:

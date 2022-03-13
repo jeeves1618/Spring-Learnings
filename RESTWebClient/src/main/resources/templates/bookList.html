@@ -41,7 +41,7 @@
 	<div id="wrapper">
             <div id="header">
 				<!--  add a search box -->
-				 <form th:action="@{/book/search}" th:object="${bookSearch}" method="GET">
+				 <form th:action="@{/api/search}" th:object="${bookSearch}" method="GET">
 				
 					<div id="sub" align="center">Search Book By Title: <input type="text" th:field="*{searchString}" />
 					<input type="submit" value="Search" class="save" /></td>

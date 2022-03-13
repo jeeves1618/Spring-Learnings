@@ -120,16 +120,20 @@ public class RestWebClient {
         restTemplate.delete("http://localhost:8080/api/books/"+String.valueOf(theID));
         return "redirect:/api/list";
     }
-    /*
+
     @GetMapping(path = "/search")
-    public String SearchBookByPartialName(@ModelAttribute("bookSearch") BookSearch bookSearch, Model model){
+    public String SearchBookByPartialName(@ModelAttribute("bookSearch") BookSearch bookSearch, Model model, RestTemplate restTemplate){
         log.info("Search Pattern: " + bookSearch.getSearchString());
-        List<BookExpanded> bookList = bookService.getBooksByPartialName(bookSearch.getSearchString());
+        ResponseEntity<List<BookExpanded>> responseEntity = restTemplate.exchange("http://localhost:8080/api/search/"+bookSearch.getSearchString(), HttpMethod.GET, null,
+                new ParameterizedTypeReference<List<BookExpanded>>() {});
+        //Getting the body of the response returned by REST Service
+        List<BookExpanded> bookList = responseEntity.getBody();
+
+        BookSummary bookSummary = restTemplate.getForObject("http://localhost:8080/api/books/summary",BookSummary.class);
 
         model.addAttribute("books",bookList);
         model.addAttribute("bookSummary",bookSummary);
 
         return "bookList";
     }
-    */
 }
