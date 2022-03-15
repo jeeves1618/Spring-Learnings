@@ -54,3 +54,28 @@ application/json, application/xml.
 https://www.jsontest.com/
 
 https://jsonplaceholder.typicode.com/
+
+Spring Boot Training Notes
+-----------------------------------
+com.github.javafaker for fake data.
+This is helpful while using transient database like H2. When ever we start the application, we will have data loaded in the table.
+
+http://localhost:8222/h2-console will be enabled through the dependency dev tools
+
+@JsonIgnore to avoid recursion. @JsonIgnore will not deserialize 
+
+Pagination and sorting repository instead of crud repository
+
+show-sql in YAML decides whether the SQL should be shown in the run log
+
+@Valid validation has to be added in order to the validation in the RestController itself instead of sending it all the way to repository
+
+Springdoc openapi ui dependency for API documentation; http://localhost:8222/swagger-ui.html
+
+@ApiResponses is only for enriching the documentation.
+
+Read about actuator. It is used by kubernates to orchestrate the rest points. 
+
+http://localhost:8222/actuator
+
+http://localhost:8222/actuator/shutdown
