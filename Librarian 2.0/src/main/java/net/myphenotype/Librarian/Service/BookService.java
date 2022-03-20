@@ -51,23 +51,28 @@ public class BookService {
         bookSummary.setNumberOfBooks(0);
 
         for (Book tempBook: bookList){
-            if(tempBook.getBookTitle().contains(":"))
-                bookExpanded.setBookTitle(tempBook.getBookTitle().substring(0,tempBook.getBookTitle().indexOf(":")));
-            else
-                bookExpanded.setBookTitle(tempBook.getBookTitle());
-            bookExpanded.setBookGenre((tempBook.getBookGenre()));
-            bookExpanded.setAuthorFirstName(tempBook.getAuthorFirstName());
-            bookExpanded.setAuthorLastName(tempBook.getAuthorLastName());
-            bookExpanded.setPublisherName(tempBook.getPublisherName());
-            bookExpanded.setDateOfPurchase(tempBook.getDateOfPurchase());
-            bookExpanded.setCostOfPurchase(tempBook.getCostOfPurchase());
-            bookExpanded.setCurrencyCode(tempBook.getCurrencyCode());
-            bookExpanded.setId(tempBook.getId());
-            bookExpanded.setCostInLocalCurrency(costInLocalCurrency(tempBook.getCostOfPurchase(), tempBook.getCurrencyCode()));
-            bookExpanded.setCostInLocalCurrencyFmtd(costInLocalCurrencyFmtd(bookExpanded.getCostInLocalCurrency()));
-            bookExpanded.setShoppingChannel(tempBook.getBookDetail().getShoppingChannel());
-            bookExpanded.setTypeOfBinding(tempBook.getBookDetail().getTypeOfBinding());
-            bookExpanded.setIsbNumber(tempBook.getBookDetail().getIsbNumber());
+            try{
+                if(tempBook.getBookTitle().contains(":"))
+                    bookExpanded.setBookTitle(tempBook.getBookTitle().substring(0,tempBook.getBookTitle().indexOf(":")));
+                else
+                    bookExpanded.setBookTitle(tempBook.getBookTitle());
+                bookExpanded.setBookGenre((tempBook.getBookGenre()));
+                bookExpanded.setAuthorFirstName(tempBook.getAuthorFirstName());
+                bookExpanded.setAuthorLastName(tempBook.getAuthorLastName());
+                bookExpanded.setPublisherName(tempBook.getPublisherName());
+                bookExpanded.setDateOfPurchase(tempBook.getDateOfPurchase());
+                bookExpanded.setCostOfPurchase(tempBook.getCostOfPurchase());
+                bookExpanded.setCurrencyCode(tempBook.getCurrencyCode());
+                bookExpanded.setId(tempBook.getId());
+                bookExpanded.setCostInLocalCurrency(costInLocalCurrency(tempBook.getCostOfPurchase(), tempBook.getCurrencyCode()));
+                bookExpanded.setCostInLocalCurrencyFmtd(costInLocalCurrencyFmtd(bookExpanded.getCostInLocalCurrency()));
+                bookExpanded.setShoppingChannel(tempBook.getBookDetail().getShoppingChannel());
+                bookExpanded.setTypeOfBinding(tempBook.getBookDetail().getTypeOfBinding());
+                bookExpanded.setIsbNumber(tempBook.getBookDetail().getIsbNumber());
+            } catch (NullPointerException nullPointerException) {
+                log.info("Object not found for book ID, " + tempBook.getId());
+            }
+
             log.info("Debug = " + tempBook.getId());
             bookExpanded = appendAuthors(bookExpanded,tempBook.getId());
             bookSummary.setTotalCost(bookSummary.getTotalCost()+bookExpanded.getCostInLocalCurrency());

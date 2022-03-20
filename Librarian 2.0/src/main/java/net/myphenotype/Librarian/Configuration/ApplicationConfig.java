@@ -47,7 +47,7 @@ public class ApplicationConfig implements ApplicationListener<ApplicationReadyEv
         log.info("==========Database is beginning to load ===================");
         Set<Book> books = new HashSet<>();
         IntStream.range(0,bookCount).forEach((index) -> {
-            LocalDate orderDate = faker.date().past(4, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate orderDate = faker.date().past(4000, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             Book book = Book.builder()
                     .bookTitle(faker.book().title())
                     .bookGenre(faker.book().genre())
@@ -55,15 +55,18 @@ public class ApplicationConfig implements ApplicationListener<ApplicationReadyEv
                     .authorLastName(faker.name().lastName())
                     .publisherName(faker.book().publisher())
                     .dateOfPurchase(String.valueOf(orderDate))
-                    .costOfPurchase(faker.number().randomDouble(2,100,10000))
+                    .costOfPurchase(faker.number().randomDouble(2,100,1000))
                     .currencyCode(faker.currency().code())
                     .build();
+            String getType;
+                if (faker.number().numberBetween(0,3) == 1)getType = "Hardbound"; else getType = "Paperback";
             BookDetail bookDetail = BookDetail.builder()
                     .shoppingChannel(faker.company().name())
-                    .typeOfBinding(faker.book().toString())
-                    .isbNumber(faker.number().digit())
+                    .typeOfBinding(getType)
+                    .isbNumber(faker.numerify("978-##########"))
                     .build();
             bookDetail.setBook(book);
+            book.setBookDetail(bookDetail);
 
             IntStream.range(0, faker.number().numberBetween(1,authorCount))
                     .forEach(value -> {

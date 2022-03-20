@@ -20,8 +20,7 @@ public class LoggerAspect {
         log.info("Aspect: Before Advice is in action.");
     }
 
-    @AfterReturning(
-            pointcut = "execution(* net.myphenotype.Librarian.DAO.*.list*())", returning = "list")
+    @AfterReturning(pointcut = "execution(* net.myphenotype.Librarian.DAO.*.list*())", returning = "list")
     public void afterReturningBooks(JoinPoint joinPoint, List<Book> list){
         log.info("Executing @AfterReturning on method: " + joinPoint.getSignature().toShortString());
         log.info("The returned list is : " + list);

@@ -1,0 +1,31 @@
+server:
+  port: 8222
+
+spring:
+  datasource:
+    username: sa
+    password: welcome
+    url: jdbc:h2:mem:order_db
+  jpa:
+    properties:
+      hibernate:
+        format_sql: false
+    show-sql: false
+    generate-ddl: true
+app:
+  ordercount: 5000
+  lineitemcount: 5
+  maxamount: 50000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+
+
