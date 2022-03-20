@@ -31,6 +31,8 @@ public class ApplicationConfig implements ApplicationListener<ApplicationReadyEv
     private final AuthorRepository authorRepository;
     private final Faker faker = new Faker();
 
+    BindFinder bindFinder;
+
     @Value("${lib.bookcount}")
     private int bookCount;
 
@@ -44,7 +46,7 @@ public class ApplicationConfig implements ApplicationListener<ApplicationReadyEv
      */
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        log.info("==========Database is beginning to load ===================");
+        log.info("========== Data load is beginning. " + bookCount + " books will be loaded. ===================");
         Set<Book> books = new HashSet<>();
         IntStream.range(0,bookCount).forEach((index) -> {
             LocalDate orderDate = faker.date().past(4000, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -58,11 +60,11 @@ public class ApplicationConfig implements ApplicationListener<ApplicationReadyEv
                     .costOfPurchase(faker.number().randomDouble(2,100,1000))
                     .currencyCode(faker.currency().code())
                     .build();
-            String getType;
-                if (faker.number().numberBetween(0,3) == 1)getType = "Hardbound"; else getType = "Paperback";
+            bindFinder = () -> {if (faker.number().numberBetween(0,3) == 1) return "Hardbound"; else return "Paperback";};
+
             BookDetail bookDetail = BookDetail.builder()
                     .shoppingChannel(faker.company().name())
-                    .typeOfBinding(getType)
+                    .typeOfBinding(bindFinder.findBind())
                     .isbNumber(faker.numerify("978-##########"))
                     .build();
             bookDetail.setBook(book);
@@ -80,6 +82,6 @@ public class ApplicationConfig implements ApplicationListener<ApplicationReadyEv
             books.add(book);
         });
         this.bookRepository.saveAll(books);
-        log.info("========== Data load is completed ===================");
+        log.info("========== Data load is completed for " + bookCount + " books ===================");
     }
 }
