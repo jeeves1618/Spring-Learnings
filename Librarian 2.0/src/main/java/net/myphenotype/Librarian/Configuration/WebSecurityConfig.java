@@ -32,6 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
 
         http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 
     @Bean
