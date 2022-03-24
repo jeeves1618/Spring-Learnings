@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="029febdd-ca49-4d73-bb39-ca7ec76b99d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/src/main/java/net/myphenotype/Librarian/Controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/src/main/java/net/myphenotype/Librarian/Controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/application-madeup.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/application-madeup.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/application-madeup.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/application-madeup.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SpringBatch/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBatch/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBatch/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBatch/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SpringBatch/src/test/java/net/phenotype/SpringBatch/nextDemo/SpringBatchApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SpringBatch/src/test/java/net/phenotype/SpringBatch/nextDemo/ItemReaderApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +29,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

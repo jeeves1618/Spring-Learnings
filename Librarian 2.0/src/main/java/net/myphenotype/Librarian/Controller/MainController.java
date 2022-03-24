@@ -67,6 +67,25 @@ public class MainController {
         return "bookList";
     }
 
+    @GetMapping("/v1/books")
+    public String getBook(Model model){
+        /*
+        This method should do the following.
+        1. Get the books from the DAO
+        2. And add the books to the model to be diplayed in the view
+         */
+
+        List<Authors> authorsList = new ArrayList<>();
+
+        Iterable<BookExpanded> bookList = bookService.listBooks();
+
+        model.addAttribute("books",bookList);
+        model.addAttribute("bookSummary",bookSummary);
+        model.addAttribute("bookSearch",bookSearch);
+
+        return "bookList";
+    }
+
     @GetMapping(path = "/showFormForAdding")
     public String ShowFormForAdding(Model model){
 

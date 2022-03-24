@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springbatch?useSSL=false&serverTimezone=UTC
+    username: hbstudent
+    password: hbstudent
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  thymeleaf:
+    cache: false
+  mail:
+    host: smtp-mail.outlook.com
+    port: 587
+    username: fromEmailID@outlook.com
+    password: passwordPlease
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
