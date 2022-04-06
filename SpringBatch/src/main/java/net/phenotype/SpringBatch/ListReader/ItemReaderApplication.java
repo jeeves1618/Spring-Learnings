@@ -11,5 +11,4 @@ public class ItemReaderApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ItemReaderApplication.class, args);
 	}
-
 }

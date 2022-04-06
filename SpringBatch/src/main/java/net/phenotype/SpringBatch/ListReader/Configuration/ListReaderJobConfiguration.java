@@ -1,16 +1,15 @@
 package net.phenotype.SpringBatch.ListReader.Configuration;
 
+import net.phenotype.SpringBatch.ListReader.ListReader.ListItemReader;
 import net.phenotype.SpringBatch.Listener.ListenerRepo.ChunkListener;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.step.builder.SimpleStepBuilder;
-import org.springframework.batch.item.support.ListItemReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,9 +51,8 @@ public class ListReaderJobConfiguration {
         Step step = taskletStepBuilder.build();
         return step;
     }
-
     @Bean
-    public Job listenAndMail(JavaMailSender mailSender){
+    public Job executeChunkBasedStep(){
         System.out.println("Executing the job");
         return jobBuilderFactory.get("listreaderjob")
                 .start(Step01())

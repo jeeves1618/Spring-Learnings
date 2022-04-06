@@ -30,7 +30,7 @@ public class ListenerJobConfiguration {
     @Bean
     public ItemReader<String> reader(){
         return new ListItemReader<>(Arrays.asList("Hello I am Ardipithicus Ramidus, I lived 4.3 million years ago. I am probably the common ancestor of all hominids.",
-                "Hello I am Australopiticus Afarensis, I lived 3.2 million years ago. Not to boast or anything, but I am first one to walk upright.",
+                "Hello I am Australopiticus Afarensis, I lived 3.2 million years ago. Not to boast or anything, but I am the first one to walk upright.",
                 "Hello I am Homo Habilis. I lived 2.3 million years ago. I am the first of your ancestors who was brave enough to fight other animals. " +
                         "Because, I know how to use sticks and stones as tools",
                 "Hello I am Homo Erectus. I lived 1.6 million years ago. I am the first one to use fire and took the apes to the top of food chain.",

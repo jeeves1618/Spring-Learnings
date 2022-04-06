@@ -1,0 +1,23 @@
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          okta:
+            client-id: 0oa47p3n9dwLxBkRi5d7
+            client-secret: AV_aczburm2E7H-RTEIh_dUe-InxM8nLwfxOyI3p
+            redirectUri: http://localhost:8080/login/oauth2/code/okta
+            scope: openid,email
+            clientName: okta
+        provider:
+          okta:
+            authorizationUri: https://dev-7858070.okta.com/oauth2/default/v1/authorize
+            tokenUri: https://dev-7858070.okta.com/oauth2/default/v1/token
+            userInfoUri: https://dev-7858070.okta.com/oauth2/default/v1/userinfo
+            jwkSetUri: https://dev-7858070.okta.com/oauth2/default/v1/keys
+            issuerUri: https://dev-7858070.okta.com/oauth2/default
+logging:
+  level:
+    root: debug
