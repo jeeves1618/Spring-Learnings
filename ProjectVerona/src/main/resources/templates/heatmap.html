@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Heat Map</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <!--Reference to Style Sheet -->
+    <link type="text/css" rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg navbar-dark bg-dark"
+      style="background-color: #09a7c3"
+    >
+      <div class="container-fluid">
+        <a class="nav-link active" href="#"></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/apartment/list/flats}"
+                >Apartment</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/apartment/list/assets}">Assets</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                th:href="@{/apartment/list/heatmap}"
+                >Heat Map</a
+              >
+            </li>
+
+            <li class="nav-item">
+              <a
+                class="nav-link disabled"
+                href="#"
+                tabindex="-1"
+                aria-disabled="true"
+                >Admin</a
+              >
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search Journals"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div id="wrapper">
+      <div id="header">
+        <h2 align="center">Verona Apartments - Heat Map</h2>
+      </div>
+      <br />
+    </div>
+
+    <!--  add a search box -->
+    <form
+      th:action="@{/apartment/flat/search}"
+      th:object="${flatSearch}"
+      method="GET"
+    >
+      <div id="sub" align="center">
+        <a th:href="@{/apartment/list/flats}" class="btn btn-secondary btn-sm"
+          ><b>View Apartment Details</b></a
+        >
+      </div>
+    </form>
+    <div th:if="${not #lists.isEmpty(heatmaplist)}" class="container">
+      <table border="1;" align="center" class="table table-bordered">
+        <col width="50" />
+        <col width="100" />
+        <col width="100" />
+        <col width="100" />
+        <col width="100" />
+        <col width="100" />
+        <col width="100" />
+        <col width="100" />
+        <col width="100" />
+        <col width="100" />
+        <col width="100" />
+        <tr>
+          <th>BHK</th>
+          <th>2</th>
+          <th>2</th>
+          <th>2</th>
+          <th>2</th>
+          <th>2.5</th>
+          <th>2.5</th>
+          <th>3</th>
+          <th>3</th>
+          <th>3</th>
+          <th>3</th>
+        </tr>
+        <tr>
+          <th>Sq Ft</th>
+          <th>
+            <a
+              th:href="@{https://www.houseofhiranandani.com/data-content/proj_unitplan/coming-soon-omr-verona-2-bhk-flat-no-9.jpg}"
+              target="_blank"
+              >1027</a
+            >
+          </th>
+          <th>
+            <a
+              th:href="@{https://www.houseofhiranandani.com/data-content/proj_unitplan/coming-soon-omr-verona-2-bhk-flat-no-3.jpg}"
+              target="_blank"
+              >1029</a
+            >
+          </th>
+          <th>
+            <a
+              th:href="@{https://www.houseofhiranandani.com/data-content/proj_unitplan/coming-soon-omr-verona-2-bhk-flat-no-7.jpg}"
+              target="_blank"
+              >1035</a
+            >
+          </th>
+          <th>
+            <a
+              th:href="@{https://www.houseofhiranandani.com/data-content/proj_unitplan/coming-soon-omr-verona-2-bhk-flat-no-8.jpg}"
+              target="_blank"
+              >1053</a
+            >
+          </th>
+          <th>
+            <a
+              th:href="@{https://www.houseofhiranandani.com/data-content/proj_unitplan/coming-soon-omr-verona-3-bhk-flat-no-4.jpg}"
+              target="_blank"
+              >1258</a
+            >
+          </th>
+          <th>
+            <a
+              th:href="@{https://www.houseofhiranandani.com/data-content/proj_unitplan/coming-soon-omr-verona-3-bhk-flat-no-2.jpg}"
+              target="_blank"
+              >1269</a
+            >
+          </th>
+          <th>
+            <a
+              th:href="@{https://www.houseofhiranandani.com/data-content/proj_unitplan/coming-soon-omr-verona-3-bhk-flat-no-6.jpg}"
+              target="_blank"
+              >1552</a
+            >
+          </th>
+          <th>
+            <a
+              th:href="@{https://www.houseofhiranandani.com/data-content/proj_unitplan/coming-soon-omr-verona-3-bhk-flat-no-10.jpg}"
+              target="_blank"
+              >1556</a
+            >
+          </th>
+          <th>
+            <a
+              th:href="@{https://www.houseofhiranandani.com/data-content/proj_unitplan/coming-soon-omr-verona-3-bhk-flat-no-1.jpg}"
+              target="_blank"
+              >1541</a
+            >
+          </th>
+          <th>
+            <a
+              th:href="@{https://www.houseofhiranandani.com/data-content/proj_unitplan/coming-soon-omr-verona-3-bhk-flat-no-5.jpg}"
+              target="_blank"
+              >1545</a
+            >
+          </th>
+        </tr>
+        <tr>
+          <th>Floor</th>
+          <th>
+            <a th:href="@{/apartment/list/plan(apartmentName='Apt 09')}">
+              Apt 09</a
+            >
+          </th>
+          <th>
+            <a th:href="@{/apartment/list/plan(apartmentName='Apt 03')}"
+              >Apt 03</a
+            >
+          </th>
+          <th>
+            <a th:href="@{/apartment/list/plan(apartmentName='Apt 07')}"
+              >Apt 07</a
+            >
+          </th>
+          <th>
+            <a th:href="@{/apartment/list/plan(apartmentName='Apt 08')}"
+              >Apt 08</a
+            >
+          </th>
+          <th>
+            <a th:href="@{/apartment/list/plan(apartmentName='Apt 04')}"
+              >Apt 04</a
+            >
+          </th>
+          <th>
+            <a th:href="@{/apartment/list/plan(apartmentName='Apt 02')}"
+              >Apt 02</a
+            >
+          </th>
+          <th>
+            <a th:href="@{/apartment/list/plan(apartmentName='Apt 06')}"
+              >Apt 06</a
+            >
+          </th>
+          <th>
+            <a th:href="@{/apartment/list/plan(apartmentName='Apt 10')}"
+              >Apt 10</a
+            >
+          </th>
+          <th>
+            <a th:href="@{/apartment/list/plan(apartmentName='Apt 01')}"
+              >Apt 01</a
+            >
+          </th>
+          <th>
+            <a th:href="@{/apartment/list/plan(apartmentName='Apt 05')}"
+              >Apt 05</a
+            >
+          </th>
+        </tr>
+        <tr th:each="floorHeatMap : ${heatmaplist}">
+          <td align="right" th:text="${floorHeatMap.floorNumber}"></td>
+          <td
+            align="right"
+            th:style="${floorHeatMap.withinBudget.get(0)} == 'true' ? 'color: green' : 'color: red'"
+            th:text="${floorHeatMap.priceListFmtd.get(0)}"
+          ></td>
+          <td
+            align="right"
+            th:style="${floorHeatMap.withinBudget.get(1)} == 'true' ? 'color: green' : 'color: red'"
+            th:text="${floorHeatMap.priceListFmtd.get(1)}"
+          ></td>
+          <td
+            align="right"
+            th:style="${floorHeatMap.withinBudget.get(2)} == 'true' ? 'color: green' : 'color: red'"
+            th:text="${floorHeatMap.priceListFmtd.get(2)}"
+          ></td>
+          <td
+            align="right"
+            th:style="${floorHeatMap.withinBudget.get(3)} == 'true' ? 'color: green' : 'color: red'"
+            th:text="${floorHeatMap.priceListFmtd.get(3)}"
+          ></td>
+          <td
+            align="right"
+            th:style="${floorHeatMap.withinBudget.get(4)} == 'true' ? 'color: green' : 'color: red'"
+            th:text="${floorHeatMap.priceListFmtd.get(4)}"
+          ></td>
+          <td
+            align="right"
+            th:style="${floorHeatMap.withinBudget.get(5)} == 'true' ? 'color: green' : 'color: red'"
+            th:text="${floorHeatMap.priceListFmtd.get(5)}"
+          ></td>
+          <td
+            align="right"
+            th:style="${floorHeatMap.withinBudget.get(6)} == 'true' ? 'color: green' : 'color: red'"
+            th:text="${floorHeatMap.priceListFmtd.get(6)}"
+          ></td>
+          <td
+            align="right"
+            th:style="${floorHeatMap.withinBudget.get(7)} == 'true' ? 'color: green' : 'color: red'"
+            th:text="${floorHeatMap.priceListFmtd.get(7)}"
+          ></td>
+          <td
+            align="right"
+            th:style="${floorHeatMap.withinBudget.get(8)} == 'true' ? 'color: green' : 'color: red'"
+            th:text="${floorHeatMap.priceListFmtd.get(8)}"
+          ></td>
+          <td
+            align="right"
+            th:style="${floorHeatMap.withinBudget.get(9)} == 'true' ? 'color: green' : 'color: red'"
+            th:text="${floorHeatMap.priceListFmtd.get(9)}"
+          ></td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
