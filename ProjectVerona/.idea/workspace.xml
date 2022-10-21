@@ -5,32 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="671ba900-8778-42cb-8e5f-1965f2d19277" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/ProjectVeronaApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/apartments.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/financialStatements/FinancialStatementsApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/financialStatements/processing/controller/MainController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/accountLedger.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/balanceSheet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/cashFlow.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/chartOfAccounts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/incomeStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/journalEntry.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/journalSummary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/trialBalance.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/net/myphenotype/financialStatements/FinancialStatementsApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/net/myphenotype/projectverona/FinancialStatementsApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/accountLedger.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/balanceSheet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/cashFlow.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/chartOfAccounts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/incomeStatement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/journalEntry.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/journalSummary.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/trialBalance.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/src/main/java/net/myphenotype/Librarian/Configuration/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/src/main/java/net/myphenotype/Librarian/Configuration/WebSecurityConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +22,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -83,7 +59,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.647541" />

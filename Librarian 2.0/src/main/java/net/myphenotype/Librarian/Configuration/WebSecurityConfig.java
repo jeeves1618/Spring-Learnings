@@ -17,7 +17,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
+                /*
+
+                */
+                .antMatchers("/home", "/book").authenticated()
                 /*
                 permitAll() has been given instead of authenticated() to test the REST endpoints.
                 Should figure out the rest endpoint for Spring Security
@@ -47,4 +50,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return new InMemoryUserDetailsManager(user);
     }
+
 }
