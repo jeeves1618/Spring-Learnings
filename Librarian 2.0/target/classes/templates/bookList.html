@@ -98,7 +98,15 @@
     <input type="button" value="Add Book"
            onclick="window.location.href='showFormForAdding';return false;"
            class = "add-button" />
+    <!-- Add the button to add a Book -->
+    <input type="button" value="Download"
+    onclick="window.location.href='downloadList';return false;"
+    class = "add-button" />
+    <!-- Add the button to add a Book -->
+    <input type="button" value="Upload"
+    onclick="window.location.href='uploadList';return false;"
+    class = "add-button" />
 </div>
-<div id="sub" align="center"><a th:href="@{/book/list}">Go to top</a></div>
+<div id="sub" align="center"><a th:href="@{/book/list}" class="btn btn-secondary btn-sm">Go to top</a></div>
 <body>
 </html>

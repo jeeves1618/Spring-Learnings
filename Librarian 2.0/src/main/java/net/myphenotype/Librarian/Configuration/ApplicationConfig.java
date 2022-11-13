@@ -49,6 +49,7 @@ public class ApplicationConfig implements ApplicationListener<ApplicationReadyEv
         log.info("========== Data load is beginning. " + bookCount + " books will be loaded. ===================");
         Set<Book> books = new HashSet<>();
         IntStream.range(0,bookCount).forEach((index) -> {
+
             LocalDate orderDate = faker.date().past(4000, TimeUnit.DAYS).toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             Book book = Book.builder()
                     .bookTitle(faker.book().title())

@@ -1,5 +1,7 @@
 package net.myphenotype.Librarian.Controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import net.myphenotype.Librarian.Entity.*;
 import net.myphenotype.Librarian.Service.BookService;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,10 +104,69 @@ public class MainController {
 
         return "bookForm";
     }
+
     @PostMapping(path = "/addBook")
     public String AddBookToList(@ModelAttribute("book") Book book){
         bookService.saveBook(book);
         return "redirect:/book/list";
+    }
+
+    @GetMapping(path = "/downloadList")
+    public String downloadToJson(Model model){
+
+        log.info("Downloading data to JSON file. ");
+        /*
+        We pass two parameters to the addAttribute method; name and value.
+        Name will be used in the JSP/HTML/Angular/React as modelAttribute
+        The value (i.e the bean created) will bind the UI layer to the underlying data object.
+         */
+        Iterable<BookExpanded> bookList = bookService.listBooks();
+        ObjectMapper mapper = new ObjectMapper();
+
+        File file = new File("src/main/resources/book-list.json");
+        try {
+            // Serialize Java object info JSON file.
+            mapper.writeValue(file, bookList);
+        } catch (IOException e) {
+            log.error("Unsuccessful write of JSON");
+            e.printStackTrace();
+        }
+        model.addAttribute("books",bookList);
+        model.addAttribute("bookSummary",bookSummary);
+        model.addAttribute("bookSearch",bookSearch);
+
+        return "bookList";
+    }
+
+    @GetMapping(path = "/uploadList")
+    public String uploadFromJson(Model model){
+
+        log.info("Downloading data to JSON file. ");
+        /*
+        We pass two parameters to the addAttribute method; name and value.
+        Name will be used in the JSP/HTML/Angular/React as modelAttribute
+        The value (i.e the bean created) will bind the UI layer to the underlying data object.
+         */
+        Iterable<BookExpanded> bookList = new ArrayList<>();
+        ObjectMapper mapper = new ObjectMapper();
+
+        File file = new File("src/main/resources/book-list.json");
+        try {
+            // Serialize Java object info JSON file.
+            bookList = mapper.readValue(file, new TypeReference<List<BookExpanded>>(){});
+        } catch (IOException e) {
+            log.error("Unsuccessful write of JSON");
+            e.printStackTrace();
+        }
+
+        for(BookExpanded bookExpanded:bookList){
+            bookService.saveBook(bookExpanded);
+        }
+        model.addAttribute("books",bookList);
+        model.addAttribute("bookSummary",bookSummary);
+        model.addAttribute("bookSearch",bookSearch);
+
+        return "bookList";
     }
 
     @GetMapping(path = "/showFormForUpdating")

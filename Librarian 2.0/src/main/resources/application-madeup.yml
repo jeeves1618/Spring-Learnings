@@ -21,7 +21,7 @@ spring:
       enabled:
         debug: true
 lib:
-   bookcount: 50
+   bookcount: 0
    authorcount: 4
    maxamount: 50000
 management:
