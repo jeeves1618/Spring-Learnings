@@ -71,6 +71,19 @@ public class MainController {
         return "bookList";
     }
 
+    @GetMapping("/main")
+    public String getBookMain(Model model){
+        /*
+        This method should do the following.
+        1. Get the books from the DAO
+        2. And add the books to the model to be diplayed in the view
+         */
+        List<Topic> topicSummaries = bookService.findCountByTopics();
+        System.out.println(topicSummaries);
+        model.addAttribute("topics",topicSummaries);
+        return "main";
+    }
+
     @GetMapping("/v1/books")
     public String getBook(Model model){
         /*

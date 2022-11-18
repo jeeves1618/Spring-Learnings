@@ -52,51 +52,6 @@ href="/style.css" />
                 <td align="left"><label>Genre : </label></td>
                 <td align="left" th:text="${book.bookGenre}" ></td>
             </tr>
-            
-            <tr>
-                <td align="left"><label>Authors : </label></td>
-                <td align="left">
-                    <div th:text="${book.authorsFirstName1} + ' ' + ${book.authorsLastName1}" ></div>
-                    <div th:text="${book.authorsFirstName2} + ' ' + ${book.authorsLastName2}" ></div>
-                    <div th:text="${book.authorsFirstName3} + ' ' + ${book.authorsLastName3}" ></div>
-                    <div th:text="${book.authorsFirstName4} + ' ' + ${book.authorsLastName4}" ></div>
-                </td>
-            </tr>
-            
-            <tr>
-                <td align="left"><label>Publisher : </label></td>
-                <td align="left" th:text="${book.publisherName}" ></td>
-            </tr>
-            
-            <tr>
-                <td align="left"><label>Date of Purchase : </label></td>
-                <td align="left" th:text="${book.dateOfPurchase}" ></td>
-            </tr>
-            
-            <tr>
-                <td align="left"><label>Book Price : </label></td>
-                <td align="left" th:text="${book.costOfPurchase}" ></td>
-            </tr>
-
-            <tr>
-                <td align="left"><label>Denomination Currency : </label></td>
-                <td align="left" th:text="${book.currencyCode}" ></td>
-            </tr>
-            
-            <tr>
-                <td align="left"><label>Format : </label></td>
-                <td align="left" th:text="${book.bookDetail.typeOfBinding}" ></td>
-            </tr>
-
-            <tr>
-                <td align="left"><label>Shopping Channel : </label></td>
-                <td align="left" th:text="${book.bookDetail.shoppingChannel}" ></td>
-            </tr>
-             
-            <tr>
-                <td align="left"><label>ISBN : </label></td>
-                <td align="left" th:text="${book.bookDetail.isbNumber}" ></td>
-            </tr>
              
             <tr>
                 <td align="center" colspan=2><a th:href="@{/book/list}"

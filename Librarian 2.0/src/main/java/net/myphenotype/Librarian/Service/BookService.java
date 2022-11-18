@@ -392,4 +392,12 @@ public class BookService {
         }
         return book;
     }
+
+    public List<Topic> findCountByTopics(){
+        List<Topic> topicSummaryList =  bookDao.findCountByTopics();
+        for(Topic summary:topicSummaryList){
+            summary.setBookGenre(summary.getBookGenre() + " (" + summary.getBookCount() + ")");
+        }
+        return topicSummaryList;
+    }
 }

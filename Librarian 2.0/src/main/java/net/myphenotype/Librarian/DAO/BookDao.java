@@ -3,8 +3,10 @@ package net.myphenotype.Librarian.DAO;
 import lombok.extern.slf4j.Slf4j;
 import net.myphenotype.Librarian.Entity.Authors;
 import net.myphenotype.Librarian.Entity.Book;
+import net.myphenotype.Librarian.Entity.Topic;
 import net.myphenotype.Librarian.Repository.AuthorRepository;
 import net.myphenotype.Librarian.Repository.BookRepository;
+import net.myphenotype.Librarian.Repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +22,8 @@ public class BookDao {
     @Autowired
     private AuthorRepository authorRepository;
 
+    @Autowired
+    private TopicRepository topicRepository;
 
     public BookDao(BookRepository bookRepository){
         this.bookRepository = bookRepository;
@@ -73,5 +77,9 @@ public class BookDao {
         List<Book> books = bookRepository.findByBookTitleContaining(theSearchName);
         log.info("Listing books for the search criteria");
         return books;
+    }
+
+    public List<Topic> findCountByTopics(){
+        return topicRepository.findAll();
     }
 }
