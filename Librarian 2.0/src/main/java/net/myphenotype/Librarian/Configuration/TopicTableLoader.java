@@ -29,6 +29,7 @@ public class TopicTableLoader implements ApplicationListener<ApplicationReadyEve
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         log.info("========== Data load is beginning. topics will be loaded. ===================");
+        topicRepository.deleteAll();
         List<TopicSummary> topicSummaryList = bookRepository.findCountByTopics();
         for(TopicSummary topicSummary: topicSummaryList){
             topic.setBookGenre(topicSummary.getBookGenre());

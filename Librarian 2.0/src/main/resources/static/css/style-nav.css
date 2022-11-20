@@ -1,13 +1,45 @@
 /**Header**/
 #header-nav {
-  /*background-color: #fdc426;*/
-  background-color: white;
+  background-color: black;
+  color: white;
   border-radius: 0;
   border: 0;
+  font-weight: bold;
   /* Make the nav bar fixed */
   position: fixed;
   width: 100%;
   /* Make the nav bar come to the front */
+  z-index: 1100;
+}
+
+#header-nav-logo h1 {
+  color: white;
+}
+
+.navbar-toggler {
+  color: white;
+  --bs-navbar-toggler-border-color: white;
+  --bs-navbar-brand-hover-color: white;
+}
+a.navbar-brand,
+a.nav-link:active,
+a.nav-link {
+  color: white;
+  --bs-navbar-hover-color: white;
+  --bs-navbar-brand-hover-color: white;
+}
+
+.navbar-nav {
+  color: white;
+  --bs-navbar-hover-color: white;
+  --bs-navbar-brand-hover-color: white;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .show > .nav-link {
+  color: white;
+  --bs-navbar-hover-color: white;
+  --bs-navbar-brand-hover-color: white;
 }
 /********** Large devices only **********/
 @media (min-width: 1200px) {

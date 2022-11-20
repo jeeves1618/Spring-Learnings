@@ -2,16 +2,19 @@
   font-family: "Oxygen", sans-serif;
 }
 
-main {
+body {
   background-color: rgb(233, 215, 207);
+  text-align: center;
+  color: rgb(83, 75, 75);
 }
 
 a {
   text-decoration: none;
+  text-align: center;
 }
 
 #topicList {
-  padding-top: 40px;
+  padding-top: 0px;
 }
 
 .btn-outline-success {
@@ -35,57 +38,9 @@ a {
   --bs-btn-disabled-border-color: #fff;
 }
 
-.topic-tile {
-  position: relative;
-  background-color: rgb(223, 136, 124);
-  border: 2px solid white;
-  padding: 15px;
-  padding-top: 30px;
-  overflow: hidden;
-  width: 220px;
-  height: 300px;
-  margin: 0 auto 15px;
-  box-shadow: 0 0 10px #3f0c1f;
-  border-radius: 5%;
-}
-
-.topic-tile span {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  text-align: center;
-  font-size: 1.2em;
-  text-transform: uppercase;
-  background-color: #000;
-  color: #fff;
-  opacity: 1;
-}
-.genre-tile {
-  position: relative;
-  background-color: rgb(167, 1, 78);
-  color: white;
-  border: 2px solid white;
-  border-radius: 4px;
-  font-size: 18px;
-  width: 180px;
-  height: auto;
-  margin: 0 auto -15px;
-  box-shadow: 0 0 10px #3f0c1f;
-  z-index: 1099;
-  text-decoration: none !important;
-  text-align: center;
-}
-.topic-tile:hover {
-  box-shadow: 0 1px 5px 1px #cccccc;
-}
-
-#topic-title-books {
-  padding-top: 8%;
-}
 #title-text {
-  padding-top: 24px;
-  padding-bottom: 12px;
+  padding-top: 96px;
+  padding-bottom: 24px;
   border-radius: 4px;
   width: 300px;
   border: 0px solid white;
@@ -93,57 +48,38 @@ a {
   background-color: rgb(233, 215, 207);
 }
 
-.section-tile {
-  background-color: rgb(233, 215, 207);
-  border: 2px solid white;
-  box-shadow: 0 0 10px #3f0c1f;
-  border-radius: 5px;
-  margin: 20px;
-}
-
-.book-tile {
-  background-color: rgb(223, 136, 124);
+.genre-tile {
   position: relative;
-  border: 2px solid white;
-  overflow: hidden;
-  width: 40%;
-  height: 250px;
-  margin: 35px auto 20px;
-
-  box-shadow: 0 0 10px #3f0c1f;
-  border-radius: 5%;
-}
-
-.book-description {
   background-color: rgb(167, 1, 78);
   color: white;
-  font-weight: bold;
-  text-align: center;
-  position: relative;
   border: 2px solid white;
-  overflow: hidden;
-  width: 50%;
-  height: 250px;
-  margin: 35px auto 20px;
+  border-radius: 4px;
+  font-size: 24px;
+  width: 200px;
+  height: auto;
+  margin: 0 auto -19px;
   box-shadow: 0 0 10px #3f0c1f;
-  border-radius: 5%;
+  z-index: 1099;
 }
 
-.book-title-tile {
+.summary-tile {
   position: relative;
   background-color: rgb(223, 136, 124);
-  font-weight: bolder;
-  text-align: center;
   color: rgb(71, 62, 62);
   border: 2px solid white;
-  font-size: 18px;
-  width: 60%;
+  font-size: 24px;
+  width: 800px;
   height: auto;
-  margin: 0 auto -25px;
+  margin: 0 auto 15px;
   box-shadow: 0 0 10px #3f0c1f;
   border-radius: 4px;
-  padding: 3px 0 3px 0;
+  padding: 30px 0 20px 0;
 }
+.genre-tile:hover,
+.summary-tile:hover {
+  box-shadow: 0 1px 5px 1px #cccccc;
+}
+
 h2 {
   color: rgb(34, 22, 22);
   font-weight: bold;
@@ -151,15 +87,43 @@ h2 {
   text-align: center;
 }
 
-h3 {
-  text-align: center;
+/**Header**/
+#header-nav {
+  background-color: black;
+  color: white;
+  border-radius: 0;
+  border: 0;
+  font-weight: bold;
+  /* Make the nav bar fixed */
+  position: fixed;
+  width: 100%;
+  /* Make the nav bar come to the front */
+  z-index: 1100;
 }
 
-hr {
-  width: 50%;
-  text-align: center !important;
+#header-nav-logo h1 {
+  color: white;
+}
 
-  margin-inline-start: 25%;
+a.navbar-brand,
+a.nav-link:active,
+a.nav-link {
+  color: white;
+  --bs-navbar-hover-color: white;
+  --bs-navbar-brand-hover-color: white;
+}
+
+.navbar-nav {
+  color: white;
+  --bs-navbar-hover-color: white;
+  --bs-navbar-brand-hover-color: white;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .show > .nav-link {
+  color: white;
+  --bs-navbar-hover-color: white;
+  --bs-navbar-brand-hover-color: white;
 }
 /********** Large devices only **********/
 @media (min-width: 1200px) {

@@ -28,7 +28,7 @@ public class BookExpanded {
     private String contactEmail;
     private double costInLocalCurrency;
     private String costInLocalCurrencyFmtd;
-
+    private String imageFileName;
     private String shoppingChannel;
     private String typeOfBinding;
     private String isbNumber;

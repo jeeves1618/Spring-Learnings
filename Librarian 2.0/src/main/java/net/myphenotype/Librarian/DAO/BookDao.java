@@ -80,6 +80,23 @@ public class BookDao {
     }
 
     public List<Topic> findCountByTopics(){
-        return topicRepository.findAll();
+        return topicRepository.findAllByOrderByBookCountDesc();
     }
+
+    public void saveAll(List<Topic> topicList){
+        topicRepository.saveAll(topicList);
+    }
+
+    public List<Book> listBookByTopics(String genre){
+        return bookRepository.findByBookGenre(genre);
+    }
+
+    public void saveTopic(Topic topic){
+        topicRepository.save(topic);
+    }
+
+    public List<Topic> findTopicByGenre(String genre){
+        return topicRepository.findByBookGenre(genre);
+    }
+
 }

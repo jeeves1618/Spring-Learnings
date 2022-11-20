@@ -70,6 +70,20 @@ public class MainController {
 
         return "bookList";
     }
+    @GetMapping(path = "/books")
+    public String listBooksUnderTopic(@RequestParam("Genre") String Genre, Model model){
+        //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
+        List<BookExpanded> books = bookService.findBooksByGenre(Genre);
+        if(Genre.contains(" ("))
+            Genre = Genre.substring(0,Genre.indexOf(" ("));
+        String genreMessage = "You have " + bookSummary.getNumberOfBooks() + " books under " + Genre.toLowerCase() + " acquired at the cost of " + bookSummary.getTotalCostOfBooks();
+        model.addAttribute("genre",Genre);
+        model.addAttribute("genreMessage",genreMessage);
+        model.addAttribute("books",books);
+        model.addAttribute("bookSummary",bookSummary);
+        //Send the data to the right form
+        return "books";
+    }
 
     @GetMapping("/main")
     public String getBookMain(Model model){
@@ -121,6 +135,7 @@ public class MainController {
     @PostMapping(path = "/addBook")
     public String AddBookToList(@ModelAttribute("book") Book book){
         bookService.saveBook(book);
+        bookService.saveTopic(book);
         return "redirect:/book/list";
     }
 
@@ -144,11 +159,21 @@ public class MainController {
             log.error("Unsuccessful write of JSON");
             e.printStackTrace();
         }
+
+        List<Topic> topicList = bookService.downloadTopics();
+        File topicFile = new File("src/main/resources/topic-list.json");
+        try {
+            // Serialize Java object info JSON file.
+            mapper.writeValue(topicFile, topicList);
+        } catch (IOException e) {
+            log.error("Unsuccessful write of JSON for topics");
+            e.printStackTrace();
+        }
         model.addAttribute("books",bookList);
         model.addAttribute("bookSummary",bookSummary);
         model.addAttribute("bookSearch",bookSearch);
 
-        return "bookList";
+        return "redirect:/book/list";
     }
 
     @GetMapping(path = "/uploadList")
@@ -175,11 +200,20 @@ public class MainController {
         for(BookExpanded bookExpanded:bookList){
             bookService.saveBook(bookExpanded);
         }
+        List<Topic> topicList = new ArrayList<>();
+        File topicFile = new File("src/main/resources/topic-list.json");
+        try {
+            topicList = mapper.readValue(topicFile, new TypeReference<List<Topic>>(){});
+        } catch (IOException e) {
+            log.error("Unsuccessful read of JSON for topics");
+            e.printStackTrace();
+        }
+        bookService.saveAll(topicList);
         model.addAttribute("books",bookList);
         model.addAttribute("bookSummary",bookSummary);
         model.addAttribute("bookSearch",bookSearch);
 
-        return "bookList";
+        return "redirect:/book/list";
     }
 
     @GetMapping(path = "/showFormForUpdating")

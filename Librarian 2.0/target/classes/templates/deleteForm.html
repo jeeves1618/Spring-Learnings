@@ -105,6 +105,11 @@ href="/style.css" />
                 </tr>
                  
                 <tr>
+                    <td align="left"><label>Image File : </label></td>
+                    <td align="left" th:text="${book.imageFileName}" ></td>
+                </tr>
+                
+                <tr>
                     <td align="center" colspan=2><a th:href="@{/book/delete(bookID=${book.Id})}"
                         class="btn btn-secondary btn-sm" 
                         onclick="if (!(Confirm('Are you sure you want to delete this book?'))) return false"><b>Confirm Delete</b></a></td>

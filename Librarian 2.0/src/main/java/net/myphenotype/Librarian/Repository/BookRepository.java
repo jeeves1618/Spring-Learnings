@@ -12,4 +12,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
 
     @Query("select new net.myphenotype.Librarian.Domain.TopicSummary(bookGenre, count(*)) from Book group by bookGenre order by count(*) desc ")
     List<TopicSummary> findCountByTopics();
+
+    List<Book> findByBookGenre(String genre);
 }

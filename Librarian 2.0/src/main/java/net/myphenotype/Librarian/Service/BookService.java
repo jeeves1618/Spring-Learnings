@@ -1,6 +1,5 @@
 package net.myphenotype.Librarian.Service;
 
-
 import lombok.extern.slf4j.Slf4j;
 import net.myphenotype.Librarian.DAO.BookDao;
 import net.myphenotype.Librarian.Entity.*;
@@ -69,6 +68,7 @@ public class BookService {
                 bookExpanded.setShoppingChannel(tempBook.getBookDetail().getShoppingChannel());
                 bookExpanded.setTypeOfBinding(tempBook.getBookDetail().getTypeOfBinding());
                 bookExpanded.setIsbNumber(tempBook.getBookDetail().getIsbNumber());
+                bookExpanded.setImageFileName(tempBook.getImageFileName());
             } catch (NullPointerException nullPointerException) {
                 log.info("Object not found for book ID, " + tempBook.getId());
             }
@@ -87,7 +87,58 @@ public class BookService {
         log.info("Total Cost = " + bookSummary.getTotalCostOfBooks());
         return bookExpandedList;
     }
+    public List<BookExpanded> findBooksByGenre(String genre){
+        System.out.println(genre);
+        if(genre.contains(" (")) {
+            System.out.println(genre);
+            genre = genre.substring(0, genre.indexOf(" ("));
+        }
 
+        Iterable<Book> bookList = bookDao.listBookByTopics(genre);
+        List<BookExpanded> bookExpandedList = new ArrayList<>();
+
+        int i = 0;
+        bookSummary.setTotalCost(0.00);
+        bookSummary.setNumberOfBooks(0);
+
+        for (Book tempBook: bookList){
+            try{
+                if(tempBook.getBookTitle().contains(":"))
+                    bookExpanded.setBookTitle(tempBook.getBookTitle().substring(0,tempBook.getBookTitle().indexOf(":")));
+                else
+                    bookExpanded.setBookTitle(tempBook.getBookTitle());
+                bookExpanded.setBookGenre((tempBook.getBookGenre()));
+                bookExpanded.setAuthorFirstName(tempBook.getAuthorFirstName());
+                bookExpanded.setAuthorLastName(tempBook.getAuthorLastName());
+                bookExpanded.setPublisherName(tempBook.getPublisherName());
+                bookExpanded.setDateOfPurchase(tempBook.getDateOfPurchase());
+                bookExpanded.setCostOfPurchase(tempBook.getCostOfPurchase());
+                bookExpanded.setCurrencyCode(tempBook.getCurrencyCode());
+                bookExpanded.setId(tempBook.getId());
+                bookExpanded.setCostInLocalCurrency(costInLocalCurrency(tempBook.getCostOfPurchase(), tempBook.getCurrencyCode()));
+                bookExpanded.setCostInLocalCurrencyFmtd(costInLocalCurrencyFmtd(bookExpanded.getCostInLocalCurrency()));
+                bookExpanded.setShoppingChannel(tempBook.getBookDetail().getShoppingChannel());
+                bookExpanded.setTypeOfBinding(tempBook.getBookDetail().getTypeOfBinding());
+                bookExpanded.setIsbNumber(tempBook.getBookDetail().getIsbNumber());
+                bookExpanded.setImageFileName(tempBook.getImageFileName());
+            } catch (NullPointerException nullPointerException) {
+                log.info("Object not found for book ID, " + tempBook.getId());
+            }
+
+            log.info("Debug = " + tempBook.getId());
+            bookExpanded = appendAuthors(bookExpanded,tempBook.getId());
+            bookSummary.setTotalCost(bookSummary.getTotalCost()+bookExpanded.getCostInLocalCurrency());
+            bookSummary.setNumberOfBooks(bookSummary.getNumberOfBooks() + 1);
+
+            bookExpandedList.add(bookExpanded);
+            bookExpanded = new BookExpanded();
+            i++;
+        }
+        bookSummary.setTotalCostOfBooks(rf.formattedRupee(ft.format(bookSummary.getTotalCost())));
+        log.info("Total Number = " + bookSummary.getNumberOfBooks());
+        log.info("Total Cost = " + bookSummary.getTotalCostOfBooks());
+        return bookExpandedList;
+    }
     public List<BookExpanded> getBooksByPartialName(String theSearchName) {
         List<Book> bookList = bookDao.getBooksByPartialName(theSearchName);
         List<BookExpanded> bookExpandedList = new ArrayList<>();
@@ -399,5 +450,29 @@ public class BookService {
             summary.setBookGenre(summary.getBookGenre() + " (" + summary.getBookCount() + ")");
         }
         return topicSummaryList;
+    }
+
+    public List<Topic> downloadTopics(){
+        List<Topic> topicSummaryList =  bookDao.findCountByTopics();
+        return topicSummaryList;
+    }
+
+    public void saveAll(List<Topic> topicList){
+        bookDao.saveAll(topicList);
+    }
+
+    public void saveTopic(Book book){
+        List<Topic> topics = bookDao.findTopicByGenre(book.getBookGenre());
+        Topic topic;
+        if (topics.size() == 0){
+            topic = new Topic();
+            topic.setBookGenre(book.getBookGenre());
+            topic.setBookCount(1);
+            topic.setImageFileName("/img/topic/topic-page-18.jpg");
+        } else {
+            topic = topics.get(0);
+            topic.setBookCount(topic.getBookCount()+1);
+        }
+        bookDao.saveTopic(topic);
     }
 }

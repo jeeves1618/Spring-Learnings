@@ -45,6 +45,8 @@ public class Book {
     private double costOfPurchase;
     @Column(name = "currency_of_acquisition")
     private String currencyCode;
+    @Column(name = "image_file_name")
+    private String imageFileName;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "book_detail_id")
@@ -153,6 +155,14 @@ public class Book {
 
     public void setCurrencyCode(String currencyCode) {
         this.currencyCode = currencyCode;
+    }
+
+    public String getImageFileName() {
+        return imageFileName;
+    }
+
+    public void setImageFileName(String imageFileName) {
+        this.imageFileName = imageFileName;
     }
 
     public BookDetail getBookDetail() {

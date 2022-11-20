@@ -9,7 +9,10 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -82,44 +85,48 @@
           </div>
         </div>
       </nav>
-      <div class="jumbotron img-responsive" id="jumbo-01">
-        <h1 id="jumbo-header-01">Cui Bono?</h1>
-        <hr />
-        <p id="jumbo-text-01">
-          This is the compilation of books I have read and liked. These books
-          spread across an wide array of topics. My aimless meanderings across
-          multiple subjects may resemble a cobweb spun by a drunken spider. Yet,
-          I have thoroughly enjoyed this journey. These books have also vastly
-          enhanced my ability to bore people to death over a cup of coffee. This
-          website is my vainglorious attempt to handhold those who are looking
-          forward to embark on a similar journey.
-        </p>
-      </div>
-      <main>
-        <div class="container" id="title-text"><h2>Topics</h2></div>
-        <div id="topicList">
-          <section th:if="${not #lists.isEmpty(topics)}" class="row">
-            <div
-              th:each="topic : ${topics}"
-              class="col-md-3 col-sm-4 col-xs-6 col-xxs-12"
-            >
-              <a th:href="@{/book/books(Genre=${topic.bookGenre})}">
-                <p th:text="${topic.bookGenre}" class="genre-tile"></p>
-                <div class="topic-tile">
-                  <img
-                    width="200"
-                    height="250"
-                    th:src="@{${topic.imageFileName}}"
-                    th:alt="${topic.bookGenre}"
-                  />
-                </div>
-              </a>
-            </div>
-          </section>
-        </div>
-      </main>
-    </div>
 
+      <div class="container" id="topic-title-books">
+        <h2 th:text="${genre}"></h2>
+      </div>
+      <div id="topicList">
+        <section th:if="${not #lists.isEmpty(books)}" class="row">
+          <div th:each="book : ${books}" class="book-list col-md-6">
+            <div class="book-title-tile" th:text="${book.bookTitle}"></div>
+            <div class="row section-tile">
+              <div class="col-sm-5 book-tile">
+                <a th:href="@{/book/books(Genre=${book.bookGenre})}">
+                  <div>
+                    <img
+                      width="200"
+                      height="250"
+                      th:src="@{${book.imageFileName}}"
+                      th:alt="${book.bookTitle}"
+                    />
+                  </div>
+                </a>
+              </div>
+              <div class="book-description col-sm-7">
+                <i class="bi bi-vector-pen"></i>
+                <p>
+                  <span th:text="${book.authorFirstName}+' '"></span
+                  ><span th:text="${book.authorLastName}"></span>
+                </p>
+                <hr />
+
+                <p th:text="${book.publisherName}"></p>
+                <p th:text="${book.dateOfPurchase}"></p>
+                <p th:text="${book.costInLocalCurrencyFmtd}"></p>
+                <p th:text="${book.typeOfBinding}"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="container" id="topic-message">
+        <h3 th:text="${genreMessage}"></h3>
+      </div>
+    </div>
     <!-- JavaScript Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
