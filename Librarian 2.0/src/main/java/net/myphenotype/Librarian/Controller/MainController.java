@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.myphenotype.Librarian.Entity.*;
 import net.myphenotype.Librarian.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,17 +50,18 @@ public class MainController {
         return "List-Books";
 
          */
+
         return bookList;
     }
 
     @GetMapping("/list")
+    @PreAuthorize("hasIpAddress('127.0.0.1')")
     public String getBookList(Model model){
         /*
         This method should do the following.
         1. Get the books from the DAO
         2. And add the books to the model to be diplayed in the view
          */
-
         List<Authors> authorsList = new ArrayList<>();
 
         Iterable<BookExpanded> bookList = bookService.listBooks();
