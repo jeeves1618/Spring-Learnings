@@ -2,6 +2,7 @@ package net.phenotype.neo4j.grapDB.service;
 
 import net.phenotype.neo4j.grapDB.domain.CreateAuthorRequest;
 import net.phenotype.neo4j.grapDB.domain.CreateBookRequest;
+import net.phenotype.neo4j.grapDB.domain.UpdateAuthorRequest;
 import net.phenotype.neo4j.grapDB.entity.Author;
 import net.phenotype.neo4j.grapDB.entity.Book;
 import net.phenotype.neo4j.grapDB.entity.HasWrittenRelation;
@@ -62,5 +63,38 @@ public class AuthorService {
         authorRepository.save(author);
 
         return author;
+    }
+
+    public Author getAuthorById(Long Id){
+        return authorRepository.findById(Id).get();
+    }
+
+    public List<Author> getAuthorByName(String firstName, String lastName){
+        return authorRepository.findByFirstNameAndLastName(firstName, lastName);
+    }
+
+    public List<Author> getAuthors(){
+        return authorRepository.findAll();
+    }
+
+    public Author updateAuthor(UpdateAuthorRequest updateAuthorRequest){
+        Author author = authorRepository.findById(updateAuthorRequest.getId()).get();
+
+        author.setFirstName(updateAuthorRequest.getFirstName());
+        author.setLastName(updateAuthorRequest.getLastName());
+        author.setBorn(updateAuthorRequest.getBorn());
+
+        authorRepository.save(author);
+        return author;
+    }
+
+    public String deleteAuthor(Long id){
+        Author author = authorRepository.findById(id).get();
+        authorRepository.deleteById(id);
+        return "Author " + author.getFirstName() + " " + author.getLastName() + " successfully deleted";
+    }
+
+    public List<Author> getAuthorInBorn(List<Integer> born){
+        return authorRepository.findByBornIn(born);
     }
 }
