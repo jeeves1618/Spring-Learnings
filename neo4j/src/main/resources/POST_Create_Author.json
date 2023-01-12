@@ -1,0 +1,41 @@
+{
+  "firstName": "Robert",
+  "lastName": "Caro",
+  "born": 1935,
+  "bookList": [
+    {
+      "title": "The Power Broker: Robert Moses and the Fall of New York",
+      "publisher": "Knopf",
+      "pages": 1246,
+      "priceOfBook": 35.99
+    },
+    {
+      "title": "The Path to Power",
+      "publisher": "Alfred A. Knopf Inc",
+      "pages": 882,
+      "priceOfBook": 24.99
+    },
+    {
+      "title": "Means of Ascent",
+      "publisher": "Alfred A. Knopf Inc",
+      "pages": 506,
+      "priceOfBook": 15.93
+    },
+    {
+      "title": "Master of the Senate",
+      "publisher": "Alfred A. Knopf Inc",
+      "pages": 1167,
+      "priceOfBook": 17.05
+    },
+    {
+      "title": "The Passage of Power",
+      "publisher": "Alfred A. Knopf Inc",
+      "pages": 752,
+      "priceOfBook": 21.74
+    }
+  ],
+  "createLocationRequest": {
+    "city": "New York City",
+    "country": "United States"
+  }
+}

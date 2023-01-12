@@ -1,14 +1,10 @@
 package net.phenotype.neo4j.grapDB.entity;
 
-import jakarta.persistence.Entity;
-import org.springframework.data.neo4j.core.schema.GeneratedValue;
-import org.springframework.data.neo4j.core.schema.Id;
-import org.springframework.data.neo4j.core.schema.Node;
-import org.springframework.data.neo4j.core.schema.Property;
-import org.springframework.stereotype.Component;
 
-@Component
-@Entity
+import org.springframework.data.neo4j.core.schema.*;
+
+import java.util.List;
+
 @Node(labels = {"Author"})
 public class Author {
 
@@ -21,6 +17,13 @@ public class Author {
     private String lastName;
     @Property(name = "born")
     private Integer born;
+
+    @Relationship(type = "LIVES_IN", direction = Relationship.Direction.OUTGOING)
+    private Location location;
+
+    @Relationship(type = "HAS_WRITTEN", direction = Relationship.Direction.OUTGOING)
+    private List<HasWrittenRelation> hasWrittenRelationList;
+
     public Long getId() {
         return id;
     }
@@ -51,5 +54,21 @@ public class Author {
 
     public void setBorn(Integer born) {
         this.born = born;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public List<HasWrittenRelation> getHasWrittenList() {
+        return hasWrittenRelationList;
+    }
+
+    public void setHasWrittenList(List<HasWrittenRelation> hasWrittenRelationList) {
+        this.hasWrittenRelationList = hasWrittenRelationList;
     }
 }

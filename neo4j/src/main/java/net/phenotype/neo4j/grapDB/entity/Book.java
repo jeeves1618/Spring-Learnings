@@ -14,6 +14,8 @@ public class Book {
     private String title;
     @Property(name = "publisher")
     private String publisher;
+    @Property(name = "priceOfBook")
+    private Double priceOfBook;
 
     public Long getId() {
         return id;
@@ -37,5 +39,13 @@ public class Book {
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
+    }
+
+    public Double getPriceOfBook() {
+        return priceOfBook;
+    }
+
+    public void setPriceOfBook(Double priceOfBook) {
+        this.priceOfBook = priceOfBook;
     }
 }
