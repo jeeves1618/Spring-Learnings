@@ -50,6 +50,20 @@ public class MainController {
         return bookService.findAll();
     }
     /*
+    http://localhost:8080/api/Books/page?pageNo=0&pageSize=2
+     */
+    @GetMapping("/Books/page")
+    public List<Book> getBooksByPage(@RequestParam int pageNo, @RequestParam int pageSize){
+        return bookService.findAllbyPage(pageNo,pageSize);
+    }
+    /*
+    http://localhost:8080/api/Books/author/Robert/Caro
+     */
+    @GetMapping("/Books/author/{fName}/{lName}")
+    public List<Book> getBooksByAuthor(@PathVariable("fName") String firstName, @PathVariable("lName") String lastName){
+        return bookService.getBooksByAuthor(firstName,lastName);
+    }
+    /*
     http://localhost:8080/api/Author
      */
     @PutMapping("/Author")
