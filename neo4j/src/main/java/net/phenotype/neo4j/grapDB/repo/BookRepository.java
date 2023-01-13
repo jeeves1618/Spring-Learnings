@@ -13,4 +13,9 @@ public interface BookRepository extends Neo4jRepository<Book, Long> {
     @Query("match(bk:Book),(au:Author) where (bk)<-[:HAS_WRITTEN]-(au {firstName:$firstName,lastName:$lastName}) return bk")
     public List<Book> getBooksByAuthor(String firstName, String lastName);
 
+    public List<Book> findByTitleLike(String partialTitle);
+
+    public List<Book> findByTitleStartsWith(String partialTitle);
+
+    public List<Book> findByTitleEndsWith(String partialTitle);
 }

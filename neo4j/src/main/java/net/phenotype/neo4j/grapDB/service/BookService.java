@@ -5,6 +5,7 @@ import net.phenotype.neo4j.grapDB.repo.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,5 +33,27 @@ public class BookService {
     public List<Book> findAllbyPage(int pageNo, int pageSize){
         Pageable pageable = PageRequest.of(pageNo, pageSize);
         return bookRepository.findAll(pageable).getContent();
+    }
+
+    public List<Book> findAllbyPageSorted(int pageNo, int pageSize){
+        //Sorting
+        Sort sort = Sort.by(Sort.Direction.ASC,"title");
+        List<Book> bookList = bookRepository.findAll(sort);
+        System.out.println(bookList);
+        //Sorting with Pagenation
+        Pageable pageable = PageRequest.of(pageNo, pageSize,Sort.by(Sort.Direction.ASC,"title"));
+        return bookRepository.findAll(pageable).getContent();
+    }
+
+    public List<Book> findAllbyTitleLike(String partialTitle){
+        return bookRepository.findByTitleLike(partialTitle);
+    }
+
+    public List<Book> findAllbyTitleStartsWith(String partialTitle){
+        return bookRepository.findByTitleStartsWith(partialTitle);
+    }
+
+    public List<Book> findAllbyEndsWith(String partialTitle){
+        return bookRepository.findByTitleEndsWith(partialTitle);
     }
 }

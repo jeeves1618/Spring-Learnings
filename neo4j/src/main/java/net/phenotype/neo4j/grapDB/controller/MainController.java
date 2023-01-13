@@ -57,6 +57,34 @@ public class MainController {
         return bookService.findAllbyPage(pageNo,pageSize);
     }
     /*
+    http://localhost:8080/api/Books/page/sort?pageNo=0&pageSize=10
+     */
+    @GetMapping("/Books/page/sort")
+    public List<Book> getBooksByPageSorted(@RequestParam int pageNo, @RequestParam int pageSize){
+        return bookService.findAllbyPageSorted(pageNo,pageSize);
+    }
+    /*
+    http://localhost:8080/api/Books/partialTitle?partialTitle=The P
+     */
+    @GetMapping("/Books/partialTitle")
+    public List<Book> getBooksByTitleLike(@RequestParam String partialTitle){
+        return bookService.findAllbyTitleLike(partialTitle);
+    }
+    /*
+    http://localhost:8080/api/Books/TitleStart?partialTitle=Ph
+     */
+    @GetMapping("/Books/TitleStart")
+    public List<Book> getBooksByTitleStarts(@RequestParam String partialTitle){
+        return bookService.findAllbyTitleStartsWith(partialTitle);
+    }
+    /*
+    http://localhost:8080/api/Books/TitleEnd?partialTitle=rain
+     */
+    @GetMapping("/Books/TitleEnd")
+    public List<Book> getBooksByTitleEnds(@RequestParam String partialTitle){
+        return bookService.findAllbyEndsWith(partialTitle);
+    }
+    /*
     http://localhost:8080/api/Books/author/Robert/Caro
      */
     @GetMapping("/Books/author/{fName}/{lName}")
