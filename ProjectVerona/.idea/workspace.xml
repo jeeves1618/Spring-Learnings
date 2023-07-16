@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="671ba900-8778-42cb-8e5f-1965f2d19277" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/src/main/java/net/myphenotype/Librarian/Configuration/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/src/main/java/net/myphenotype/Librarian/Configuration/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/book-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/book-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/topic-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/topic-list.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

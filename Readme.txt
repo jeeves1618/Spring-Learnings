@@ -79,3 +79,5 @@ Read about actuator. It is used by kubernates to orchestrate the rest points.
 http://localhost:8222/actuator
 
 http://localhost:8222/actuator/shutdown
+
+Devtools will not restart the applicaiton automatically in IntelliJ. You have to go to settings (or preferences in mac)/Build, Execution and Deployment/Compiler and check on Build Projects Automatically. Then go to settings (or preferences in mac)/Advance Settings and check on Allow auto-make to start even if developed application is currently running.
