@@ -79,7 +79,10 @@ a {
 .summary-tile:hover {
   box-shadow: 0 1px 5px 1px #cccccc;
 }
-
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
 h2 {
   color: rgb(34, 22, 22);
   font-weight: bold;

@@ -6,10 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="671ba900-8778-42cb-8e5f-1965f2d19277" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/book-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/book-list.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/topic-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/topic-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Injection/src/main/java/net/myphenotype/Template/Controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Injection/src/main/java/net/myphenotype/Template/Controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Injection/src/main/java/net/myphenotype/Template/TemplateApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Injection/src/main/java/net/myphenotype/Template/TemplateApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/book-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/book-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/static/css/summary.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/static/css/summary.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/static/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/templates/bookList.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/templates/bookList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/topic-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/src/main/resources/topic-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/static/css/summary.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/static/css/summary.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/static/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/templates/bookList.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/templates/bookList.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

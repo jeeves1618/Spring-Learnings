@@ -15,7 +15,7 @@ public class MainController {
 
     //Constructor Injection
     @Autowired
-    public MainController(@Qualifier("savingsAccount") Account mySavingsAccount) {
+    public MainController(@Qualifier("creditAccount") Account mySavingsAccount) {
         this.mySavingsAccount = mySavingsAccount;
     }
 
