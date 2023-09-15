@@ -1,0 +1,31 @@
+package net.myphenotype.jeeves.drools.section08.step3
+
+import net.myphenotype.jeeves.drools.domain.InvalidPassport;
+import net.myphenotype.jeeves.drools.domain.Passport;
+import net.myphenotype.jeeves.drools.domain.InvalidFamilyVisaApplication;
+import net.myphenotype.jeeves.drools.domain.FamilyVisaApplication;
+
+import java.time.LocalDate;
+
+rule "Invalidate visa applications with invalid passport"
+	dialect "java"
+	when
+		$familyVisaApplication: FamilyVisaApplication( )
+		exists InvalidPassport( $familyVisaApplication.passportNumbers.contains(this.passport.passportNumber) )
+	then
+		System.out.println( "Set " + $familyVisaApplication + " invalid as it contains invalid passport");
+		insert( new InvalidFamilyVisaApplication($familyVisaApplication) );
+end
+
+rule "Invalidate visa application where everyone is under 16"
+	dialect "java"
+	when
+		$familyVisaApplication: FamilyVisaApplication( )
+		forall (
+        $passport : Passport( $familyVisaApplication.passportNumbers.contains(this.passportNumber) ),
+                    Passport( this == $passport, this.age < 16)
+		)
+	then
+		System.out.println( "Set " + $familyVisaApplication + " invalid as everyone is younger than 16");
+		insert( new InvalidFamilyVisaApplication($familyVisaApplication) );
+end

@@ -1,0 +1,19 @@
+package net.myphenotype.jeeves.drools.section08.step4
+
+import net.myphenotype.jeeves.drools.domain.InvalidFamilyVisaApplication;
+import net.myphenotype.jeeves.drools.domain.FamilyVisaApplication;
+import net.myphenotype.jeeves.drools.domain.Visa;
+
+import java.time.LocalDate;
+
+rule "Issue visas for valid applications"
+	dialect "java"
+	when
+		$familyVisaApplication: FamilyVisaApplication( )
+		not ( InvalidFamilyVisaApplication( this.familyVisaApplication == $familyVisaApplication ) )
+	then
+		for (String passportNumber : $familyVisaApplication.getPassportNumbers()) {
+		  System.out.println( "Issue visa for passport number " + passportNumber);
+		  insertLogical( new Visa( passportNumber ) );
+		}
+end

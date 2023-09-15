@@ -1,0 +1,18 @@
+package net.myphenotype.jeeves.drools.section08.step1
+
+import net.myphenotype.jeeves.drools.domain.InvalidPassport;
+import net.myphenotype.jeeves.drools.domain.Passport;
+import net.myphenotype.jeeves.drools.domain.InvalidFamilyVisaApplication;
+import net.myphenotype.jeeves.drools.domain.FamilyVisaApplication;
+
+import java.time.LocalDate;
+
+rule "Invalidate visa applications with invalid passport"
+	dialect "java"
+	when
+		$familyVisaApplication: FamilyVisaApplication( )
+		InvalidPassport( $familyVisaApplication.passportNumbers.contains(this.passport.passportNumber) )
+	then
+		System.out.println( "Set " + $familyVisaApplication + " invalid as it contains invalid passport");
+		insert( new InvalidFamilyVisaApplication($familyVisaApplication) );
+end

@@ -1,0 +1,44 @@
+package net.myphenotype.jeeves.drools.section07.step3
+
+import net.myphenotype.jeeves.drools.domain.InvalidPassport;
+import net.myphenotype.jeeves.drools.domain.InvalidVisaApplication;
+import net.myphenotype.jeeves.drools.domain.Passport;
+import net.myphenotype.jeeves.drools.domain.Validation;
+import net.myphenotype.jeeves.drools.domain.ValidVisaApplication;
+import net.myphenotype.jeeves.drools.domain.VisaApplication;
+
+import java.time.LocalDate;
+
+rule "Invalidate visa application with invalid passport"
+  dialect "java"
+  when
+    $invalidPassport: InvalidPassport()
+    $visaApplication: VisaApplication( $invalidPassport.passport.passportNumber == this.passportNumber)
+    not ( InvalidVisaApplication( this.visaApplication == $visaApplication ) )
+  then
+    System.out.println( "Set " + $visaApplication + " invalid as " + $invalidPassport.getPassport() + " is invalid");
+    insert( new InvalidVisaApplication($visaApplication) );
+end
+
+rule "Set application without validation info as passed"
+  dialect "java"
+  when
+    $visaApplication: VisaApplication()
+	  not ( InvalidVisaApplication( this.visaApplication == $visaApplication ) )
+  then
+	  System.out.println( $visaApplication + " is not known to be invalid, consider Valid" );
+	  insertLogical( new ValidVisaApplication($visaApplication) );
+end
+
+rule "Invalidate visa application where passport expires earlier than 6 months after visit end date"
+  dialect "java"
+  when
+	  $passport: Passport()
+	  not( InvalidPassport( this.passport == $passport) )
+	  $visaApplication: VisaApplication( passportNumber == $passport.passportNumber,
+								  	                   $passport.expiresOn.isBefore(visitEndDate.plusMonths(6)) )
+		not ( InvalidVisaApplication( this.visaApplication == $visaApplication ) )
+  then
+    System.out.println( "Set " + $visaApplication + " invalid as " + $passport + " is not valid 6 months after planned visit end date");
+    insert( new InvalidVisaApplication($visaApplication) );
+end

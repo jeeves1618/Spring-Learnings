@@ -1,0 +1,15 @@
+package net.myphenotype.jeeves.drools.section07.step1
+
+import net.myphenotype.jeeves.drools.domain.Validation;
+import net.myphenotype.jeeves.drools.domain.VisaApplication;
+import net.myphenotype.jeeves.drools.domain.Visa;
+
+rule "Issue visa for valid applications"
+	dialect "java"
+	when
+	  $visaApplication: VisaApplication( validation == Validation.PASSED )
+	then
+	  Visa visa = new Visa( $visaApplication.getPassportNumber() );
+	  System.out.println("Issue " + visa);
+	  insertLogical( visa );
+end
