@@ -1,0 +1,30 @@
+package net.myphenotype.jeeves.drools.section05.step1
+
+import net.myphenotype.jeeves.drools.domain.Invoice;
+import net.myphenotype.jeeves.drools.domain.Validation;
+import net.myphenotype.jeeves.drools.domain.PurchaseOrder;
+
+import java.time.LocalDate;
+
+rule "Invalidate Purcahse Order if the invoice is invalid"
+  dialect "java"
+  when
+    $invoice: Invoice( validation == Validation.FAILED || validation == Validation.HOLD )
+    $purchaseOrder: PurchaseOrder( poNumber == $invoice.poNumber )
+  then
+    System.out.println( "Set " + $purchaseOrder + " invalid since the matching invoice " + $invoice + " hasn't passed validation");
+    modify($purchaseOrder) {
+      setValidation( $invoice.getValidation())
+    }
+end
+
+rule "Set application without validation info as passed"
+  dialect "java"
+  when
+    $purchaseOrder: PurchaseOrder( validation == Validation.UNKNOWN )
+  then
+    System.out.println( $purchaseOrder + " has not violated any rules yet. It will be considered for matching" );
+    modify($purchaseOrder) {
+      setValidation( Validation.PASSED )
+    }
+end

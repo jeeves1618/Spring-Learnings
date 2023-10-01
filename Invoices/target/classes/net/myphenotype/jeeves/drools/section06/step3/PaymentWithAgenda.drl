@@ -1,0 +1,17 @@
+package net.myphenotype.jeeves.drools.section06.step3
+
+import net.myphenotype.jeeves.drools.domain.Validation;
+import net.myphenotype.jeeves.drools.domain.PurchaseOrder;
+import java.time.LocalDate
+import net.myphenotype.jeeves.drools.domain.MatchingOutcome;
+
+rule "Issue payment for valid Visa and POs"
+  dialect "java"
+  agenda-group "issue-payment"
+  when
+    $purchaseOrder: PurchaseOrder( validation == Validation.PASSED )
+  then
+    MatchingOutcome matchingOutcome = new MatchingOutcome( $purchaseOrder.getPoNumber() );
+    System.out.println("Matching Outcome " + matchingOutcome);
+    insert( matchingOutcome );
+end

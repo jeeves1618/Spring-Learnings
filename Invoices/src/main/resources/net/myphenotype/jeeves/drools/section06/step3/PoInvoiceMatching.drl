@@ -1,0 +1,49 @@
+package net.myphenotype.jeeves.drools.section06.step3
+
+import net.myphenotype.jeeves.drools.domain.Invoice;
+import net.myphenotype.jeeves.drools.domain.Validation;
+import net.myphenotype.jeeves.drools.domain.PurchaseOrder;
+
+import java.time.LocalDate;
+
+rule "Invalidate Purcahse Order if the invoice is invalid"
+  dialect "java"
+  agenda-group "invalid-po"
+  when
+    $invoice: Invoice( validation == Validation.FAILED || validation == Validation.HOLD)
+    $purchaseOrder: PurchaseOrder( poNumber == $invoice.poNumber,
+                                       validation != Validation.FAILED, 
+                                       validation != Validation.HOLD )
+  then
+    System.out.println( "Set " + $purchaseOrder + " invalid since the matching invoice " + $invoice + " hasn't passed validation");
+    modify($purchaseOrder) {
+      setValidation( $invoice.getValidation())
+    }
+end
+
+rule "Set Purchase Order without validation info as passed"
+  dialect "java"
+  agenda-group "valid-po"
+  when
+    $purchaseOrder: PurchaseOrder( validation == Validation.UNKNOWN )
+  then
+    System.out.println( $purchaseOrder + " has not violated any rules yet. It will be considered for matching" );
+    modify($purchaseOrder) {
+      setValidation( Validation.PASSED )
+    }
+end
+
+rule "Invalidate purchase order when the matching invoice due date is 6 months after PO date"
+  dialect "java"
+  agenda-group "invalid-po"
+  when
+    $invoice: Invoice()
+    $purchaseOrder: PurchaseOrder( poNumber == $invoice.poNumber,
+                                       $invoice.dueDate.isAfter(purchaseOrderDate.plusMonths(6)),
+                                       validation != Validation.FAILED )
+  then
+    System.out.println( $purchaseOrder + " is invalid since the invoice due date, " + $invoice.getDueDate() + ", is 6 months after purchase order date");
+    modify($purchaseOrder) {
+      setValidation( Validation.FAILED )
+    }
+end

@@ -12,12 +12,12 @@ package net.myphenotype.jeeves.drools.section04;
 
 import org.junit.jupiter.api.Test;
 
-class StatefulPassportValidationTest {
+class StatefulInvoiceValidationTest {
 
   @Test
   void shouldExecuteAllSteps() {
-    StatefulPassportValidation.execute(1);
-    StatefulPassportValidation.execute(2);
+    StatefulInvoiceValidation.execute(1);
+    StatefulInvoiceValidation.execute(2);
   }
 
 }

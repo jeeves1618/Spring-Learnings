@@ -14,11 +14,11 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Invoice {
-  private String invoiceNumber;
+  private String PoNumber;
   private String supplierName;
-  private LocalDate expiresOn;
+  private LocalDate dueDate;
   private int invoiceAmount;
-  private int age;
+  private int ageInDays;
 
   private Validation validation = Validation.UNKNOWN;
 
@@ -27,20 +27,20 @@ public class Invoice {
   private Invoice() {
   }
 
-  public LocalDate getExpiresOn() {
-    return expiresOn;
+  public LocalDate getDueDate() {
+    return dueDate;
   }
 
-  public void setExpiresOn(LocalDate expiresOn) {
-    this.expiresOn = expiresOn;
+  public void setDueDate(LocalDate dueDate) {
+    this.dueDate = dueDate;
   }
 
   public boolean isExpired() {
-    return expiresOn.isBefore(LocalDate.now());
+    return dueDate.isAfter(LocalDate.now());
   }
 
-  public String getInvoiceNumber() {
-    return invoiceNumber;
+  public String getPoNumber() {
+    return PoNumber;
   }
 
   public String getSupplierName() {
@@ -59,12 +59,12 @@ public class Invoice {
     this.validation = validation;
   }
 
-  public int getAge() {
-    return age;
+  public int getAgeInDays() {
+    return ageInDays;
   }
 
-  public void setAge(int age) {
-    this.age = age;
+  public void setAgeInDays(int ageInDays) {
+    this.ageInDays = ageInDays;
   }
 
   public String getCause() {
@@ -77,7 +77,7 @@ public class Invoice {
 
   @Override
   public String toString() {
-    return String.format("Passport[no:%s, supplierName:%s]", invoiceNumber, supplierName);
+    return String.format(" no:%s, from the supplier :%s for the amount %d, with a due date of %s", PoNumber, supplierName, invoiceAmount, dueDate.toString());
   }
 
   public static PassportBuilder newBuilder() {
@@ -87,9 +87,9 @@ public class Invoice {
    public static final class PassportBuilder {
     private String invoiceNumber;
     private String supplierName;
-    private LocalDate expiresOn;
+    private LocalDate dueDate;
     private int invoiceAmount;
-    private int age;
+    private int ageInDays;
 
     private PassportBuilder() {
     }
@@ -104,8 +104,8 @@ public class Invoice {
       return this;
     }
 
-    public PassportBuilder withExpiresOn(LocalDate expiresOn) {
-      this.expiresOn = expiresOn;
+    public PassportBuilder withDueDate(LocalDate dueDate) {
+      this.dueDate = dueDate;
       return this;
     }
 
@@ -114,18 +114,18 @@ public class Invoice {
       return this;
     }
 
-    public PassportBuilder withAge(int age) {
-      this.age = age;
+    public PassportBuilder withAgeInDays(int ageInDays) {
+      this.ageInDays = ageInDays;
       return this;
     }
 
     public Invoice build() {
       Invoice passport = new Invoice();
-      passport.invoiceNumber = invoiceNumber;
+      passport.PoNumber = invoiceNumber;
       passport.supplierName = supplierName;
-      passport.expiresOn = expiresOn;
+      passport.dueDate = dueDate;
       passport.invoiceAmount = invoiceAmount;
-      passport.age = age;
+      passport.ageInDays = ageInDays;
       return passport;
     }
   }
@@ -136,17 +136,17 @@ public class Invoice {
     if (!(o instanceof Invoice)) return false;
     Invoice passport = (Invoice) o;
     return invoiceAmount == passport.invoiceAmount &&
-        age == passport.age &&
-        Objects.equals(invoiceNumber, passport.invoiceNumber) &&
+            ageInDays == passport.ageInDays &&
+        Objects.equals(PoNumber, passport.PoNumber) &&
         Objects.equals(supplierName, passport.supplierName) &&
-        Objects.equals(expiresOn, passport.expiresOn) &&
+        Objects.equals(dueDate, passport.dueDate) &&
         validation == passport.validation &&
         Objects.equals(cause, passport.cause);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(invoiceNumber, supplierName, expiresOn, invoiceAmount, age, validation, cause);
+    return Objects.hash(PoNumber, supplierName, dueDate, invoiceAmount, ageInDays, validation, cause);
   }
 
 }

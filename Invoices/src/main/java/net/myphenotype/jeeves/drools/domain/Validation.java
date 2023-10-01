@@ -11,5 +11,5 @@
 package net.myphenotype.jeeves.drools.domain;
 
 public enum Validation {
-  PASSED, FAILED, UNKNOWN
+  PASSED, FAILED, UNKNOWN, HOLD
 }

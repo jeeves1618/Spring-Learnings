@@ -1,0 +1,44 @@
+package net.myphenotype.jeeves.drools.section06.step2
+
+import net.myphenotype.jeeves.drools.domain.Invoice;
+import net.myphenotype.jeeves.drools.domain.Validation;
+import java.time.LocalDate;
+
+rule "Expired invoice"
+  dialect "java"
+  salience 65
+  when
+	$invoice:Invoice( isExpired() && validation == Validation.UNKNOWN )
+  then
+	System.out.println( "This invoice with PO" + $invoice + " is NOT READY FOR MATCHING because it is not due yet" );
+	modify($invoice) {
+		  setValidation( Validation.HOLD ),
+		  setCause("The invoice is not due yet.")	  
+	}
+end
+
+rule "Zero amount invoice"
+  dialect "java"
+  salience 60
+  when
+	$invoice:Invoice(invoiceAmount == 0  && validation == Validation.UNKNOWN)
+  then
+	System.out.println( "This invoice with PO" + $invoice + " is NOT READY FOR MATCHING because the invoice amount is zero" );
+  	modify($invoice) {
+		  setValidation( Validation.FAILED ),
+		  setCause("The invoice amount is zero");
+	}
+end
+
+rule "Valid Invoice"
+  dialect "java"
+  salience 50
+  when
+	$invoice:Invoice( validation == Validation.UNKNOWN  )
+  then
+	System.out.println("This invoice with PO" + $invoice + " has not violated any rules. It will be considered for matching" );
+  	modify($invoice) {
+		  setValidation( Validation.PASSED ),
+		  setCause("Not applicable")
+	}
+end

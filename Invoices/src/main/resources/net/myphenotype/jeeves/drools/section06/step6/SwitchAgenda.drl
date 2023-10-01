@@ -1,23 +1,24 @@
 package net.myphenotype.jeeves.drools.section06.step6
  
-import net.myphenotype.jeeves.drools.domain.Passport;
+import net.myphenotype.jeeves.drools.domain.Invoice;
 import net.myphenotype.jeeves.drools.domain.Validation;
+import net.myphenotype.jeeves.drools.domain.PurchaseOrder;
 import java.time.LocalDate;
 
 rule "Switch agenda to visa application validation"
   dialect "java"
   when
-    not Passport( validation == Validation.UNKNOWN )
+    not Invoice( validation == Validation.UNKNOWN )
   then
-    System.out.println( "There are no more passports without validation info" );
-    drools.setFocus( "validate-application" );
+    System.out.println( "There are no more invoices without validation info" );
+    drools.setFocus( "validate-po" );
 end
 
 rule "Switch agenda to visa issue"
   dialect "java"
   when
-    not VisaApplication( validation == Validation.UNKNOWN )
+    not PurchaseOrder( validation == Validation.UNKNOWN )
   then
-    System.out.println( "There are no more visa applications without validation info" );
-    drools.setFocus( "issue-visa" );
+    System.out.println( "There are no more purchase orders without validation info" );
+    drools.setFocus( "issue-payment" );
 end
