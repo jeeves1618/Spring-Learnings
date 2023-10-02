@@ -2,9 +2,25 @@ package net.myphenotype.jeeves.drools.section06.step6
 
 import net.myphenotype.jeeves.drools.domain.Invoice;
 import net.myphenotype.jeeves.drools.domain.Validation;
+import net.myphenotype.jeeves.drools.domain.Outcome;
 import net.myphenotype.jeeves.drools.domain.PurchaseOrder;
 
 import java.time.LocalDate;
+
+rule "Hold POs without matching invoice"
+  dialect "java"
+  agenda-group "validate-po"
+  salience 30
+  enabled true
+  when
+    $invoice: Invoice()
+    $purchaseOrder: PurchaseOrder( poNumber == $invoice.poNumber)
+  then
+    //System.out.println( $purchaseOrder + " found matching invoice");
+    modify($purchaseOrder) {
+      setOutcome(Outcome.MATCHED)
+    }
+  end
 
 rule "Invalidate Purcahse Order if the invoice is invalid"
   dialect "java"
@@ -25,14 +41,27 @@ end
 rule "Set Purchase Order without validation info as passed"
   dialect "java"
   agenda-group "validate-po"
+  salience 5
+  when
+    $purchaseOrder: PurchaseOrder( validation == Validation.UNKNOWN, outcome == Outcome.MATCHED)
+  then
+    System.out.println( $purchaseOrder + " has not violated any rules yet. It will be considered for matching. Matching status : " + $purchaseOrder.getOutcome() );
+     modify($purchaseOrder) {
+          setValidation( Validation.PASSED );
+      };
+end
+
+rule "Set Purchase Order without matching invoice as Hold"
+  dialect "java"
+  agenda-group "validate-po"
   salience 10
   when
-    $purchaseOrder: PurchaseOrder( validation == Validation.UNKNOWN )
+    $purchaseOrder: PurchaseOrder( validation == Validation.UNKNOWN, outcome == Outcome.UNMATCHED)
   then
-    System.out.println( $purchaseOrder + " has not violated any rules yet. It will be considered for matching" );
-    modify($purchaseOrder) {
-      setValidation( Validation.PASSED )
-    }
+    System.out.println( $purchaseOrder + " has not violated any rules yet. It will be on hold awaiting an invoice. Matching status : " + $purchaseOrder.getOutcome() );
+     modify($purchaseOrder) {
+          setValidation( Validation.HOLD );
+      };
 end
 
 rule "Invalidate purchase order when the matching invoice due date is 6 months after PO date"

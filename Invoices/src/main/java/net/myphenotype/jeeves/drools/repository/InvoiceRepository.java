@@ -15,6 +15,8 @@ public class InvoiceRepository {
     public static final String APPLE_INVOICE_NUMBER = "US-APPLE-3";
     public static final String TESLA_INVOICE_NUMBER = "US-TESLA-4";
     public static final String CISCO_INVOICE_NUMBER = "US-CISCO-5";
+    public static final String BIRLA_INVOICE_NUMBER = "IN-BIRLA-6";
+    public static final String COLES_INVOICE_NUMBER = "AU-COLES-7";
 
     public static List<Invoice> getInvoices(){
 
@@ -97,6 +99,13 @@ public class InvoiceRepository {
         purchaseOrders.add(PurchaseOrder.newBuilder()
                 .withPoId(5)
                 .withPassportNumber(CISCO_INVOICE_NUMBER)
+                .withPurchaseStartDate(LocalDate.of(2022, Month.JANUARY, 1))
+                .withPurchaseOrderDate(LocalDate.of(2022, Month.DECEMBER, 10))
+                .build());
+
+        purchaseOrders.add(PurchaseOrder.newBuilder()
+                .withPoId(6)
+                .withPassportNumber(BIRLA_INVOICE_NUMBER)
                 .withPurchaseStartDate(LocalDate.of(2022, Month.JANUARY, 1))
                 .withPurchaseOrderDate(LocalDate.of(2022, Month.DECEMBER, 10))
                 .build());

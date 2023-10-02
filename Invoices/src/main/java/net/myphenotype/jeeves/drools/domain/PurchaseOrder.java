@@ -21,6 +21,8 @@ public class PurchaseOrder {
 
   private Validation validation = Validation.UNKNOWN;
 
+  private Outcome outcome = Outcome.UNMATCHED;
+
   public String getPoNumber() {
     return poNumber;
   }
@@ -41,9 +43,20 @@ public class PurchaseOrder {
     this.validation = validation;
   }
 
+  public Outcome getOutcome() {
+    return outcome;
+  }
+
+  public void setOutcome(Outcome outcome) {
+    this.outcome = outcome;
+  }
+
   @Override
   public String toString() {
-    return "Purchase Order with ID #" + poId + ", matching the invoice with Purchase Order Number:" + poNumber + ".";
+    if (outcome == Outcome.MATCHED)
+      return "Purchase Order with ID #" + poId + ", matching the invoice with Purchase Order Number:" + poNumber + ".";
+    else
+      return "Purchase Order with ID #" + poId + " and Purchase Order Number " + poNumber + ", does not have a matching invoice";
   }
 
   public static PurchaseOrderBuilder newBuilder() {

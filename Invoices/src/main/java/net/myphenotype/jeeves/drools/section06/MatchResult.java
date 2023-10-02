@@ -35,7 +35,7 @@ public class MatchResult {
     List<Invoice> invoices = InvoiceRepository.getInvoices();
 
     if (step == 5) {
-      if (Common.promptForYesNoQuestion("Do you want to extend due dates of all invoices to next year from now?")) {
+      if (Common.promptForYesNoQuestion("Do you want to extend the due dates of all invoices to next year from now?")) {
         System.out.println("Setting all invoices as expired before Drools session starts");
         invoices.forEach(invoice -> invoice.setDueDate(LocalDate.now().plusYears(1)));
       }
@@ -83,8 +83,14 @@ public class MatchResult {
     System.out.println("==== DROOLS SESSION END ==== ");
 
     Collection<?> matchOutcomes = ksession.getObjects(o -> o.getClass() == MatchingOutcome.class);
+    System.out.println(" ");
     System.out.println("== Payment instruction returned from Drools session == ");
     matchOutcomes.forEach(System.out::println);
+
+    Collection<?> pos = ksession.getObjects(o -> o.getClass() == PurchaseOrder.class);
+    System.out.println(" ");
+    System.out.println("== Purchase Order Status returned from Drools session == ");
+    pos.forEach(System.out::println);
 
   }
 

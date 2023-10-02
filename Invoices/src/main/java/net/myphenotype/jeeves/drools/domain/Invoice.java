@@ -21,6 +21,7 @@ public class Invoice {
   private int ageInDays;
 
   private Validation validation = Validation.UNKNOWN;
+  private Outcome outcome = Outcome.UNMATCHED;
 
   private String cause = "";
 

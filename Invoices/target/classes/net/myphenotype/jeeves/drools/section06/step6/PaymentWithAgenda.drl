@@ -9,7 +9,7 @@ rule "Issue payment for valid Visa and POs"
   dialect "java"
   agenda-group "issue-payment"
   when
-    $purchaseOrder: PurchaseOrder( validation == Validation.PASSED )
+    $purchaseOrder: PurchaseOrder( validation == Validation.PASSED, outcome == Outcome.MATCHED )
   then
     MatchingOutcome matchingOutcome = new MatchingOutcome( $purchaseOrder.getPoNumber() );
     System.out.println("Matching Outcome " + matchingOutcome);
