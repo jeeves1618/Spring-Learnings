@@ -6,6 +6,7 @@ import net.myphenotype.Librarian.Entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -345,13 +346,23 @@ public class BookService {
     }
 
     private double costInLocalCurrency(double cost, String currencyCode){
-        Double rate;
-        try{
-            rate =  Double.parseDouble(properties.getString(currencyCode));
-        }catch (MissingResourceException missingResourceException){
-            rate = 1.01;
-        }
 
+        double rate;
+        try {
+            if(currencyCode.equals("INR"))
+                rate = 1;
+            else
+                rate = Converter.amountInRupee(currencyCode, 1);
+        } catch (IOException e){
+            rate = 0;
+        }
+        if (rate == 0) {
+            try {
+                rate = Double.parseDouble(properties.getString(currencyCode));
+            } catch (MissingResourceException missingResourceException) {
+                rate = 1.01;
+            }
+        }
         return cost * rate;
     }
 

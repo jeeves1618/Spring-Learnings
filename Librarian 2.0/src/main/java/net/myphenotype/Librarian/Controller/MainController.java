@@ -151,6 +151,7 @@ public class MainController {
         The value (i.e the bean created) will bind the UI layer to the underlying data object.
          */
         Iterable<BookExpanded> bookList = bookService.listBooks();
+
         ObjectMapper mapper = new ObjectMapper();
 
         File file = new File("src/main/resources/book-list.json");
