@@ -17,4 +17,10 @@ public class MainController {
         System.out.println("Amount in Rupee is : " + rupee);
         return "Converter data";
     }
+
+    @GetMapping("/quote")
+    public String getStockQuote() throws IOException, InterruptedException {
+        Converter.printQuote();
+        return "Quote received for the stock";
+    }
 }

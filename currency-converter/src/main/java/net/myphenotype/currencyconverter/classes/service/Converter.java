@@ -9,7 +9,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 @Service
 public class Converter {
@@ -37,5 +41,16 @@ public class Converter {
         System.out.println((jsonobj.get("rates")).getClass().getSimpleName());
 
         return rateArray.get("INR").getAsFloat()*amountInForeignCurrency;
+    }
+
+    public static void printQuote() throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://yahoo-finance15.p.rapidapi.com/api/v1/markets/stock/quotes?ticker=CCL.NS"))
+                .header("X-RapidAPI-Key", "keyGoesHere")
+                .header("X-RapidAPI-Host", "yahoo-finance15.p.rapidapi.com")
+                .method("GET", HttpRequest.BodyPublishers.noBody())
+                .build();
+        HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.body());
     }
 }
