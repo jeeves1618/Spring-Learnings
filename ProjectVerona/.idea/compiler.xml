@@ -7,8 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ProjectVerona" />
         <module name="FinancialStatements" />
-        <module name="financialStatements" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -18,6 +18,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="FinancialStatements" options="-parameters" />
+      <module name="ProjectVerona" options="-parameters" />
       <module name="financialStatements" options="-parameters" />
     </option>
   </component>
