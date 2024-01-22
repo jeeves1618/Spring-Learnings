@@ -72,7 +72,14 @@ href="/style.css" />
                 <td align="left"><label>Date of Purchase : </label></td>
                 <td align="left" th:text="${book.dateOfPurchase}" ></td>
             </tr>
-            
+            <tr>
+                <td align="left"><label>Reading Status : </label></td>
+                <td align="left" th:text="${book.readStatus}" ></td>
+            </tr>
+            <tr>
+                <td align="left"><label>Date of Reading : </label></td>
+                <td align="left" th:text="${book.dateOfReading}" ></td>
+            </tr>
             <tr>
                 <td align="left"><label>Book Price : </label></td>
                 <td align="left" th:text="${book.costOfPurchase}" ></td>

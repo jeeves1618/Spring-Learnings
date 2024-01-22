@@ -47,6 +47,10 @@ public class Book {
     private String currencyCode;
     @Column(name = "image_file_name")
     private String imageFileName;
+    @Column(name = "read_status")
+    private String readStatus;
+    @Column(name = "date_of_reading")
+    private String dateOfReading;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "book_detail_id")
@@ -275,6 +279,22 @@ public class Book {
 
     public void setAboutAuthor4(String aboutAuthor4) {
         this.aboutAuthor4 = aboutAuthor4;
+    }
+
+    public String getReadStatus() {
+        return readStatus;
+    }
+
+    public void setReadStatus(String readStatus) {
+        this.readStatus = readStatus;
+    }
+
+    public String getDateOfReading() {
+        return dateOfReading;
+    }
+
+    public void setDateOfReading(String dateOfReading) {
+        this.dateOfReading = dateOfReading;
     }
 
     @Override
