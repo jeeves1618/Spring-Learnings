@@ -69,6 +69,8 @@ public class BookService {
                 bookExpanded.setTypeOfBinding(tempBook.getBookDetail().getTypeOfBinding());
                 bookExpanded.setIsbNumber(tempBook.getBookDetail().getIsbNumber());
                 bookExpanded.setImageFileName(tempBook.getImageFileName());
+                bookExpanded.setReadStatus(tempBook.getReadStatus());
+                bookExpanded.setDateOfReading(tempBook.getDateOfReading());
             } catch (NullPointerException nullPointerException) {
                 log.info("Object not found for book ID, " + tempBook.getId());
             }
