@@ -31,6 +31,7 @@ public class BookExpanded {
     private String imageFileName;
     private String readStatus;
     private String dateOfReading;
+    private Integer ratingOfUsefulness;
     private String shoppingChannel;
     private String typeOfBinding;
     private String isbNumber;

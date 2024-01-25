@@ -71,6 +71,7 @@ public class BookService {
                 bookExpanded.setImageFileName(tempBook.getImageFileName());
                 bookExpanded.setReadStatus(tempBook.getReadStatus());
                 bookExpanded.setDateOfReading(tempBook.getDateOfReading());
+                bookExpanded.setRatingOfUsefulness(tempBook.getRatingOfUsefulness());
             } catch (NullPointerException nullPointerException) {
                 log.info("Object not found for book ID, " + tempBook.getId());
             }

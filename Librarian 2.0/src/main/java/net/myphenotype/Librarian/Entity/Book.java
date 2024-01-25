@@ -51,6 +51,8 @@ public class Book {
     private String readStatus;
     @Column(name = "date_of_reading")
     private String dateOfReading;
+    @Column(name = "rating_of_usefulness", columnDefinition = "integer default 0")
+    private Integer ratingOfUsefulness;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "book_detail_id")
@@ -167,6 +169,14 @@ public class Book {
 
     public void setImageFileName(String imageFileName) {
         this.imageFileName = imageFileName;
+    }
+
+    public Integer getRatingOfUsefulness() {
+        return ratingOfUsefulness;
+    }
+
+    public void setRatingOfUsefulness(Integer ratingOfUsefulness) {
+        this.ratingOfUsefulness = ratingOfUsefulness;
     }
 
     public BookDetail getBookDetail() {

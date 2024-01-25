@@ -21,7 +21,7 @@ href="/style.css" />
 <body>
 <div class="container">
 
-<a th:href="@{/book/list}" style="text-decoration: none"></a>
+<a th:href="@{/book/list}" style="text-decoration: none">
     <div id="wrapper">
         
         <div id="header">
@@ -118,6 +118,11 @@ href="/style.css" />
                 <tr>
                     <td align="left"><label>Date of Reading : </label></td>
                     <td><input type="text" th:field="*{dateOfReading}" /></td>
+                </tr>
+                
+                <tr>
+                    <td align="left"><label>Rating : </label></td>
+                    <td><input type="text" th:field="*{ratingOfUsefulness}" /></td>
                 </tr>
                 
                 <tr>
