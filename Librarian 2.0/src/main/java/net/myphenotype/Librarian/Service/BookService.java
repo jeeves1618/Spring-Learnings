@@ -41,7 +41,7 @@ public class BookService {
     DecimalFormat ft = new DecimalFormat(currencyFormat);
     final int MAX_AUTHOR_COUNT = 4;
 
-    public Iterable<BookExpanded> listBooks(){
+    public Iterable<BookExpanded> listBooks(String uri){
         Iterable<Book> bookList = bookDao.listBooks();
         List<BookExpanded> bookExpandedList = new ArrayList<>();
 
@@ -51,10 +51,16 @@ public class BookService {
 
         for (Book tempBook: bookList){
             try{
-                if(tempBook.getBookTitle().contains(":"))
-                    bookExpanded.setBookTitle(tempBook.getBookTitle().substring(0,tempBook.getBookTitle().indexOf(":")));
-                else
+                if(tempBook.getBookTitle().contains(":")) {
+                    System.out.println(uri);
+                    if (uri.equals("/book/downloadList"))
+                        bookExpanded.setBookTitle(tempBook.getBookTitle());
+                    else
+                        bookExpanded.setBookTitle(tempBook.getBookTitle().substring(0, tempBook.getBookTitle().indexOf(":")));
+                }
+                else {
                     bookExpanded.setBookTitle(tempBook.getBookTitle());
+                }
                 bookExpanded.setBookGenre((tempBook.getBookGenre()));
                 bookExpanded.setAuthorFirstName(tempBook.getAuthorFirstName());
                 bookExpanded.setAuthorLastName(tempBook.getAuthorLastName());

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,13 +38,13 @@ public class MainController {
 
     @GetMapping(path = "/listjason")
     public @ResponseBody
-    Iterable<BookExpanded> getBooks(Model model){
+    Iterable<BookExpanded> getBooks(Model model, HttpServletRequest request){
         /*
         This method should do the following.
         1. Get the books from the DAO
         2. And add the books to the model to be diplayed in the view
          */
-        Iterable<BookExpanded> bookList = bookService.listBooks();
+        Iterable<BookExpanded> bookList = bookService.listBooks(request.getRequestURI().toString());
 
         /* model.addAttribute("books",bookList);
 
@@ -56,7 +57,7 @@ public class MainController {
 
     @GetMapping("/list")
     @PreAuthorize("hasIpAddress('127.0.0.1')")
-    public String getBookList(Model model){
+    public String getBookList(Model model, HttpServletRequest request){
         /*
         This method should do the following.
         1. Get the books from the DAO
@@ -64,7 +65,7 @@ public class MainController {
          */
         List<Authors> authorsList = new ArrayList<>();
 
-        Iterable<BookExpanded> bookList = bookService.listBooks();
+        Iterable<BookExpanded> bookList = bookService.listBooks(request.getRequestURI().toString());
 
         model.addAttribute("books",bookList);
         model.addAttribute("bookSummary",bookSummary);
@@ -101,7 +102,7 @@ public class MainController {
     }
 
     @GetMapping("/v1/books")
-    public String getBook(Model model){
+    public String getBook(Model model, HttpServletRequest request){
         /*
         This method should do the following.
         1. Get the books from the DAO
@@ -110,7 +111,7 @@ public class MainController {
 
         List<Authors> authorsList = new ArrayList<>();
 
-        Iterable<BookExpanded> bookList = bookService.listBooks();
+        Iterable<BookExpanded> bookList = bookService.listBooks(request.getRequestURI().toString());
 
         model.addAttribute("books",bookList);
         model.addAttribute("bookSummary",bookSummary);
@@ -142,7 +143,7 @@ public class MainController {
     }
 
     @GetMapping(path = "/downloadList")
-    public String downloadToJson(Model model){
+    public String downloadToJson(Model model, HttpServletRequest request){
 
         log.info("Downloading data to JSON file. ");
         /*
@@ -150,7 +151,7 @@ public class MainController {
         Name will be used in the JSP/HTML/Angular/React as modelAttribute
         The value (i.e the bean created) will bind the UI layer to the underlying data object.
          */
-        Iterable<BookExpanded> bookList = bookService.listBooks();
+        Iterable<BookExpanded> bookList = bookService.listBooks(request.getRequestURI().toString());
 
         ObjectMapper mapper = new ObjectMapper();
 

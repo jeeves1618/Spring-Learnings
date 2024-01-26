@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class RestEndPointController {
     private BookSearch bookSearch;
 
     @GetMapping("/books")
-    public Iterable<BookExpanded> getBookList(Model model){
+    public Iterable<BookExpanded> getBookList(Model model, HttpServletRequest request){
         /*
         This method should do the following.
         1. Get the books from the DAO
@@ -40,13 +41,13 @@ public class RestEndPointController {
 
         List<Authors> authorsList = new ArrayList<>();
 
-        Iterable<BookExpanded> bookList = bookService.listBooks();
+        Iterable<BookExpanded> bookList = bookService.listBooks(request.getRequestURI().toString());
 
         return bookList;
     }
 
     @GetMapping("/books/summary")
-    public BookSummary getBookSummary(Model model){
+    public BookSummary getBookSummary(Model model, HttpServletRequest request){
         /*
         This method should do the following.
         1. Get the books from the DAO
@@ -55,13 +56,13 @@ public class RestEndPointController {
 
         List<Authors> authorsList = new ArrayList<>();
 
-        Iterable<BookExpanded> bookList = bookService.listBooks();
+        Iterable<BookExpanded> bookList = bookService.listBooks(request.getRequestURI().toString());
 
         return bookSummary;
     }
 
     @GetMapping("/books/search")
-    public BookSearch getBookSearch(Model model){
+    public BookSearch getBookSearch(Model model, HttpServletRequest request){
         /*
         This method should do the following.
         1. Get the books from the DAO
@@ -70,7 +71,7 @@ public class RestEndPointController {
 
         List<Authors> authorsList = new ArrayList<>();
 
-        Iterable<BookExpanded> bookList = bookService.listBooks();
+        Iterable<BookExpanded> bookList = bookService.listBooks(request.getRequestURI().toString());
 
         return bookSearch;
     }
