@@ -27,6 +27,8 @@ public class BookDetail {
     private String typeOfBinding;
     @Column(name = "isbn")
     private String isbNumber;
+    @Column(name = "shopping_url")
+    private String shoppingUrl;
     @JsonIgnore
     @OneToOne(mappedBy = "bookDetail", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private Book book;
@@ -82,6 +84,14 @@ public class BookDetail {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    public String getShoppingUrl() {
+        return shoppingUrl;
+    }
+
+    public void setShoppingUrl(String shoppingUrl) {
+        this.shoppingUrl = shoppingUrl;
     }
 
     @Override

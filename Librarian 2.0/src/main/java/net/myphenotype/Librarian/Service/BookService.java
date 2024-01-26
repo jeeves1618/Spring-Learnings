@@ -3,6 +3,7 @@ package net.myphenotype.Librarian.Service;
 import lombok.extern.slf4j.Slf4j;
 import net.myphenotype.Librarian.DAO.BookDao;
 import net.myphenotype.Librarian.Entity.*;
+import net.myphenotype.Librarian.Repository.CurrencyRateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,12 @@ public class BookService {
 
     @Autowired
     Book book;
+
+    @Autowired
+    CurrencyRate currencyRate;
+
+    @Autowired
+    CurrencyRateRepository currencyRateRepository;
 
     ResourceBundle properties  = ResourceBundle.getBundle("BookProperties");
     String currencyFormat = properties.getString("currencyFormat");
@@ -342,6 +349,7 @@ public class BookService {
         bookExpanded.setCostInLocalCurrencyFmtd(costInLocalCurrencyFmtd(bookExpanded.getCostInLocalCurrency()));
         bookExpanded.setTypeOfBinding(tempBook.getBookDetail().getTypeOfBinding());
         bookExpanded.setShoppingChannel(tempBook.getBookDetail().getShoppingChannel());
+        bookExpanded.setShoppingUrl(tempBook.getBookDetail().getShoppingUrl());
         bookExpanded.setIsbNumber(tempBook.getBookDetail().getIsbNumber());
         bookExpanded = appendAuthors(bookExpanded,tempBook.getId());
         bookSummary.setTotalCost(bookSummary.getTotalCost()+bookExpanded.getCostInLocalCurrency());
@@ -360,8 +368,7 @@ public class BookService {
             if(currencyCode.equals("INR"))
                 rate = 1;
             else
-                rate = 83.13;
-                //rate = Converter.amountInRupee(currencyCode, 1);
+                rate = currencyRateRepository.findById(currencyCode).get().getRateOfExchange();
 
         if (rate == 0) {
             try {

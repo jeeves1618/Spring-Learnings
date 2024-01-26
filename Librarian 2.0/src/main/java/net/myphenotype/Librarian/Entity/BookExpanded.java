@@ -33,6 +33,7 @@ public class BookExpanded {
     private String dateOfReading;
     private Integer ratingOfUsefulness;
     private String shoppingChannel;
+    private String shoppingUrl;
     private String typeOfBinding;
     private String isbNumber;
 
