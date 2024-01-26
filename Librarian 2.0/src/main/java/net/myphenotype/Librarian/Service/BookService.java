@@ -79,6 +79,7 @@ public class BookService {
                 bookExpanded.setCostInLocalCurrency(costInLocalCurrency(tempBook.getCostOfPurchase(), tempBook.getCurrencyCode()));
                 bookExpanded.setCostInLocalCurrencyFmtd(costInLocalCurrencyFmtd(bookExpanded.getCostInLocalCurrency()));
                 bookExpanded.setShoppingChannel(tempBook.getBookDetail().getShoppingChannel());
+                bookExpanded.setShoppingUrl(tempBook.getBookDetail().getShoppingUrl());
                 bookExpanded.setTypeOfBinding(tempBook.getBookDetail().getTypeOfBinding());
                 bookExpanded.setIsbNumber(tempBook.getBookDetail().getIsbNumber());
                 bookExpanded.setImageFileName(tempBook.getImageFileName());
@@ -134,6 +135,7 @@ public class BookService {
                 bookExpanded.setCostInLocalCurrency(costInLocalCurrency(tempBook.getCostOfPurchase(), tempBook.getCurrencyCode()));
                 bookExpanded.setCostInLocalCurrencyFmtd(costInLocalCurrencyFmtd(bookExpanded.getCostInLocalCurrency()));
                 bookExpanded.setShoppingChannel(tempBook.getBookDetail().getShoppingChannel());
+                bookExpanded.setShoppingUrl(tempBook.getBookDetail().getShoppingUrl());
                 bookExpanded.setTypeOfBinding(tempBook.getBookDetail().getTypeOfBinding());
                 bookExpanded.setIsbNumber(tempBook.getBookDetail().getIsbNumber());
                 bookExpanded.setImageFileName(tempBook.getImageFileName());
