@@ -31,6 +31,8 @@ public class Book {
     private int id;
     @Column(name = "book_title")
     private String bookTitle;
+    @Column(name = "book_title_additional_chars")
+    private String bookTitleAdditionalChars;
     @Column(name = "book_genre")
     private String bookGenre;
     @Column(name = "author_first_name")
@@ -105,6 +107,14 @@ public class Book {
 
     public void setBookTitle(String bookTitle) {
         this.bookTitle = bookTitle;
+    }
+
+    public String getBookTitleAdditionalChars() {
+        return bookTitleAdditionalChars;
+    }
+
+    public void setBookTitleAdditionalChars(String bookTitleAdditionalChars) {
+        this.bookTitleAdditionalChars = bookTitleAdditionalChars;
     }
 
     public String getBookGenre() {

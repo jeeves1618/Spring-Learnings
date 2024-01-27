@@ -235,8 +235,9 @@ public class BookService {
             authors.setAuthorsLastName(book.getAuthorsLastName4());
             authorsList.add(authors);
         }
-        if(book.getBookTitle().length() > 90)
-            book.setBookTitle(book.getBookTitle().substring(0,90));
+        if(book.getBookTitle().length() > 200)
+            book.setBookTitle(book.getBookTitle().substring(0,200));
+        log.info("Book Length " + book.getBookTitle().length());
         book.setAuthorsList(authorsList);
         bookDao.saveBook(book);
     }
@@ -247,6 +248,9 @@ public class BookService {
         if(bookExpanded.getId() != null)
             book.setId(bookExpanded.getId());
         book.setBookTitle(bookExpanded.getBookTitle());
+        log.info("Book Length " + bookExpanded.getBookTitle().length());
+        if (bookExpanded.getBookTitle().length() > 255)
+            book.setBookTitleAdditionalChars(bookExpanded.getBookTitle().substring(255));
         book.setBookGenre(bookExpanded.getBookGenre());
         book.setAuthorFirstName(bookExpanded.getAuthorsFirstName1());
         book.setAuthorLastName(bookExpanded.getAuthorsLastName1());
