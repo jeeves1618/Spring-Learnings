@@ -142,6 +142,11 @@
                   onclick="if (!(Confirm('Are you sure you want to delete this book?'))) return false"
                   ><b>Back to Summary</b></a
                 >
+                <a
+                  th:href="@{/book/showFormForUpdating(bookID=${book.Id})}"
+                  class="btn btn-secondary btn-sm"
+                  ><b>Update</b></a
+                >
               </td>
             </tr>
           </tbody>
