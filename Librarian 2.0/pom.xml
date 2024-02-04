@@ -12,7 +12,7 @@
     <groupId>net.phenotype</groupId>
     <artifactId>Librarian</artifactId>
     <version>2.0.0</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -153,4 +153,21 @@
             </dependencies>
         </profile>
     </profiles>
+    <build>
+        <plugins>
+            <!-- This plug in is needed to bring up the application from the terminal -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

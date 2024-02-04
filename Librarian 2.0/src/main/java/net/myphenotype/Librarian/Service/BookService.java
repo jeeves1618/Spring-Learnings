@@ -179,6 +179,10 @@ public class BookService {
             bookExpanded.setId(tempBook.getId());
             bookExpanded.setCostInLocalCurrency(costInLocalCurrency(tempBook.getCostOfPurchase(), tempBook.getCurrencyCode()));
             bookExpanded.setCostInLocalCurrencyFmtd(costInLocalCurrencyFmtd(bookExpanded.getCostInLocalCurrency()));
+            bookExpanded.setShoppingUrl(tempBook.getBookDetail().getShoppingUrl());
+            bookExpanded.setTypeOfBinding(tempBook.getBookDetail().getTypeOfBinding());
+            bookExpanded.setIsbNumber(tempBook.getBookDetail().getIsbNumber());
+            bookExpanded.setImageFileName(tempBook.getImageFileName());
             bookExpanded = appendAuthors(bookExpanded,tempBook.getId());
             bookSummary.setTotalCost(bookSummary.getTotalCost()+bookExpanded.getCostInLocalCurrency());
             bookSummary.setNumberOfBooks(bookSummary.getNumberOfBooks() + 1);
