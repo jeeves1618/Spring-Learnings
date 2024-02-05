@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: "librarian-config-server"
+  profiles:
+    #active: native
+    active: git
+  cloud:
+    config:
+      server:
+        #native:
+          #search-locations: "classpath:/config"
+          #for Mac
+          #search-locations: "file:///users//jeeves//documents//config"
+          #for windows
+          #search-locations: "file:///c://Dev//config"
+        git:
+          uri: "https://github.com/jeeves1618/Configs-For-Spring-Cloud.git"
+          #Provide the branch to look at
+          default-label: master
+          #Wait for 10 seconds
+          timeout: 10
+          #Below will load the configs on startup itself
+          clone-on-start: true
+          #This will override the local git with the content from github
+          force-pull: true
+          # https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_authentication - Check this for accessing private git repositories
+server:
+  port: 8071
+

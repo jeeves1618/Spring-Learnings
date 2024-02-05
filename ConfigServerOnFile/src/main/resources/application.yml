@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: "librarian-config-server"
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          #search-locations: "classpath:/config"
+          #for Mac
+          #search-locations: "file:///users//jeeves//documents//config"
+          search-locations: "file:///c://Dev//config"
+server:
+  port: 8071
+
