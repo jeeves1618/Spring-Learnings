@@ -14,11 +14,11 @@ import java.net.URL;
 @Service
 public class Converter {
 
-    public static double amountInRupee(String foreignCurrencyCode, float amountInForeignCurrency) throws IOException {
+    public static double amountInRupee(String CURRENCY_CONVERTER_ENDPOINT, String foreignCurrencyCode, float amountInForeignCurrency) throws IOException {
 
         // Setting URL
-        String url_str = "https://open.er-api.com/v6/latest/"+foreignCurrencyCode;
-
+        String url_str = CURRENCY_CONVERTER_ENDPOINT +foreignCurrencyCode;
+        System.out.println("The URL is : " + url_str);
         // Making Request
         try {
             URL url = new URL(url_str);
