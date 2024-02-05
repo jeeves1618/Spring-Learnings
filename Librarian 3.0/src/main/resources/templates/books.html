@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Vijay's Library</title>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Libre+Bodoni&family=Lora&family=Mukta&family=Oxygen&family=Source+Serif+Pro&family=Tiro+Kannada&display=swap"
+      rel="stylesheet"
+    />
+    <link type="text/css" rel="stylesheet" href="/css/style-common.css" />
+    <link type="text/css" rel="stylesheet" href="/css/style-jumbo1.css" />
+    <link type="text/css" rel="stylesheet" href="/css/style-nav.css" />
+  </head>
+  <body>
+    <div class="flex-container">
+      <nav id="header-nav" class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" th:href="@{/app/main}"
+            ><h1 id="header-nav-logo">Vijay's Library</h1></a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  th:href="@{/app/main}"
+                  >Topics</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" th:href="@{/app/summary}">Summary</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Group
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">By Author</a></li>
+                  <li><a class="dropdown-item" href="#">By Topics</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="#">By Date</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container" id="topic-title-books">
+        <h2 th:text="${genre}"></h2>
+      </div>
+      <div id="topicList">
+        <section th:if="${not #lists.isEmpty(books)}" class="row">
+          <div th:each="book : ${books}" class="book-list col-md-6">
+            <div class="book-title-tile" th:text="${book.bookTitle}"></div>
+            <div class="row section-tile">
+              <div class="col-sm-5 book-tile">
+                <a th:href="@{/book/books(Genre=${book.bookGenre})}">
+                  <div>
+                    <img
+                      width="200"
+                      height="250"
+                      th:src="@{${book.imageFileName}}"
+                      th:alt="${book.bookTitle}"
+                    />
+                  </div>
+                </a>
+              </div>
+              <div class="book-description col-sm-7">
+                <i class="bi bi-vector-pen"></i>
+                <p>
+                  <span th:text="${book.authorFirstName}+' '"></span
+                  ><span th:text="${book.authorLastName}"></span>
+                </p>
+                <hr />
+
+                <p th:text="${book.publisherName}"></p>
+                <p th:text="${book.dateOfPurchase}"></p>
+                <p th:text="${book.costInLocalCurrencyFmtd}"></p>
+                <p th:text="${book.typeOfBinding}"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="container" id="topic-message">
+        <h3 th:text="${genreMessage}"></h3>
+      </div>
+    </div>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

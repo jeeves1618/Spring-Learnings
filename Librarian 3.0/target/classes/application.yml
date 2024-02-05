@@ -1,0 +1,12 @@
+server:
+  port: 8083
+currency:
+  converter:
+    endpoint: "https://open.er-api.com/v6/latest/"
+spring:
+  profiles:
+    active: real
+  application:
+    name: "librarian"
+  config:
+    import: "optional:configserver:http://localhost:8071/"

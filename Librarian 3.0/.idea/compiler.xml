@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="SpringAOP" />
+        <module name="LibAOPThySpringBoot" />
+        <module name="LibAOPRestSpringBoot" />
+        <module name="Librarian" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="LibAOPRestSpringBoot" options="-parameters" />
+      <module name="LibAOPThySpringBoot" options="-parameters" />
+      <module name="Librarian" options="-parameters" />
+      <module name="Librarian 2.0" options="-parameters" />
+      <module name="SpringAOP" options="-parameters" />
+    </option>
+  </component>
+</project>

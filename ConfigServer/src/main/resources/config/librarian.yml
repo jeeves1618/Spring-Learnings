@@ -1,0 +1,8 @@
+server:
+  port: 8083
+currency:
+  converter:
+    endpoint: "https://open.er-api.com/v6/latest/"
+spring:
+  profiles:
+    active: real
