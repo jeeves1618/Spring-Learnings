@@ -7,4 +7,13 @@
 !*.txt
 !*.json
 !*.sql
-!/*
+!*.pdf
+!*.css
+!*.yml
+!*.jpg
+!*.jpeg
+!*.js
+!*.drl
+!*.properties
+!Dockerfile
+!*/

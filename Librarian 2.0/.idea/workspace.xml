@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4033b307-5393-48f9-930f-75cfda21ff1a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/book-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/book-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/topic-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/topic-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Librarian 3.0/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 3.0/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Spring-Security/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Spring-Security/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Spring-Security/pom.xml" beforeDir="false" />
@@ -38,16 +42,16 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.SpringMysqlApplication.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Dev/Spring/Librarian 3.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.SpringMysqlApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Dev/Spring/Librarian 3.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="SpringMysqlApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="net.myphenotype.SpringMysqlApplication" />

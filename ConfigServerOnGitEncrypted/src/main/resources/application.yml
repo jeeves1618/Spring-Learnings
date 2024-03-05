@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: "librarian-config-server"
+  profiles:
+    #active: native
+    active: git
+  cloud:
+    config:
+      server:
+        #native:
+          #search-locations: "classpath:/config"
+          #for Mac
+          #search-locations: "file:///users//jeeves//documents//config"
+          #for windows
+          #search-locations: "file:///c://Dev//config"
+        git:
+          uri: "https://github.com/jeeves1618/Config-For-Spring-Cloud.git"
+          #Provide the branch to look at
+          default-label: master
+          #Wait for 10 seconds
+          timeout: 10
+          #Below will load the configs on startup itself
+          clone-on-start: true
+          #This will override the local git with the content from github
+          force-pull: true
+          # https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_authentication - Check this for accessing private git repositories
+encrypt:
+  key: "L1SD2TA3RL4BS5PS6KD7TD8V"
+  #encrypt will expose two endpoints: http://localhost:8071/encrypt and http://localhost:8071/decrypt
+  #In postman if you pass the phrase to be encrypted in the body of post message as text, it will get encrypted.
+  #I will store encrypted value (My Library)of info.app.name in https://github.com/jeeves1618/Configs-For-Spring-Cloud/blob/master/librarian-encrypt.yml and
+  #read it after decruption
+server:
+  port: 8071
+
