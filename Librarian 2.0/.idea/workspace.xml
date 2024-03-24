@@ -5,27 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4033b307-5393-48f9-930f-75cfda21ff1a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/book-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/book-list.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/topic-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/topic-list.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Librarian 3.0/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 3.0/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/main/java/net/myphenotype/Spring/Security/SpringSecurityApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/main/java/net/myphenotype/Spring/Security/config/InMemSecurityConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/main/java/net/myphenotype/Spring/Security/config/JDBCSecurityConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/main/java/net/myphenotype/Spring/Security/controller/AccountController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/main/java/net/myphenotype/Spring/Security/controller/BalanceController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/main/java/net/myphenotype/Spring/Security/controller/CardController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/main/java/net/myphenotype/Spring/Security/controller/ContactController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/main/java/net/myphenotype/Spring/Security/controller/LoanController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/main/java/net/myphenotype/Spring/Security/controller/NoticeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/main/java/net/myphenotype/Spring/Security/controller/WelcomeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/main/resources/sqls/jdbcuserdetails.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Spring-Security/src/test/java/net/myphenotype/Spring/Security/SpringSecurityApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +59,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-17.0.9-corretto-17.0.9-f644763e9732-ebaef533" />
+        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
       </set>
     </attachedChunks>
   </component>

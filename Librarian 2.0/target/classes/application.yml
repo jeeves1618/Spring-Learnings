@@ -6,3 +6,8 @@ currency:
 spring:
   profiles:
     active: real
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
