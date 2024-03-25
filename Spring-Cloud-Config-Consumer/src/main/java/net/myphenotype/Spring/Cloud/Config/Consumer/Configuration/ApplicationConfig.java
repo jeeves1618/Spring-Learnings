@@ -1,7 +1,6 @@
 package net.myphenotype.Spring.Cloud.Config.Consumer.Configuration;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig implements ApplicationListener<ApplicationReadyEvent> {
-    @Value("${message}")
+
     String urlToBeAccessed;
 
     @Override

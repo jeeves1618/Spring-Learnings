@@ -1,6 +1,10 @@
 spring:
   application:
-    name: "Spring Cloud Consumer"
+    #Name of the application is the prefix of the YML file. Before Hyphen
+    name: "read"
+  profiles:
+    #Name of the profile is the suffix of the YML file. After hyphen
+    active: "prod"
   config:
     import: "optional:configserver:http://localhost:8071/"
 
