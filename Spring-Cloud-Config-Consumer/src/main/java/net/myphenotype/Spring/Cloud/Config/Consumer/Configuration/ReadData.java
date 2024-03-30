@@ -15,5 +15,6 @@ public class ReadData {
     private String description;
     private String sorting;
     private String whatdoimean;
+    private String whomtocontact;
 }
 

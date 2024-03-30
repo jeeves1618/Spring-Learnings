@@ -26,7 +26,8 @@ spring:
           # https://docs.spring.io/spring-cloud-config/docs/current/reference/html/#_authentication - Check this for accessing private git repositories
 server:
   port: 8071
-
+encrypt:
+  key: "w7BxjssCKtCOxm24gnAE4cODepTzwlE9"
 management:
   endpoints:
     web:

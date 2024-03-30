@@ -81,3 +81,29 @@ http://localhost:8222/actuator
 http://localhost:8222/actuator/shutdown
 
 Devtools will not restart the applicaiton automatically in IntelliJ. You have to go to settings (or preferences in mac)/Build, Execution and Deployment/Compiler and check on Build Projects Automatically. Then go to settings (or preferences in mac)/Advance Settings and check on Allow auto-make to start even if developed application is currently running.
+
+Git Cheat Sheet
+…or create a new repository on the command line
+
+echo "# BasicsOfSpringBoot" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/jeeves1618/BasicsOfSpringBoot.git
+git push -u origin main
+
+…or push an existing repository from the command line
+
+git remote add origin https://github.com/jeeves1618/BasicsOfSpringBoot.git
+git branch -M main
+git push -u origin main
+
+Spring Boot App - Ground Up
+----------------------------
+
+1. Create a project using the following dependencies. Spring Web, Spring Data JPA, H2 Database, Lombok
+2. If there are dependency issues, 
+		mkdir ~/.m2
+		cp /opt/homebrew/Cellar/maven/3.9.4/libexec/conf/settings.xml ~/.m2
+		If the plug in issues persist, File > Invalidate Caches / Restart to reload intelliJ
