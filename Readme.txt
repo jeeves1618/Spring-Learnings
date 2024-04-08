@@ -102,8 +102,21 @@ git push -u origin main
 Spring Boot App - Ground Up
 ----------------------------
 
-1. Create a project using the following dependencies. Spring Web, Spring Data JPA, H2 Database, Lombok
-2. If there are dependency issues, 
+1. Create a project using the following dependencies. Spring Web, Spring Data JPA, H2 Database, Lombok, starter validation, open api2. If there are dependency issues, 
 		mkdir ~/.m2
 		cp /opt/homebrew/Cellar/maven/3.9.4/libexec/conf/settings.xml ~/.m2
 		If the plug in issues persist, File > Invalidate Caches / Restart to reload intelliJ
+3. Start with the controller
+4. Proceed with Entity
+5. If the port is in use
+	find the process id (PID) using the port by issuing the command: sudo lsof -i :8081
+	Then kill the process id using: sudo kill -9 PID
+6. @CreatedDate and @LastModifiedDate needs @EnableJpaAuditing in the spring boot application.
+7. @CreatedBy and @LastModifiedBy needs AuditorAware Implementation
+8. @RestController will not work if some methods are going to be exposed as REST and others as MVC. In those scenarios, use @Controller for class and @ResponseBody for the REST methods.
+9. What libraries to use? Load Balancer - Spring Cloud Load Balancer, Spring Cloud Eureka for Service Discovery, Resilience4j + Adoptive Concurrency Limiter for Faul Tolerance
+10.If @Entity is autowired, it will fail. Because, Classes annotated with @Entity are JPA entities - they usually represent rows in a database. These are not Spring-managed beans, so you cannot inject them. You normally also don't need to inject these classes.
+11. For setting up a spring cloud server, add the dependency Config Server from Spring Cloud Config, Actuator. Check from here https://spring.io/projects/spring-cloud whether the right spring cloud version is being used.
+	@EnableConfigServer should be added to the @SpringBootApplication
+	If you point to a .git uri or a local folder, your spring cloud application server is up.
+	Now, for the spring cloud client, add the config client dependency, spring cloud version and dependency management in the POM file
