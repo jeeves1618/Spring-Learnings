@@ -120,3 +120,25 @@ Spring Boot App - Ground Up
 	@EnableConfigServer should be added to the @SpringBootApplication
 	If you point to a .git uri or a local folder, your spring cloud application server is up.
 	Now, for the spring cloud client, add the config client dependency, spring cloud version and dependency management in the POM file
+
+Dockerizing
+-----------
+1. Ensure that the packaging is set to <packaging>jar</packaging> in pom.xml
+2. mvn clean install in the directory where pom.xml is stored. This will create a JAR in the name of artifact+version inside target directory. 
+3. mvn spring-boot:run will bring up the application. <artifactId>spring-boot-maven-plugin</artifactId> plugin within pom.xml will ensure that the right jar is executed.
+4. But, running using the maven will require mvnw to be included in the docker. So, we should use java -jar target/jarname.jar
+5. Create the Dockerfile in the same folder as pom.xml
+6. docker build . -t microservices/config:v1 from the same folder will create the docker impage. The "." after build implies that the Dockerfile is in the same location. -t is the tag to be provided. microservices is the docker user name.
+7. Dockerdesktop should be up and running while you are trying this.
+8. docker images from terminal will list the images. docker run can be used to create any number of instances.
+9. By default, all docker instances will run in a private container that is not accessible. So do port mapping using -p 8081:8082 . 8081 is the port which we are asking docker to expose. 8082 is the port in which the application will run. This is the port provided in the server: port: property in the yaml file.
+10.If we just say docker run -p 8071:8071 username/dockerreponame:tag, the terminal will be blocked. So, in order to run it in detatched mode, provide -d after run.
+11.For docker compose, create the docker-compose.yml file and add environment variables to the dependent microservices
+12.For liveness and health readiness probe, add actuator dependency and change the yml of the dependency server
+13. REMEMBER: Running by clicking the play button in docker desktop will not work because the port mapping is not done.
+
+
+Liveness & Readiness
+1. http://localhost:8071/actuator/health will give the application status
+2. http://localhost:8071/actuator/health/readiness will give the readiness status
+3. http://localhost:8071/actuator/health/liveness will give the liveness status
