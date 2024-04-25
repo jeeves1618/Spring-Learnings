@@ -5,6 +5,14 @@ Primary Functions of a Spring Container
 1. Create and Manage Objects (Inversion of Control)
 2. Inject Object's Dependencies (Dependency Injection)
 
+Spring
+------
+1. A bean is POJO managed by Spring IOC container.
+2. A bean can be created during start up in the @Configuration class inside the methods returning the object and annotated with @Bean. When you use @Bean, the method name will become the bean name
+3. Wiring can be done manually by a method call or passing the dependency bean as method parameter.
+4. @Autowired can be done on class variable, constructor and setter. And it can be used whether the bean is created through @Bean or Streotype annotations like @Component
+5. If you use @Autowired with constructor, you can define the dependency as final.
+
 Annotations
 @Component will register the class and make the bean available for Spring Framework
 @Qualifier, when there are multiple implementation or child classes, use this annotation to specify which implementation should be used for bean creation
@@ -142,3 +150,10 @@ Liveness & Readiness
 1. http://localhost:8071/actuator/health will give the application status
 2. http://localhost:8071/actuator/health/readiness will give the readiness status
 3. http://localhost:8071/actuator/health/liveness will give the liveness status
+
+
+Service Discovery
+1. Netflix's tech stack - https://netflixtechblog.com/netflix-oss-and-spring-boot-coming-full-circle-4855947713a0
+2. From spring initializer download a project with Eureka Server, Spring Cloud Config client and Spring Boot Actuator
+3. Annotate the main class of the eurake server @EnableEurekaServer
+4. http://localhost:8070/eureka/apps
