@@ -11,6 +11,7 @@ public class Main {
         Book book01 = context.getBean(Book.class);
         System.out.println(book01.getTitle());
 
+
         book01 = context.getBean("book01",Book.class);
         System.out.println(book01.getTitle());
 
