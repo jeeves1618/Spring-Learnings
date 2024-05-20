@@ -86,6 +86,7 @@ public class BookService {
                 bookExpanded.setReadStatus(tempBook.getReadStatus());
                 bookExpanded.setDateOfReading(tempBook.getDateOfReading());
                 bookExpanded.setRatingOfUsefulness(tempBook.getRatingOfUsefulness());
+                bookExpanded.setAllTimeGreatIndicator(tempBook.getAllTimeGreatIndicator());
             } catch (NullPointerException nullPointerException) {
                 log.info("Object not found for book ID, " + tempBook.getId());
             }
@@ -176,6 +177,8 @@ public class BookService {
             bookExpanded.setDateOfPurchase(tempBook.getDateOfPurchase());
             bookExpanded.setCostOfPurchase(tempBook.getCostOfPurchase());
             bookExpanded.setCurrencyCode(tempBook.getCurrencyCode());
+            bookExpanded.setRatingOfUsefulness(tempBook.getRatingOfUsefulness());
+            bookExpanded.setAllTimeGreatIndicator(tempBook.getAllTimeGreatIndicator());
             bookExpanded.setId(tempBook.getId());
             bookExpanded.setCostInLocalCurrency(costInLocalCurrency(tempBook.getCostOfPurchase(), tempBook.getCurrencyCode()));
             bookExpanded.setCostInLocalCurrencyFmtd(costInLocalCurrencyFmtd(bookExpanded.getCostInLocalCurrency()));

@@ -32,6 +32,7 @@ public class BookExpanded {
     private String readStatus;
     private String dateOfReading;
     private Integer ratingOfUsefulness;
+    private String allTimeGreatIndicator;
     private String shoppingChannel;
     private String shoppingUrl;
     private String typeOfBinding;

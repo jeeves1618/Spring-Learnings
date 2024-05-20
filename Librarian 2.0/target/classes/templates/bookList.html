@@ -79,6 +79,7 @@
             <th>Date of Purchase</th>
             <th>Price in Rs.</th>
             <th>Action</th>
+            <th>All Time Great?</th>
         </tr>
         <tr th:each="book : ${books}">
             <td align="left"><a th:href="@{/book/showDetail(bookID=${book.Id})}" th:text="${book.bookTitle}" style="text-decoration: none"></a></td>
@@ -96,6 +97,7 @@
 					class="btn btn-secondary btn-sm" 
 					onclick="if (!(Confirm('Are you sure you want to delete this book?'))) return false"><b>Delete</b></a>
 			</td>
+            <td align="left" th:text="${book.allTimeGreatIndicator}"></td>
         </tr>
     </table>
 </div>

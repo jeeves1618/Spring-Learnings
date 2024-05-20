@@ -55,6 +55,8 @@ public class Book {
     private String dateOfReading;
     @Column(name = "rating_of_usefulness", columnDefinition = "integer default 0")
     private Integer ratingOfUsefulness;
+    @Column(name = "all_time_great_indicator", columnDefinition = "varchar(255) default 'No'")
+    private String allTimeGreatIndicator;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "book_detail_id")
@@ -315,6 +317,14 @@ public class Book {
 
     public void setDateOfReading(String dateOfReading) {
         this.dateOfReading = dateOfReading;
+    }
+
+    public String getAllTimeGreatIndicator() {
+        return allTimeGreatIndicator;
+    }
+
+    public void setAllTimeGreatIndicator(String allTimeGreatIndicator) {
+        this.allTimeGreatIndicator = allTimeGreatIndicator;
     }
 
     @Override
