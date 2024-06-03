@@ -168,7 +168,7 @@ public class RestEndPointController {
     @GetMapping(path = "/search/{searchString}")
     public List<BookExpanded> SearchBookByPartialName(@PathVariable String searchString){
         log.info("Search Pattern: " + searchString);
-        List<BookExpanded> bookList = bookService.getBooksByPartialName(searchString);
+        List<BookExpanded> bookList = bookService.getBooksByPartialName(searchString,"Yes");
 
         return bookList;
     }

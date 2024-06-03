@@ -9,4 +9,5 @@ import org.springframework.stereotype.Component;
 @Data
 public class BookSearch {
     private String searchString;
+    private String allTimeGreatsOnly;
 }

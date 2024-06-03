@@ -80,6 +80,7 @@ public class BookService {
                 bookExpanded.setCostInLocalCurrencyFmtd(costInLocalCurrencyFmtd(bookExpanded.getCostInLocalCurrency()));
                 bookExpanded.setShoppingChannel(tempBook.getBookDetail().getShoppingChannel());
                 bookExpanded.setShoppingUrl(tempBook.getBookDetail().getShoppingUrl());
+                bookExpanded.setReadingNotesUrl(tempBook.getBookDetail().getReadingNotesUrl());
                 bookExpanded.setTypeOfBinding(tempBook.getBookDetail().getTypeOfBinding());
                 bookExpanded.setIsbNumber(tempBook.getBookDetail().getIsbNumber());
                 bookExpanded.setImageFileName(tempBook.getImageFileName());
@@ -158,8 +159,12 @@ public class BookService {
         log.info("Total Cost = " + bookSummary.getTotalCostOfBooks());
         return bookExpandedList;
     }
-    public List<BookExpanded> getBooksByPartialName(String theSearchName) {
-        List<Book> bookList = bookDao.getBooksByPartialName(theSearchName);
+    public List<BookExpanded> getBooksByPartialName(String theSearchName, String allTimeGreatIndicator) {
+        List<Book> bookList = null;
+        if(allTimeGreatIndicator == null)
+            bookList = bookDao.getBooksByPartialName(theSearchName);
+        else
+            bookList = bookDao.getAllTimeGreatsByPartialName(theSearchName,"Yes");
         List<BookExpanded> bookExpandedList = new ArrayList<>();
         int i = 0;
         bookSummary.setTotalCost(0.00);

@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4033b307-5393-48f9-930f-75cfda21ff1a" name="Changes" comment="" />
+    <list default="true" id="4033b307-5393-48f9-930f-75cfda21ff1a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Controller/RestEndPointController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Controller/RestEndPointController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/DAO/BookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/DAO/BookDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Entity/BookDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Entity/BookDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Entity/BookExpanded.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Entity/BookExpanded.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Entity/BookSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Entity/BookSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Repository/BookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Service/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/book-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/book-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bookDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bookDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bookForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bookForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bookList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bookList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/topic-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/topic-list.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -14,4 +14,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<TopicSummary> findCountByTopics();
 
     List<Book> findByBookGenre(String genre);
+
+    List<Book> findByBookTitleContainingAndAllTimeGreatIndicator(String theSearchName, String allTimeGreatIndicator);
 }

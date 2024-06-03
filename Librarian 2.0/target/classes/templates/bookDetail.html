@@ -16,7 +16,7 @@
         crossorigin="anonymous"
       />
 
-      <title>Add Book</title>
+      <title>Details</title>
       <!--Reference to Style Sheet -->
       <!--Reference to Style Sheet -->
       <link type="text/css" rel="stylesheet" href="/style.css" />
@@ -136,6 +136,13 @@
             <tr>
               <td align="left"><label>Image File : </label></td>
               <td align="left" th:text="${book.imageFileName}"></td>
+            </tr>
+            <tr>
+              <td align="left"><label>Link for Reading Notes : </label></td>
+              <td
+                align="left"
+                th:text="${book.bookDetail.readingNotesUrl}"
+              ></td>
             </tr>
 
             <tr>

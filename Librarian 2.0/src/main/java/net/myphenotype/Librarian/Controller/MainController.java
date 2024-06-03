@@ -269,8 +269,9 @@ public class MainController {
 
     @GetMapping(path = "/search")
     public String SearchBookByPartialName(@ModelAttribute("bookSearch") BookSearch bookSearch, Model model){
-        log.info("Search Pattern: " + bookSearch.getSearchString());
-        List<BookExpanded> bookList = bookService.getBooksByPartialName(bookSearch.getSearchString());
+        log.info("Search Pattern: " + bookSearch.getSearchString() + " and " + bookSearch.getAllTimeGreatsOnly());
+
+        List<BookExpanded> bookList = bookService.getBooksByPartialName(bookSearch.getSearchString(),bookSearch.getAllTimeGreatsOnly());
 
         model.addAttribute("books",bookList);
         model.addAttribute("bookSummary",bookSummary);

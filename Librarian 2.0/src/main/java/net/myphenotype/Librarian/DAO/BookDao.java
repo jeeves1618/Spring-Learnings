@@ -79,6 +79,12 @@ public class BookDao {
         return books;
     }
 
+    public List<Book> getAllTimeGreatsByPartialName(String theSearchName, String allTimeGreatIndicator) {
+        List<Book> books = bookRepository.findByBookTitleContainingAndAllTimeGreatIndicator(theSearchName, allTimeGreatIndicator);
+        log.info("Listing all time great books for the search criteria");
+        return books;
+    }
+
     public List<Topic> findCountByTopics(){
         return topicRepository.findAllByOrderByBookCountDesc();
     }

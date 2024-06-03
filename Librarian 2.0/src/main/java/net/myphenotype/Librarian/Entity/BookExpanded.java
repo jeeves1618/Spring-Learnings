@@ -35,6 +35,7 @@ public class BookExpanded {
     private String allTimeGreatIndicator;
     private String shoppingChannel;
     private String shoppingUrl;
+    private String readingNotesUrl;
     private String typeOfBinding;
     private String isbNumber;
 
