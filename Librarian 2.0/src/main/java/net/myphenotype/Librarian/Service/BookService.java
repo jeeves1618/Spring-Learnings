@@ -87,7 +87,7 @@ public class BookService {
                 bookExpanded.setReadStatus(tempBook.getReadStatus());
                 bookExpanded.setDateOfReading(tempBook.getDateOfReading());
                 bookExpanded.setRatingOfUsefulness(tempBook.getRatingOfUsefulness());
-                bookExpanded.setAllTimeGreatIndicator(tempBook.getAllTimeGreatIndicator());
+                bookExpanded.setAllTimeGreatIndicator(tempBook.getAllTimeGreatIndicator());                                                                                                                                                                                                     
             } catch (NullPointerException nullPointerException) {
                 log.info("Object not found for book ID, " + tempBook.getId());
             }
