@@ -1,0 +1,29 @@
+Low Level Design
+
+Encapsulation in OOP refers to binding data and the methods to manipulate that data together in a single unit—class.
+
+Abstraction is a technique used in object-oriented programming that simplifies the program's structure. It focuses only on revealing the necessary details of a system and hiding irrelevant information to minimize its complexity. In simpler words, we can say that it means to show what an object does and hides how it does it.
+
+Encapsulation means to hide data using getter and setter functions. Abstraction means to hide implementation using interfaces and abstractions.
+
+Inheritance is a "IS-A" relationship. Types: single, multiple, multi-level, hierarchichal and gybrid
+
+The word polymorphism is a combination of two Greek words, “poly” meaning many, and “morph” meaning forms. In programming, polymorphism is a phenomenon that allows an object to have several different forms and behaviors.
+
+For example, take the Animal class. There are many different animals, e.g., lion, deer, dog, and crocodile, etc. So, they are all animals, but their properties are different. The animal class can have a method, makeNoise. Its implementation should be different for a lion, deer, or any other animal as they all have different noises. This is called polymorphism.
+
+Dynamic polymorphism happens through method overriding (i.e methods in base and derived class with same name, arguments etc.)
+Static polymorphism happens through method overloading (i.e a class has more than one method with the same name, but either the number of arguments is different, or the type of arguments is different)
+
+Solid Principles:
+    In the Single Responsibility Principle (SRP), each class should be responsible for a single part or functionality of the system.
+
+    In the Open Closed principle (OCP), software components should be open for extension but closed for modification.
+
+    In the Liskov Substitution Principle (LSP), objects of a superclass should be replaceable with objects of its subclasses without breaking the system. That is parent class should not have a method, that is irrelevant to the child. That is Vehicle having startEngine() that doesn't make sense to Cycle. It is between super and sub class.
+
+    The Interface Segregation Principle (ISP) makes fine-grained interfaces that are client specific. Prevents the creation of generic interfaces. <<shape>> with calcArea() and calcVolume() are not allowed. Instead bring two more interfaces, <<2dshape>> and <<3dshape>>
+
+    The Dependency Inversion Principle (DIP), ensures that the high-level modules are not dependent on low-level modules. In other words, one should depend upon abstraction and not concretion. i.e. one should create abstract class on top of many concreate classes. For instance instead of adding English, Maths, Science to curriculum class, we should add only the Subject class to Curriculum and Subject should have English, Maths, Science as sub classes.
+	
+	Design patterns are solutions to frequently occurring real-life problems in software design.

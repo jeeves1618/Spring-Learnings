@@ -1,6 +1,6 @@
 Installed Apache Tomcat 9.0 for Spring
 The default port is 8085 for Tomcat 9.0
-
+Salphas - Aluminium phosphide is primarily used as a pesticide that is used by various professionals including farmers, pest controllers, gamekeepers and estate managers.
 Primary Functions of a Spring Container
 1. Create and Manage Objects (Inversion of Control)
 2. Inject Object's Dependencies (Dependency Injection)
@@ -23,7 +23,8 @@ Annotations
 @PreDestroy - A method annotated with @PreDestroy runs only once, just before Spring removes our bean from the application context.
 
 The above two annotations are equivalent to init-method  and destroy-method methods through XML configuration. 
-@Bean - The @Bean annotation tells Spring that we are creating a bean component manually. Here is a real-time use case of using @Bean: You can use @Bean to make an existing non spring (i.e it doesn't have @Component annotation) third-party class available to your Spring framework application context.
+@Bean - The @Bean annotation tells Spring that we are creating a bean component manually. Here is a real-time use case of using @Bean: You can use @Bean to make an e 
+xisting non spring (i.e it doesn't have @Component annotation) third-party class available to your Spring framework application context.
 @Transactional - Removes the need for boilerplate code like getTransaction() in Hibernate application.
 @Repository will have the class automatically registered as DAO.
 @RequestMapping will map the path to the method. If you want to add a HTTP method constraint to it, you have to write it like this -
@@ -157,3 +158,207 @@ Service Discovery
 2. From spring initializer download a project with Eureka Server, Spring Cloud Config client and Spring Boot Actuator
 3. Annotate the main class of the eurake server @EnableEurekaServer
 4. http://localhost:8070/eureka/apps
+
+Why do we need database in the first place?
+
+    Managing large data: Databases efficiently handle large amounts of data.
+    Retrieving accurate data (data consistency): Databases ensure data accuracy through constraints.
+    Easy updation: Data can be easily updated using Data Manipulation Language (DML).
+    Security: Databases provide data security, allowing only authorized access.
+    Data integrity: Ensured through various constraints.
+    Availability: Databases can be replicated across servers for high availability.
+    Scalability: They support load distribution by partitioning data across multiple nodes.
+    Efficiency in data retrieval: Designed for quick and efficient data access.
+    Data recovery and backup: Offer mechanisms to protect against data loss.
+
+In synchronous replication, the primary host is responsible for replicating the message in all the relevant queues on other hosts. After acknowledgment from secondary hosts, the primary host then notifies the client regarding the reception of messages. In this approach, messages remain consistent in all queues replicas; however, it costs extra delay in communication and causes partial to no availability while an election is in progress to promote a secondary as a primary.
+
+In asynchronous replication, once the primary host receives the messages, it acknowledges the client, and in the next step, it starts replicating the message in other hosts. This approach comes with other problems such as replication lag and consistency issues.
+
+Replication is relatively simple if the replicated data doesn’t require frequent changes. The main problem in replication arises when we have to maintain changes in the replicated data over time.
+Here are the various mechanisms of data replication:
+    Single leader or primary-secondary replication: In primary-secondary replication, data is replicated across multiple nodes. Ideal for read heavy applicatiions, not so for write heavy applications. If the primary fails, one of the secondarys can take over. Replication via this approach comes with inconsistency if we use asynchronous replication. 
+    Multi-leader replication. Multiple writes can result in inconsistent data. We use quorum to arrive at a consensus. A quorum can be a strict quorum or a sloppy quorum. 
+    Peer-to-peer or leaderless replication
+
+Shradding is different from replication in the way that it doesn't have the copy of complete data. Data partitioning (or sharding) enables us to use multiple nodes where each node manages some part of the whole data.The partitioning must be balanced so that each partition receives about the same amount of data. If partitioning is unbalanced, the majority of queries will fall into a few partitions. Partitions that are heavily loaded will create a system bottleneck. The efficacy of partitioning will be harmed because a significant portion of data retrieval queries will be sent to the nodes that carry the highly congested partitions. Such partitions are known as hotspots. 
+
+Shradding can happen within a single node or (usually) multiple nodes. It can be vertical shradding, where a table with columns A, B, C and D are split into two shradds; one with columns A and B and another with columns C and D. Or it can be horizontal shradding, where the different set of rows with different partition keys are split across different shradds.
+There are two strategies available in horizontal shradding:
+
+    Key-range based sharding - Based on partition key. Range based queries are possible. Some partitions tend to become hot spots.
+    Hash based sharding - Based on mod of hash value.  Range based queries are not possible. Partitions tend to grow equally. The problem is when we change the mod from 5 to 6 for an additional node, the impacted records have to be moved to the mew partition and it will be expensive.
+	
+	We need to do rebalancing when some partitions grows out of size. 
+	
+	Consistent hashing is a technique used in computer systems to distribute keys (e.g., cache keys) uniformly across a cluster of nodes (e.g., cache servers). The goal is to minimize the number of keys that need to be moved when nodes are added or removed from the cluster, thus reducing the impact of these changes on the overall system.
+
+If a partition is very small, it will result in too much overhead because we may have to make a large number of small-sized partitions, each costing us some overhead. If the partition is very large, rebalancing the nodes and recovering from node failures will be expensive. It’s very important to choose the right number of partitions.
+We can shart with Fixed Partitions (down side is zeroing in on the optimal number of partitions),Elasti search and Riak are using this, dynamic partitioning (HBase and MongoDB, downside is it is difficult to apply dynamic rebalancing while serving the reads and writes.) or Partition proportionally to nodes (Cassandra, Ketama. In this approach, the number of partitions is proportionate to the number of nodes, which means every node has fixed partitions. In earlier approaches, the number of partitions was dependent on the size of the dataset. That isn’t the case here.)
+
+Key Value Stores
+
+Key-value stores and traditional relational databases differ primarily in their data model and access patterns. Key-value stores are optimized for fast retrieval by using a simple key, do not support complex query languages, and often prioritize availability and scalability over strict consistency. They handle unstructured data, making them flexible for various data types. These stores are particularly advantageous in scenarios requiring rapid data access, massive volumes of data, and situations where the data structure is flexible or evolving.
+
+Why do we need to run key-value stores on multiple servers?
+Hide Answer
+
+A single-node-based hash table can fall short due to one or more of the following reasons:
+
+    No matter how big a server we get, this server can’t meet data storage and query requirements.
+
+    Failure of this one mega-server will result in service downtime for everyone.
+
+So, key-value stores should use many servers to store and retrieve data.
+
+In distributed key value store, the keys and values are held in the cache of local nodes. So, when we add or remove the node the data should also be moved. Consistent hashing is an effective way to manage the load over the set of nodes. Primary secondary replication will not work when we want the write availability to be high. Peer to peer replication should be done. But, it is very expensive to do that across all nodes. So, we stick to 3 or 5 node replication. We can use the consistent hashing to replicate across the nodes as well. While replicating, remember synchronous replication reduces availability. If there is inconsistency between the nodes, we can maintain causality (that is recent updates get priority). But there is no guarantee that clocks across nodes are in sync. So we use vector clock. This process of resolving conflicts is comparable to how it’s done in Git. If Git is able to merge multiple versions into one, merging is performed automatically. It’s up to the client (the developer) to resolve conflicts manually if automatic conflict resolution is not possible. Along the same lines, our system can try automatic conflict resolution and, if not possible, ask the application to provide a final resolved value.
+
+While consistent hashing is a good choice, it may result in unequal distribution of data, and certain servers may get overloaded. We add variable number of virtual servers inside those servers depending on the machine’s capability.
+
+Note: Physical clocks are not reliable. So we go for logical clocks (lamport or vector) when we need causality. Lamport clocks don’t allow us to infer causality at the global level.Vector clock does. A 3 node cluster will have vector clock key as E1(1,0,0). So when there are too many nodes, it will become a problem. Google’s TrueTime API in Spanner considers the uncertainity of time and provides a range instead of a time. Drawbacks of spanner: if the ranges of two events overlap, then we don't know which one happened first. Also spanner is expensive. 
+
+r + w > n is an important constraint. n is the total number of nodes in which the replication occurs. w is the number of nodes in which we are going write synchronously. r is the number of nodes from which we are going read. If we write synchronously into 2 nodes, then we have to read from 2 nodes to ensure that the data is consistent. 
+
+Merkle tree is used to validate the consistency across the nodes. Each branch of the Merkle tree can be verified independently without the need to download the complete tree or the entire dataset. The Merkle tree is a mechanism to implement anti-entropy, which means to keep all the data consistent. It reduces data transmission for synchronization and the number of discs accessed during the anti-entropy process. In merkel tree every node will have the hash value of the root node. If the hash values of the root node from two nodes are the same, then the nodes are consistent. The disadvantage is that when a node joins or departs the system, the tree’s hashes are recalculated because multiple key ranges are affected.
+
+Cache:
+Cache should have cache client in the application server. Cache client will talk to cache servers through a configuration service that ensures that all the clients see an updated and consistent view of the cache servers. The cache server can have shards (partition) and each shard can be replicated for HA. Within the Cache server the values will be stored in a linked list and the pointers to the linked list will be stored as values in a hash table. The cache server will cater to insert(), retrieve() APIs from client and delete() api from the DB when something gets deleted.
+
+We can usually go for synchrounous replication of nodes when they reside within the same DC or the latency to replicate is very low.
+
+Distributed Messaging Queue.
+The DMQ has a client to accept requests from producers and consumers. After the client comes the load balancer. The LBs route the message to the FE servers where the validations, de-duplication and authentication happen. The FE deals with Metadata service and request dispatching to back end data store. The meta data services persists the data as well as have a cache.
+
+In Kafka, a consumer reads the message, sets the visibility to No and turns on the visibility timer. Once it processes the message, it comes back to the queue and deletes the message. What happens when the visibility timeout of a specific message expires and the consumer is still busy processing the message? The message becomes visible, and another worker can receive the message, thereby duplicating the processing. To avoid such a situation, we ensure that the application sets a safe threshold for visibility timeout.
+
+Difference between queue and a topic (or message queue and a pub sub system). Queue is point to point. One producer to one consumer. So, in message queue, we will have only one distributed message queue. A pub sub is one to many. 
+
+How do you manage concurrency while putting into or getting out of a queue?
+1. We can use a locking mechanism. When a process or thread requests a message, it should acquire a lock for placing or consuming messages from the queue.  It’s neither scalable nor performant.
+2. Another solution is to serialize the requests using the system’s buffer at both ends of the queue so that the incoming messages are placed in an order, and consumer processes also receive messages in their arrival sequence. By serializing requests, we mean that the requests (either for putting data or extracting data), which come to the server would be queued by the OS, and a single application thread will put them in the queue
+
+Bad Design #1
+So, producer will post it into a distributed message queue and the messages will be replicated in to as many distributed message queue as the number of subscribers. But, if we have millions of subscribers for thousands of topics, defining and maintaining millions of queues is expensive.
+
+Mediocre Design #2
+In messaging queues, the message disappears after the reader consumes it. So, what if we add a counter for each message? The counter value decrements as a subscriber consumes the message. It does not delete the message until the counter becomes zero. Now, we don’t need to keep a separate queue for each reader. Okay, but can we gurantee that all subscribers will consumer the message all the time? If not, those message will remain in the queue for ever.
+
+
+Kafka will have topic -> partition -> segments will have messages with offsets. The messages are often stored in the local storage of the brokers or BE clusters.
+
+
+Points to Rememeber:
+We replicate when we want to avoid SPOF. We shard when the data size exceeds one server. When we shrad data across servers, the application layer can maintain the partition/shrad info and route accordingly or the shrad info can be stored in each individual data servers that can route among themselves.
+Semaphore is an operating system-level memory management technique that can be used to manage the allocation and use of memory resources. In a nutshell, it allows multiple threads or processes to share access to a limited number of resources, such as memory blocks or locks
+
+https://docs.spring.io/spring-kafka/reference/kafka/receiving-messages/listener-annotation.html
+
+Rate Limiter:
+A rate limiter is generally used as a defensive layer for services to avoid their excessive usage, whether intended or unintended. 
+Hard throttling - stops. Soft throtlling - sends message up to certain variance. 
+For better performance, a rate limiter should check the count and allow/disallow the client first then go an update the counter. But, will this stop DoS attack?
+
+Algorithms for rate limiting
+
+    Token bucket
+    Leaking bucket
+    Fixed window counter
+    Sliding window log
+    Sliding window counter
+
+A Rate Limiter is a pattern put in place for a service to protect itself from too many calls. A resource-intensive service is always in danger of overloading if triggered multiple times, or it may end up calling other resource-intensive services, bringing the whole system down. If such a service is exposed directly to clients, it is susceptible to DDOS attacks as well. Another use case is that we may want to limit the user to call a request depending on the Pricing Plan they are subscribed to, e.g. a user can be restricted to call a service only ‘n’ times a day depending upon what plan they’ve chosen. All further calls are rejected.
+
+A Circuit Breaker is a pattern put in place for a service to protect itself from calling too many unresponsive services. If a service is unresponsive, it makes sense to not overload it further by retrying it. If a service I am attempting to call repeatedly fails, the circuit ‘breaks’ and I return a default response for some time. After a wait duration only I attempt to call the failing service.
+
+Blob Storage:
+When we design a blob we consider the following.
+1. Number of servers - Every server can handle predeterminate amount of requests per second. Total number of requests expected/RPS of server will give the number of servers needed.
+2. What additional storage will be needed every day?
+3. Estimate the bandwidth for incoming traffic. Totalbandwidth (GB/s) ​=Totalstorage_day​ (GB)​/24×60×60
+4. Estimate the bandwidth for outgoing traffic. Totalbandwidth (GB/s) ​=Totalstorage_day​ (GB)​/24×60×60
+
+Sharded Counters:
+heavy hitters problem
+Strict Consistency Model vs Relaxed Consistency Model
+
+A stack can be implemented in array or linked list. Because both the push and pop are only from one end. Queues are implemented only in linked list. Because the pop happens at another end and it is expensive to move things around. 
+
+We have three strict rules our tree must adhere to in order to be classified as a binary tree:
+
+    Each node can have only zero, one, or two children.
+
+    The tree can have only a single root node.
+
+    There can be only one path to a node from the root.
+
+If we add two more 
+
+Spark cluster
+
+Race Condition - A race condition is an undesirable situation that occurs when a device or system attempts to perform two or more operations at the same time
+
+An idempotent task produces the same result, no matter how many times we execute it. 
+ 
+ Tree - Just a hierarchial structure of nodes connected with edges. Can have any number of nodes.
+ Binary Tree - Tree with 0, 1 or 2 node only. Any node should have only one path from the root.
+ Binary Search Tree (BST) - First key becomes the node, lesser numbers are added to the left and greater numbers are added to the right. If not rebalanced, it becomes O(N). If perfectly rebalanced, search is O(H)
+ Heap - Heap is binary tree where the nodes are added to leftmost leaf and swapped based on value. Max heap will have higher values at the top and min heap will have lower values at the top. Nodes are removed from the righ most.
+ 
+ The PACELC theorem is an extension of the CAP theorem that states, in the event of network Partition, one should choose between Availability or Consistency; else, choose between Latency and Consistency.
+ Dijkstra’s Algorithm: Given a weighted graph and a source vertex in the graph, find the shortest paths from the source to all the other vertices in the given graph. 
+ Haversine formula: The haversine formula determines the great-circle distance between two points on a sphere given their longitudes and latitudes. 
+ HTTP Vs WebSocket Vs Asset Service
+ 
+ Example of Web Servers: Contains only Web Container
+
+    Nginx
+    Resin
+	
+Examples of Application Server: Contains a Web Container as well as an application container
+
+    Weblogic
+    JBoss
+    Websphere
+
+Apache Tomcat behaves like an application server because it can deliver highly dynamic content. It can also behave like a standalone web server, but it is actually a Java servlet container. As such, it does not have the features of a full application server and may not support some enterprise-level requirements.
+
+base58-encode: Uses 1 to 9, 52 upper and lower case alphabets minus I, O and l
+
+Lamport’s quip: “A distributed system is one in which the failure of a computer you didn’t even know existed can render your own computer unusable.”
+
+Multi Threading - Process 1 runs and it got evicted out of CPU. Gets written as PCB (Process Control Block) in main memore to pave way for Process 2. This is called context switching. Every call to DB causes CPU eviction and context swtiching. Amdhal's law determines the acceleration in performance based on the percentage of parallization.
+
+Hadoop - Big Data
+------------------
+As we can see, both the Map and Reduce phases can be run exclusively and hence can use independent nodes in the cluster to process the data. This approach of separation of tasks into smaller units called Map and Reduce has revolutionized general purpose distributed/parallel computing, which we now know as MapReduce.
+
+Data: HDFS has NameNode and DataNode daemons running in master node and worker nodes respectively. Resource Management: YARN has ResourceManager and NodeManager daemons running in master node and worker nodes respectively. Data Consistency: Zookeeper ensures data consistency through the establishment of quorum. In a distributed system, there are multiple nodes or machines that need to communicate with each other and coordinate their actions. ZooKeeper provides a way to ensure that these nodes are aware of each other and can coordinate their actions. It does this by maintaining a hierarchical tree of data nodes called “Znodes“ The Hive Metastore curates information about the structured datasets (as opposed to unstructured binary data) that reside in Hadoop and organizes them into a logical hierarchy of databases, tables, and views.
+
+  Another objective that YARN met was that it made MapReduce one of the techniques to process the data rather than being the only technology to process data on HDFS, as was the case in Hadoop 1.x systems. This paradigm shift opened the floodgates for the development of interesting applications around Hadoop and a new ecosystem other than the classical MapReduce processing system evolved. It didn't take much time after that for Apache Spark to break the hegemony of classical MapReduce and become arguably the most popular processing framework for parallel computing. YARN: https://learning.oreilly.com/library/view/apache-spark-2-x/9781787126497/29f3e055-60a2-4c83-8954-8ea1aa58eee0.xhtml
+ 
+ Hadoop - Name Node and Data Node
+ Spark - Driver and Executor
+ YARN - Resource Manager and Node Manager
+ 
+ Why Spark?
+ 1. Performance - Disk I/O vs Memory
+ 2. Fault Tolerance - Hadoop launches a new JVM task after checking with RM for failed tasks. Spark uses RDD, a read only fault-tolerant parallel collection. RDD maintains the lineage graph so that whenever its partition gets lost it recovers the lost data by re-computing from the previous stage and thus making it more resilient.
+ 3. DAG - Chaining and creating a plan ensures that only the computations required by actions are executed.
+ 4. Spark is General purpose while Hadoop is an isolated distributed compute framework. 
+ 5. Hadoop only on YARN. Spark on Mesos, YARN and standalone resource manager.
+ 6. Hadoop - low level programming. Spark has APIs.
+
+As Spark is written in a functional programming paradigm, one of the key concepts of functional programming is immutable objects. Resilient Distributed Dataset is also an immutable dataset.
+
+As discussed in the beginning of this chapter, you control your Spark Application through a driver process called the SparkSession. The SparkSession instance is the way Spark executes user-defined manipulations across the cluster. There is a one-to-one correspondence between a SparkSession and a Spark Application.
+Narrow transformations or pipelining will happen in memmory. But that cannot be said about the wide transformations (or shuffling). When we perform a shuffle, Spark writes the results to disk. 
+
+Spark includes the ability to read and write from a large number of data sources. To read this data, we will use a DataFrameReader that is associated with our SparkSession.
+
+ We can call explain on any DataFrame object to see the DataFrame’s lineage (or how Spark will execute this query)
+ 
+ RDDs - No Compile and Runtime type safety; Dataframe - No compile time type safety, but provides run time type safety; Datasets - Provides both runtime and compile time type safety (available only in Java and Scala). 
+ 
+ For reading a JSON file, you would typically use the DataFrame API and then convert it to an RDD:
+ Dataset<Row> df = spark.read().json("path/to/your/file.json");
+JavaRDD<Row> rdd = df.javaRDD(); Using the DataFrame API to read a JSON file and then converting it to an RDD is a common practice because the DataFrame API in Spark is optimized for reading and processing structured data formats like JSON, CSV, and Parquet.
