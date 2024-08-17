@@ -250,9 +250,8 @@ So, producer will post it into a distributed message queue and the messages will
 Mediocre Design #2
 In messaging queues, the message disappears after the reader consumes it. So, what if we add a counter for each message? The counter value decrements as a subscriber consumes the message. It does not delete the message until the counter becomes zero. Now, we don’t need to keep a separate queue for each reader. Okay, but can we gurantee that all subscribers will consumer the message all the time? If not, those message will remain in the queue for ever.
 
-
 Kafka will have topic -> partition -> segments will have messages with offsets. The messages are often stored in the local storage of the brokers or BE clusters.
-
+Because a message broker needs to scale out just like the applica- tions that use it, its implementation is necessarily distributed. And when multiple nodes are involved, guaranteeing order becomes difficult. The visibility timeout guarantees that if the consumer crashes while pro- cessing the message, the message will become visible to other consumers again when the timeout triggers. 
 
 Points to Rememeber:
 We replicate when we want to avoid SPOF. We shard when the data size exceeds one server. When we shrad data across servers, the application layer can maintain the partition/shrad info and route accordingly or the shrad info can be stored in each individual data servers that can route among themselves.
@@ -593,6 +592,23 @@ Rate-limiting, or throttling, is a mechanism that rejects a request when a speci
 Although rate-limiting has some similarities to load shedding, they are different concepts. Load shedding rejects traffic based on the local state of a process, like the number of requests concurrently processed by it; rate-limiting instead sheds traffic based on the global state of the system, like the total number of requests concurrently processed for a specific API key across all service instances.
 
 The goal of the bulkhead pattern is to isolate a fault in one part of a service from taking the entire service down with it.
+
+The process of adding and removing nodes to balance the system’s load is called rebalancing.
+
+A load balancer (LB) has one or more physical network interface cards (NIC) mapped to one or more virtual IP (VIP) addresses. A VIP, in turn, is associated with a pool of servers. The LB acts as a middle-man between clients and servers — the clients only see the VIP exposed by the LB and have no visibility of the individual servers associated with it.
+
+As the data going out of the servers usually has a greater volume than the data coming in, there is a way for servers to bypass the LB and respond directly to the clients using a mechanism called direct server return7, but this is beyond the scope of this section.
+
+Although load balancing connections at the TCP level is very fast, the drawback is that the LB is just shuffling bytes around with- out knowing what they actually mean. Therefore, L4 LBs gener- ally don’t support features that require higher-level network proto- cols, like terminating TLS connections or balancing HTTP sessions based on cookies. A load balancer that operates at a higher level of the network stack is required to support these advanced use cases.
+When the clients are internal to an organization, the L7 LB function- ality can alternatively be bolted onto the clients directly using the sidecar pattern. In this pattern, all network traffic from a client goes through a process co-located on the same machine. This process implements load balancing, rate-limiting, authentication, monitor- ing, and other goodies.
+
+The sidecar processes form the data plane of a service mesh9, which is configured by a corresponding control plane. This approach has been gaining popularity with the rise of microservices in organi- zations that have hundreds of services communicating with each other. Popular sidecar proxy load balancers as of this writing are NGINX, HAProxy, and Envoy. The advantage of using this ap- proach is that it distributes the load-balancing functionality to the clients, removing the need for a dedicated service that needs to be scaled out and maintained. The con is a significant increase in the system’s complexity.
+
+In multi-leader replication, there is more than one node that can accept writes. This approach is used when the write throughput is too high for a single node to handle, or when a leader needs to be available in multiple data centers to be geographically closer to its clients.
+
+The replication happens asynchronously since the alternative would defeat the purpose of using multiple leaders in the first place. Finally,the datastore could leverage datastructures that provide automatic conflict resolution, like a conflict-free replicated data type (CRDT). CRDTs are data structures that can be replicated across multiple nodes, allowing each replica to up- date its local version independently from others while resolv- ing inconsistencies in a mathematically sound way.
+
+A service-level objective (SLO) defines a range of acceptable values for an Service Level Indicator (SLI) within which the service is considered to be in a healthy state (see Figure 20.2). An SLO sets the expectation to its users of how the service should behave when it’s functioning correctly. Service owners can also use SLOs to define a service-level agree- ment (SLA) with their users — a contractual agreement that dic- tates what happens when an SLO isn’t met, typically resulting in financial consequences.
 
 CI/CD
 -----
