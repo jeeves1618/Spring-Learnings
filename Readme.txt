@@ -1,5 +1,3 @@
-Installed Apache Tomcat 9.0 for Spring
-The default port is 8085 for Tomcat 9.0
 Primary Functions of a Spring Container
 1. Create and Manage Objects (Inversion of Control)
 2. Inject Object's Dependencies (Dependency Injection)
@@ -22,8 +20,7 @@ Annotations
 @PreDestroy - A method annotated with @PreDestroy runs only once, just before Spring removes our bean from the application context.
 
 The above two annotations are equivalent to init-method  and destroy-method methods through XML configuration. 
-@Bean - The @Bean annotation tells Spring that we are creating a bean component manually. Here is a real-time use case of using @Bean: You can use @Bean to make an e 
-xisting non spring (i.e it doesn't have @Component annotation) third-party class available to your Spring framework application context.
+@Bean - The @Bean annotation tells Spring that we are creating a bean component manually. Here is a real-time use case of using @Bean: You can use @Bean to make an existing non spring (i.e it doesn't have @Component annotation) third-party class available to your Spring framework application context.
 @Transactional - Removes the need for boilerplate code like getTransaction() in Hibernate application.
 @Repository will have the class automatically registered as DAO.
 @RequestMapping will map the path to the method. If you want to add a HTTP method constraint to it, you have to write it like this -
@@ -164,6 +161,8 @@ Service Discovery
 3. Annotate the main class of the eurake server @EnableEurekaServer
 4. http://localhost:8070/eureka/apps
 
+Why not Mainframe or PL/SQL?
+	 They do not fit well with the requirements of modern application development, such as dependency and package management, version control, rolling upgrades, evolvability, monitoring, metrics, calls to network services, and integration with external systems.
 Why do we need database in the first place?
 
     Managing large data: Databases efficiently handle large amounts of data.
@@ -540,7 +539,8 @@ Isolation Models - https://www.postgresql.org/docs/current/transaction-iso.html
 	We should understand the challenges before getting into 
 	Read Uncommitted - Prevents dirty writes
 	Read Committed - Prevents dirty reads
-	Repeatable Read - Prevents fuzzy reads. A careful review of the literature shows that Snapshot Isolation (SI) is very similar to Repeatable Read (RR), but they aren't exactly the same. They are both stronger than Read Committed but weaker than Serializable. The best summary of their difference is that SI allows write skew but blocks phantoms, whereas RR blocks write skew but allows phantoms.
+	Repeatable Read - Prevents fuzzy reads. 
+	Snapshot isolation - A careful review of the literature shows that Snapshot Isolation (SI) is very similar to Repeatable Read (RR), but they aren't exactly the same. They are both stronger than Read Committed but weaker than Serializable. The best summary of their difference is that SI allows write skew but blocks phantoms, whereas RR blocks write skew but allows phantoms.
 	Serializability - Prevents phantom reads
 	
 Atomicity
@@ -615,3 +615,4 @@ CI/CD
 Continuous integration ensures that code changes are merged into the main branch after an automated build and test suites have run. Once a code change has been merged, it should be automatically published and deployed to a production-like environment, where a battery of integration and end-to-end tests run to ensure that the service doesn’t break any dependencies or use cases.
 
 A memory leak occurs when programmers create a memory in a heap and forget to delete it. That is you do malloc in C++ and exit the process without a dealloc.
+
