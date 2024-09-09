@@ -174,6 +174,7 @@ Why do we need database in the first place?
     Scalability: They support load distribution by partitioning data across multiple nodes.
     Efficiency in data retrieval: Designed for quick and efficient data access.
     Data recovery and backup: Offer mechanisms to protect against data loss.
+	it’s usually much better to use a database that slowly saves the data than one that quickly loses it.
 	
 	DNS can return an IP or it give another URI - Called DNS Redirect. Content providers can use DNS redirect to send a client to a specific CDN. 
 
