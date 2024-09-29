@@ -1,3 +1,5 @@
+The first day of the rest of your life awaits!
+
 Primary Functions of a Spring Container
 1. Create and Manage Objects (Inversion of Control)
 2. Inject Object's Dependencies (Dependency Injection)
