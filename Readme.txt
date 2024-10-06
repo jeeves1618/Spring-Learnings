@@ -619,3 +619,13 @@ Continuous integration ensures that code changes are merged into the main branch
 
 A memory leak occurs when programmers create a memory in a heap and forget to delete it. That is you do malloc in C++ and exit the process without a dealloc.
 
+Multi Tenancy
+
+Using the literal shared infrastructure definition of multi-tenancy doesn’t seem to map well to the various models that can be used to deploy tenant infrastructure. Instead, these variations in SaaS models seem to demand that we evolve our definition of what it means to be multi-tenant.
+
+For the scope of this book, at least, the term “multi-tenant” will definitely be extended to accommodate the realities outlined here. As we move forward, multi-tenant will refer to any environment that onboards, deploys, manages, and operates tenants through a single, unified experience. The sharedness of any infrastructure will have no correlation to the term “multi-tenancy.”
+
+My general rule of thumb here (with some exceptions) is that we’re providing a service experience. In a service model, our tenants’ view is limited to the surface of our service. The tools, technologies, and resources that are used to bring that service to life should be entirely hidden from our tenants. In many respects, this is the hard barrier that prevents our system from falling back into patterns that might lead to one-off dependencies and variations.
+
+Managed Service Provider (MSP)
+You can see how some might equate the MSP model to SaaS. After all, it does seem to be trying to provide a unified managed and operations experience for all customers. However, if you look back at the principles that we used to describe SaaS, you can see where there are substantial gaps between the MSP model and SaaS. One of the biggest differences is that customers are being allowed to run separate versions. So, while there may be some attempts to centralize management and operations, the MSP is going to have to have one-off variations in their operational experience to support the different footprints of each customer environment. This may require dedicated teams; at a minimum, it will mean having teams that can deal with the complexities of supporting the unique needs of each customer. Again, the MSP model adds lots of value and certainly creates efficiencies, but it’s definitely different than having a single pane of glass that gets its efficiencies from having customers run a single version of a product and, in many cases, realizing economies of scale from sharing some or all of their infrastructure. 
