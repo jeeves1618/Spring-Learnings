@@ -104,5 +104,4 @@ public class BookDao {
     public List<Topic> findTopicByGenre(String genre){
         return topicRepository.findByBookGenre(genre);
     }
-
 }

@@ -629,3 +629,12 @@ My general rule of thumb here (with some exceptions) is that we’re providing a
 
 Managed Service Provider (MSP)
 You can see how some might equate the MSP model to SaaS. After all, it does seem to be trying to provide a unified managed and operations experience for all customers. However, if you look back at the principles that we used to describe SaaS, you can see where there are substantial gaps between the MSP model and SaaS. One of the biggest differences is that customers are being allowed to run separate versions. So, while there may be some attempts to centralize management and operations, the MSP is going to have to have one-off variations in their operational experience to support the different footprints of each customer environment. This may require dedicated teams; at a minimum, it will mean having teams that can deal with the complexities of supporting the unique needs of each customer. Again, the MSP model adds lots of value and certainly creates efficiencies, but it’s definitely different than having a single pane of glass that gets its efficiencies from having customers run a single version of a product and, in many cases, realizing economies of scale from sharing some or all of their infrastructure. 
+
+
+Testing
+-----------
+
+Standardization 
+Rule Transferability
+new set of rules
+Supplier Level match
