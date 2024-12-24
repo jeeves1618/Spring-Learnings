@@ -19,6 +19,12 @@ public class Readings {
     private int Id;
     @Column(name = "date_of_reading")
     private String dateOfReading;
+    @Column(name = "rating_of_usefulness", columnDefinition = "integer default 0")
+    private Integer ratingOfUsefulness;
+    @Column(name = "all_time_great_indicator", columnDefinition = "varchar(255) default 'No'")
+    private String allTimeGreatIndicator;
+    @Column(name = "reading_notes_url")
+    private String readingNotesUrl;
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name="book_id")
     @JsonIgnore
@@ -27,8 +33,11 @@ public class Readings {
     public Readings() {
     }
 
-    public Readings(String dateOfReading) {
+    public Readings(String dateOfReading, Integer ratingOfUsefulness, String allTimeGreatIndicator, String readingNotesUrl) {
         this.dateOfReading = dateOfReading;
+        this.ratingOfUsefulness = ratingOfUsefulness;
+        this.allTimeGreatIndicator = allTimeGreatIndicator;
+        this.readingNotesUrl = readingNotesUrl;
     }
 
     public int getId() {
@@ -47,6 +56,30 @@ public class Readings {
         this.dateOfReading = dateOfReading;
     }
 
+    public Integer getRatingOfUsefulness() {
+        return ratingOfUsefulness;
+    }
+
+    public void setRatingOfUsefulness(Integer ratingOfUsefulness) {
+        this.ratingOfUsefulness = ratingOfUsefulness;
+    }
+
+    public String getAllTimeGreatIndicator() {
+        return allTimeGreatIndicator;
+    }
+
+    public void setAllTimeGreatIndicator(String allTimeGreatIndicator) {
+        this.allTimeGreatIndicator = allTimeGreatIndicator;
+    }
+
+    public String getReadingNotesUrl() {
+        return readingNotesUrl;
+    }
+
+    public void setReadingNotesUrl(String readingNotesUrl) {
+        this.readingNotesUrl = readingNotesUrl;
+    }
+
     public Book getBook() {
         return book;
     }
@@ -60,6 +93,9 @@ public class Readings {
         return "Readings{" +
                 "Id=" + Id +
                 ", dateOfReading='" + dateOfReading + '\'' +
+                ", ratingOfUsefulness=" + ratingOfUsefulness +
+                ", allTimeGreatIndicator='" + allTimeGreatIndicator + '\'' +
+                ", readingNotesUrl='" + readingNotesUrl + '\'' +
                 ", book=" + book +
                 '}';
     }

@@ -66,6 +66,10 @@ public class Book {
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, orphanRemoval = true)
     private List<Authors> authorsList;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, orphanRemoval = true)
+    private List<Readings> readingsList;
+
     @Transient
     private String authorsFirstName1;
     @Transient
@@ -327,6 +331,14 @@ public class Book {
         this.allTimeGreatIndicator = allTimeGreatIndicator;
     }
 
+    public List<Readings> getReadingsList() {
+        return readingsList;
+    }
+
+    public void setReadingsList(List<Readings> readingsList) {
+        this.readingsList = readingsList;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -349,5 +361,14 @@ public class Book {
 
         authorsList.add(authors);
         authors.setBook(this);
+    }
+
+    public void addReading(Readings readings){
+        if(readingsList == null){
+            readingsList = new ArrayList<>();
+        }
+
+        readingsList.add(readings);
+        readings.setBook(this);
     }
 }

@@ -4,9 +4,11 @@ import lombok.extern.slf4j.Slf4j;
 import net.myphenotype.Librarian.DAO.BookDao;
 import net.myphenotype.Librarian.Entity.*;
 import net.myphenotype.Librarian.Repository.CurrencyRateRepository;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +53,7 @@ public class BookService {
     public Iterable<BookExpanded> listBooks(String uri){
         Iterable<Book> bookList = bookDao.listBooks();
         List<BookExpanded> bookExpandedList = new ArrayList<>();
-
+        BookExpanded bookExpandedTemp = new BookExpanded();
         int i = 0;
         bookSummary.setTotalCost(0.00);
         bookSummary.setNumberOfBooks(0);
@@ -60,7 +62,7 @@ public class BookService {
             try{
                 if(tempBook.getBookTitle().contains(":")) {
                     System.out.println(uri);
-                    if (uri.equals("/book/downloadList"))
+                    if (uri.equals("/book/downloadList") || uri.equals("/book/downloadReadList"))
                         bookExpanded.setBookTitle(tempBook.getBookTitle());
                     else
                         bookExpanded.setBookTitle(tempBook.getBookTitle().substring(0, tempBook.getBookTitle().indexOf(":")));
@@ -98,7 +100,26 @@ public class BookService {
             bookSummary.setNumberOfBooks(bookSummary.getNumberOfBooks() + 1);
 
             bookExpandedList.add(bookExpanded);
+            try {
+                BeanUtils.copyProperties(bookExpandedTemp, bookExpanded);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
             bookExpanded = new BookExpanded();
+            if (uri.equals("/book/downloadReadList")){
+                List<Readings> readings = bookDao.listReadings(bookExpandedTemp.getId());
+                for(Readings reading: readings){
+                    bookExpandedTemp.setDateOfReading(reading.getDateOfReading());
+                    bookExpandedTemp.setRatingOfUsefulness(reading.getRatingOfUsefulness());
+                    bookExpandedTemp.setAllTimeGreatIndicator(reading.getAllTimeGreatIndicator());
+                    bookExpandedTemp.setReadingNotesUrl(reading.getReadingNotesUrl());
+                    bookSummary.setNumberOfBooks(bookSummary.getNumberOfBooks() + 1);
+                    bookExpandedList.add(bookExpandedTemp);
+                    bookExpandedTemp = new BookExpanded();
+                }
+            }
             i++;
         }
         bookSummary.setTotalCostOfBooks(rf.formattedRupee(ft.format(bookSummary.getTotalCost())));
@@ -278,6 +299,13 @@ public class BookService {
         book.setDateOfPurchase(bookExpanded.getDateOfPurchase());
         book.setCostOfPurchase(bookExpanded.getCostOfPurchase());
         book.setCurrencyCode(bookExpanded.getCurrencyCode());
+        book.setReadStatus(bookExpanded.getReadStatus());
+        book.setDateOfReading(bookExpanded.getDateOfReading());
+        book.setRatingOfUsefulness(bookExpanded.getRatingOfUsefulness());
+        book.setAllTimeGreatIndicator(bookExpanded.getAllTimeGreatIndicator());
+        bookDetail.setShoppingUrl(bookExpanded.getShoppingUrl());
+        book.setImageFileName(bookExpanded.getImageFileName());
+        bookDetail.setReadingNotesUrl(bookExpanded.getReadingNotesUrl());
         bookDetail.setTypeOfBinding(bookExpanded.getTypeOfBinding());
         bookDetail.setShoppingChannel(bookExpanded.getShoppingChannel());
         bookDetail.setIsbNumber(bookExpanded.getIsbNumber());
@@ -335,6 +363,106 @@ public class BookService {
         bookDao.saveBook(book);
     }
 
+    public List<Readings> getReadings(int bookId){
+        return bookDao.listReadings(bookId);
+    }
+
+    public void saveBook(BookExpanded bookExpanded, Readings readings) {
+        List<Authors> authorsList = new ArrayList<>();
+        List<Readings> readingsList = bookDao.listReadings(bookExpanded.getId());
+        log.info("The ID is " + bookExpanded.getId());
+        if(bookExpanded.getId() != null)
+            book.setId(bookExpanded.getId());
+        book.setBookTitle(bookExpanded.getBookTitle());
+        log.info("Book Length " + bookExpanded.getBookTitle().length());
+        if (bookExpanded.getBookTitle().length() > 255)
+            book.setBookTitleAdditionalChars(bookExpanded.getBookTitle().substring(255));
+        book.setBookGenre(bookExpanded.getBookGenre());
+        book.setAuthorFirstName(bookExpanded.getAuthorsFirstName1());
+        book.setAuthorLastName(bookExpanded.getAuthorsLastName1());
+        book.setAuthorsFirstName1(bookExpanded.getAuthorsFirstName1());
+        book.setAuthorsLastName1(bookExpanded.getAuthorsLastName1());
+        book.setAuthorsFirstName2(bookExpanded.getAuthorsFirstName2());
+        book.setAuthorsLastName2(bookExpanded.getAuthorsLastName2());
+        book.setAuthorsFirstName3(bookExpanded.getAuthorsFirstName3());
+        book.setAuthorsLastName3(bookExpanded.getAuthorsLastName3());
+        book.setAuthorsFirstName4(bookExpanded.getAuthorsFirstName4());
+        book.setAuthorsLastName4(bookExpanded.getAuthorsLastName4());
+        book.setPublisherName(bookExpanded.getPublisherName());
+        book.setDateOfPurchase(bookExpanded.getDateOfPurchase());
+        book.setCostOfPurchase(bookExpanded.getCostOfPurchase());
+        book.setCurrencyCode(bookExpanded.getCurrencyCode());
+        book.setReadStatus(bookExpanded.getReadStatus());
+        book.setDateOfReading(bookExpanded.getDateOfReading());
+        book.setRatingOfUsefulness(bookExpanded.getRatingOfUsefulness());
+        book.setAllTimeGreatIndicator(bookExpanded.getAllTimeGreatIndicator());
+        bookDetail.setShoppingUrl(bookExpanded.getShoppingUrl());
+        book.setImageFileName(bookExpanded.getImageFileName());
+        bookDetail.setReadingNotesUrl(bookExpanded.getReadingNotesUrl());
+        bookDetail.setTypeOfBinding(bookExpanded.getTypeOfBinding());
+        bookDetail.setShoppingChannel(bookExpanded.getShoppingChannel());
+        bookDetail.setIsbNumber(bookExpanded.getIsbNumber());
+        bookDetail.setBook(book);
+        book.setBookDetail(bookDetail);
+
+        if (readings.getDateOfReading().length() > 0 ) {
+            readings.setBook(book);
+            readingsList.add(readings);
+            book.setReadingsList(readingsList);
+        }
+        int authorCounter = 1;
+        if(book.getAuthorsFirstName3().equals(null)) log.info("Null");
+        if(book.getAuthorsFirstName3().isEmpty()) log.info("Empty");
+        if(book.getAuthorsFirstName3().isBlank()) log.info("Blank");
+        if(book.getAuthorsFirstName3().length() == 0) log.info("Spaces?");
+        if(book.getAuthorsFirstName1().length() > 0 || book.getAuthorsLastName1().length() > 0)
+        {
+            log.info("setting Author" + authorCounter++ + " as " + book.getAuthorsFirstName1());
+            authors.setBook(book);
+            book.setAuthorFirstName(book.getAuthorsFirstName1());
+            book.setAuthorLastName(book.getAuthorsLastName1());
+            authors.setAuthorsFirstName(book.getAuthorFirstName());
+            authors.setAuthorsLastName(book.getAuthorLastName());
+            authorsList.add(authors);
+            authors = new Authors();
+        }
+
+        if(book.getAuthorsFirstName2().length() > 0 || book.getAuthorsLastName2().length() > 0)
+        {
+            log.info("setting Author" + authorCounter++ + " as " + book.getAuthorsFirstName2());
+            authors.setBook(book);
+            authors.setAuthorsFirstName(book.getAuthorsFirstName2());
+            authors.setAuthorsLastName(book.getAuthorsLastName2());
+            authorsList.add(authors);
+            authors = new Authors();
+        }
+
+        if(book.getAuthorsFirstName3().length() > 0 || book.getAuthorsLastName3().length() > 0)
+        {
+            log.info("setting Author" + authorCounter++ + " as " + book.getAuthorsFirstName3());
+            authors.setBook(book);
+            authors.setAuthorsFirstName(book.getAuthorsFirstName3());
+            authors.setAuthorsLastName(book.getAuthorsLastName3());
+            authorsList.add(authors);
+            authors = new Authors();
+        }
+
+        if(book.getAuthorsFirstName4().length() > 0 || book.getAuthorsLastName4().length() > 0)
+        {
+            log.info("setting Author" + authorCounter++ + " as " + book.getAuthorsFirstName4());
+            authors.setBook(book);
+            authors.setAuthorsFirstName(book.getAuthorsFirstName4());
+            authors.setAuthorsLastName(book.getAuthorsLastName4());
+            authorsList.add(authors);
+        }
+        if(book.getBookTitle().length() > 90)
+            book.setBookTitle(book.getBookTitle().substring(0,90));
+        book.setAuthorsList(authorsList);
+        log.info("Multiple representations of the same entity are being merged 1.");
+        bookDao.saveBook(book);
+        log.info("Multiple representations of the same entity are being merged 2.");
+    }
+
     public Book getBookbyID(int theID) {
         Book book = bookDao.getBookbyID(theID);
         book = appendAuthors(book,theID);
@@ -365,10 +493,16 @@ public class BookService {
         bookExpanded.setId(tempBook.getId());
         bookExpanded.setCostInLocalCurrency(costInLocalCurrency(tempBook.getCostOfPurchase(), tempBook.getCurrencyCode()));
         bookExpanded.setCostInLocalCurrencyFmtd(costInLocalCurrencyFmtd(bookExpanded.getCostInLocalCurrency()));
+        bookExpanded.setImageFileName(tempBook.getImageFileName());
+        bookExpanded.setReadStatus(tempBook.getReadStatus());
+        bookExpanded.setDateOfReading(tempBook.getDateOfReading());
+        bookExpanded.setRatingOfUsefulness(tempBook.getRatingOfUsefulness());
+        bookExpanded.setAllTimeGreatIndicator(tempBook.getAllTimeGreatIndicator());
         bookExpanded.setTypeOfBinding(tempBook.getBookDetail().getTypeOfBinding());
         bookExpanded.setShoppingChannel(tempBook.getBookDetail().getShoppingChannel());
         bookExpanded.setShoppingUrl(tempBook.getBookDetail().getShoppingUrl());
         bookExpanded.setIsbNumber(tempBook.getBookDetail().getIsbNumber());
+        bookExpanded.setReadingNotesUrl(tempBook.getBookDetail().getReadingNotesUrl());
         bookExpanded = appendAuthors(bookExpanded,tempBook.getId());
         bookSummary.setTotalCost(bookSummary.getTotalCost()+bookExpanded.getCostInLocalCurrency());
         bookSummary.setNumberOfBooks(bookSummary.getNumberOfBooks() + 1);

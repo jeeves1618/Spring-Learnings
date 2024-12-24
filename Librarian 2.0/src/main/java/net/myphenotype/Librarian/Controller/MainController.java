@@ -38,6 +38,9 @@ public class MainController {
     @Autowired
     private BookSearch bookSearch;
 
+    @Autowired
+    private Readings readings;
+
     @GetMapping(path = "/listjason")
     public @ResponseBody
     Iterable<BookExpanded> getBooks(Model model, HttpServletRequest request){
@@ -138,13 +141,24 @@ public class MainController {
     }
 
     @PostMapping(path = "/addBook")
-    public String AddBookToList(@ModelAttribute("book") Book book){
+    public String addBookToList(@ModelAttribute("book") Book book){
         bookService.saveBook(book);
         bookService.saveTopic(book);
         return "redirect:/book/list";
     }
 
-    @GetMapping(path = "/downloadList")
+    @PostMapping(path = "/addReading")
+    public String addReadingInstance(@ModelAttribute("reading") Readings readings){
+        log.info("Readings: " + readings.toString());
+        BookExpanded bookExpanded = bookService.getBook(readings.getBook().getId());
+        log.info("Before Book Service : " + bookExpanded.toString());
+        bookService.saveBook(bookExpanded, readings);
+        log.info("After Book Service");
+        return "redirect:/book/showDetail?bookID=" + readings.getBook().getId();
+    }
+
+
+    @GetMapping(value = {"/downloadList",  "/downloadReadList"})
     public String downloadToJson(Model model, HttpServletRequest request){
 
         log.info("Downloading data to JSON file. ");
@@ -156,8 +170,12 @@ public class MainController {
         Iterable<BookExpanded> bookList = bookService.listBooks(request.getRequestURI().toString());
 
         ObjectMapper mapper = new ObjectMapper();
+        File file;
+        if (request.getRequestURI().toString().equals("/book/downloadList"))
+            file = new File("src/main/resources/book-list.json");
+        else
+            file = new File("src/main/resources/read-list.json");
 
-        File file = new File("src/main/resources/book-list.json");
         try {
             // Serialize Java object info JSON file.
             mapper.writeValue(file, bookList);
@@ -227,11 +245,24 @@ public class MainController {
         //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
         Book bookToBeUpdated = bookService.getBookbyID(theID);
 
-        //Set the Customer as the Model Attribute to Prepopulate the Form
+        //Set the Book as the Model Attribute to Prepopulate the Form
         model.addAttribute("book",bookToBeUpdated);
 
         //Send the data to the right form
         return "bookForm";
+    }
+
+    @GetMapping(path = "/showFormForReading")
+    public String ShowFormForReading(@RequestParam("bookID") int theID, Model model){
+        //Get the book using the ID from the Service (in turn from DAO and in turn from Table)
+        Book bookToBeUpdated = bookService.getBookbyID(theID);
+        readings.setBook(bookToBeUpdated);
+        //Set the Expanded Book as the Model Attribute to Prepopulate the Form
+        model.addAttribute("reading",readings);
+        log.info("Readings: " + readings);
+
+        //Send the data to the right form
+        return "readingForm";
     }
 
     @GetMapping(path = "/showDetail")

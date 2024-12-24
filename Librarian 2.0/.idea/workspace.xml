@@ -7,10 +7,24 @@
     <list default="true" id="4033b307-5393-48f9-930f-75cfda21ff1a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Configuration/ReadingsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Configuration/ReadingsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/DAO/BookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/DAO/BookDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Entity/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Entity/Readings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Entity/Readings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/myphenotype/Librarian/Service/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/book-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/book-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bookDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bookDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bookList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bookList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/topic-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/topic-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/book-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/book-list.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/bookDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/bookDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/bookList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/bookList.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/topic-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/topic-list.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Readme.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -3,9 +3,11 @@ package net.myphenotype.Librarian.DAO;
 import lombok.extern.slf4j.Slf4j;
 import net.myphenotype.Librarian.Entity.Authors;
 import net.myphenotype.Librarian.Entity.Book;
+import net.myphenotype.Librarian.Entity.Readings;
 import net.myphenotype.Librarian.Entity.Topic;
 import net.myphenotype.Librarian.Repository.AuthorRepository;
 import net.myphenotype.Librarian.Repository.BookRepository;
+import net.myphenotype.Librarian.Repository.ReadingsRepository;
 import net.myphenotype.Librarian.Repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,6 +27,9 @@ public class BookDao {
     @Autowired
     private TopicRepository topicRepository;
 
+    @Autowired
+    private ReadingsRepository readingsRepository;
+
     public BookDao(BookRepository bookRepository){
         this.bookRepository = bookRepository;
     }
@@ -32,6 +37,11 @@ public class BookDao {
     public List<Book> listBooks(){
         log.info("Listing books");
         return bookRepository.findAll();
+    }
+
+    public List<Readings> listReadings(int bookId){
+        log.info("Listing books");
+        return readingsRepository.findByBookId(bookId);
     }
 
     public void saveBook(Book book) {
