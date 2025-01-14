@@ -95,6 +95,7 @@
       <div id="topicList">
         <section th:if="${not #lists.isEmpty(books)}" class="row">
           <div th:each="book : ${books}" class="book-list col-md-6">
+            <!-- Start of Book Section -->
             <div class="book-title-tile" th:text="${book.bookTitle}"></div>
             <div class="row section-tile">
               <div class="col-sm-5 book-tile">
@@ -123,6 +124,7 @@
                 <p th:text="${book.typeOfBinding}"></p>
               </div>
             </div>
+            <!-- End of Book Section -->
           </div>
         </section>
       </div>
