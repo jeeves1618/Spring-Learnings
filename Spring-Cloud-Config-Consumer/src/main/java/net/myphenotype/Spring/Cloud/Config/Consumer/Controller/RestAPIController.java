@@ -30,7 +30,7 @@ public class RestAPIController {
     }
 
     @GetMapping("/contact-info")
-    public ResponseEntity<ReadData> getContactInfo() {
+    public ResponseEntity<ReadData> getContactInfo() {6y
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(readData);
