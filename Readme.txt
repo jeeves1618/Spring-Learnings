@@ -1,5 +1,7 @@
 The first day of the rest of your life awaits!
 
+The Five C’s: The essential human skills AI can’t replace curiosity, compassion, courage, creativity and communication. 
+
 Primary Functions of a Spring Container
 1. Create and Manage Objects (Inversion of Control)
 2. Inject Object's Dependencies (Dependency Injection)
