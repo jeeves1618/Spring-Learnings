@@ -7,9 +7,6 @@
     <list default="true" id="671ba900-8778-42cb-8e5f-1965f2d19277" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Librarian 2.0/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/book-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/book-list.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/read-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/read-list.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Librarian 2.0/target/classes/topic-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Librarian 2.0/target/classes/topic-list.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,17 +53,18 @@
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ProjectVeronaApplication.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ProjectVeronaApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Dev\ProjectVerona\src\main\resources\templates" />
