@@ -54,7 +54,7 @@ public class Book {
     @Column(name = "date_of_reading")
     private String dateOfReading;
     @Column(name = "rating_of_usefulness", columnDefinition = "integer default 0")
-    private Integer ratingOfUsefulness;
+    private double ratingOfUsefulness;
     @Column(name = "all_time_great_indicator", columnDefinition = "varchar(255) default 'No'")
     private String allTimeGreatIndicator;
 
@@ -187,11 +187,11 @@ public class Book {
         this.imageFileName = imageFileName;
     }
 
-    public Integer getRatingOfUsefulness() {
+    public double getRatingOfUsefulness() {
         return ratingOfUsefulness;
     }
 
-    public void setRatingOfUsefulness(Integer ratingOfUsefulness) {
+    public void setRatingOfUsefulness(double ratingOfUsefulness) {
         this.ratingOfUsefulness = ratingOfUsefulness;
     }
 

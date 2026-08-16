@@ -31,7 +31,7 @@ public class BookExpanded {
     private String imageFileName;
     private String readStatus;
     private String dateOfReading;
-    private Integer ratingOfUsefulness;
+    private double ratingOfUsefulness;
     private String allTimeGreatIndicator;
     private String shoppingChannel;
     private String shoppingUrl;
